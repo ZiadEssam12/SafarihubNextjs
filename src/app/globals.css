@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+::selection {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.user-select-none {
+  user-select: none;
+  background: transparent;
+}
+
+.poppins-thin {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.poppins-extralight {
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.poppins-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.poppins-semibold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.poppins-extrabold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.poppins-black {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.poppins-thin-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.poppins-extralight-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.poppins-light-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.poppins-regular-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.poppins-medium-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.poppins-semibold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.poppins-bold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.poppins-extrabold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.poppins-black-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+body {
+  @apply text-white dark:text-gray-900;
+}
+/* FullCalendar Custom Styles  */
+.fc {
+  @apply font-sans;
+}
+
+.fc .fc-toolbar-title {
+  @apply text-xl font-bold text-gray-900 dark:text-white;
+}
+
+.fc .fc-button {
+  @apply bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500;
+}
+
+.fc .fc-button-primary {
+  @apply bg-blue-500 border-blue-500 text-white hover:bg-blue-600 hover:border-blue-600;
+}
+
+.fc .fc-button-primary:not(:disabled).fc-button-active,
+.fc .fc-button-primary:not(:disabled):active {
+  @apply bg-blue-600 border-blue-600;
+}
+
+.fc-theme-standard .fc-scrollgrid {
+  @apply border-gray-200;
+}
+
+/* .fc .fc-daygrid-day.fc-day-today {
+  @apply 
+} */
+
+.fc .fc-daygrid-day-number {
+  @apply text-sm text-gray-700 dark:text-white;
+}
+
+.fc .fc-event {
+  @apply text-white  border-2 border-gray-900 shadow-sm cursor-pointer transition-opacity hover:opacity-90 bg-gray-800 dark:bg-gray-700;
+}
+
+.fc .fc-timegrid-slot {
+  @apply h-12;
+}
+
+.fc .fc-timegrid-axis {
+  @apply text-sm text-gray-500;
+}
+
+.fc .fc-col-header-cell {
+  @apply bg-gray-50 py-2;
+}
+
+.fc .fc-toolbar.fc-header-toolbar {
+  @apply mb-4;
+}
+
+.fc .fc-view-harness {
+  @apply bg-white rounded-lg border border-gray-200;
+}
+
+.fc-col-header-cell-cushion {
+  @apply font-bold text-gray-900 dark:text-white;
+}
+
+.fc-day {
+  @apply bg-white dark:bg-gray-900;
+}
+
+.fc .fc-daygrid-day.fc-day-today {
+  @apply bg-blue-50 dark:bg-gray-600;
+}
+
+.fc-day-disabled {
+  @apply dark:bg-red-950;
+}
+
+span[data-testid="flowbite-sidebar-collapse-label"] {
+  text-align: right !important;
+  padding-inline: 12px;
+}
+
+button[aria-label="Close"] {
+  margin: 0px !important;
+}
+
+#userRole button[aria-haspopup="menu"] {
+  width: 150px !important;
+
+  justify-content: space-between !important;
+
+  height: 50px !important;
+  border: 1px solid #e2e8f0 !important;
+  padding-inline: 12px !important;
+}
+
+@media print {
+  .hide-on-print {
+    display: none !important;
+  }
+
+  .remove-margin {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+
+  .full-height-width {
+    height: 100vh !important;
+    width: 100vw !important;
+  }
+
+  .no-shadow {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* index.css or global.css */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in-out;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms ease-in-out;
+}
+
+/* nav[aria-label="Sidebar"] > div {
+  background-color: white !important;
+} */
+/* 
+button[data-testid="dark-theme-toggle"] {
+  display: none;
+} */
