@@ -11,7 +11,13 @@ module.exports = {
   theme: {
     container: {
       center: true,
+      padding: "3rem",
+    },
+    extend: {
+      fontFamily: {
+        sans: ["Poppins", "Poppins Fallback: Arial", "sans-serif"],
+      },
     },
   },
-  plugins: [flowbite.plugin()],
+  plugins: [flowbite.plugin(), require("tailwind-container-break-out")],
 };

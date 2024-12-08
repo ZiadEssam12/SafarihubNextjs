@@ -51,6 +51,17 @@ export default function Carousel({ data, CustomCard }) {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
+  // Add Auto-Scrolling Logic
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const autoScroll = setInterval(() => {
+      if (emblaApi) emblaApi.scrollNext();
+    }, 3000); // Scrolls every 3 seconds
+
+    return () => clearInterval(autoScroll); // Cleanup on unmount
+  }, [emblaApi]);
+
   return (
     <div className="relative">
       <div className="overflow-hidden py-4" ref={emblaRef}>
@@ -58,7 +69,7 @@ export default function Carousel({ data, CustomCard }) {
           {data.map((item, index) => (
             <div
               key={index}
-              className="flex-[0_0_100%] min-w-0 md:flex-[0_0_calc(50%-16px)] lg:flex-[0_0_calc(25%-16px)]"
+              className="flex-[0_0_100%] min-w-0 md:flex-[0_0_calc(50%-8px)] lg:flex-[0_0_calc(25%-8px)]"
             >
               <CustomCard {...item} />
             </div>

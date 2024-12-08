@@ -16,8 +16,8 @@ export default function RootLayout({ children }) {
           content="A dashboard website that helps companies to Follow up on their work"
         />
       </head>
-      <body className="bg-gray-100 dark:bg-gray-700">
-        <NavBar />
+      <body className=" dark:bg-gray-700 overflow-x-hidden">
+        {/* <NavBar /> */}
         {children}
       </body>
     </html>

@@ -33,22 +33,25 @@ export default function Hero() {
   });
   return (
     <>
-      <div className=" flex justify-center items-center">
-        <figure className="w-full h-1/2">
-          <Image
-            src="/heroBackground.webp" // Ensure the correct path is provided here
-            alt="pyramids hero background"
-            className="w-full object-cover max-h-[600px] h-[60vh] lg:h-auto hero-section"
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 400px"
-            loading="lazy"
-            // layout="responsive" // This makes the image responsive
-            width={1200} // Specify the original width
-            height={800} // Specify the original height
-          />
-        </figure>
+      <div className="flex justify-center items-center mx-break-out">
+        <div className="w-full">
+          <figure className="w-full h-1/2">
+            <Image
+              src="/heroBackground.webp" // Ensure the correct path is provided here
+              alt="pyramids hero background"
+              className="w-full object-cover max-h-[600px] h-[60vh] lg:h-auto hero-section"
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 400px"
+              loading="lazy"
+              // layout="responsive" // This makes the image responsive
+              width={1200} // Specify the original width
+              height={800} // Specify the original height
+              unoptimized
+            />
+          </figure>
+        </div>
       </div>
 
-      <div id="triPackUp" className="container px-4 md:px-12 -translate-y-3 ">
+      <div id="triPackUp" className="px-4 md:px-0 -translate-y-3 ">
         <form onSubmit={formik.handleSubmit}>
           <div className="bg-white dark:bg-gray-800  rounded-md shadow-lg py-4 md:px-8 md:h-28 w-full text-black dark:text-white flex flex-col md:flex-row items-center gap-5">
             <div className="flex flex-col gap-y-2 w-full md:w-fit px-8 md:px-0">

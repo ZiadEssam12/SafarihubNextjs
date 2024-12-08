@@ -34,8 +34,8 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <div className="hidden bg-[#071C55] h-20 sticky top-0 z-[1]  md:flex items-center font-medium text-white">
-        <div className="container px-12  flex items-center justify-between">
+      <div className="hidden bg-[#071C55] w-full h-20 sticky top-0 z-[1]  md:flex items-center font-medium text-white">
+        <div className="container flex items-center justify-between">
           <div className=" flex items-center gap-x-3 ">
             <Link
               href="/"
