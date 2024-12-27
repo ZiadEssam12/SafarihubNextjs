@@ -14,6 +14,10 @@
   background: transparent;
 }
 
+body {
+  @apply text-white dark:text-gray-900;
+  font-family: "Poppins", "Poppins Fallback: Arial", sans-serif;
+}
 /* FullCalendar Custom Styles  */
 .fc {
   @apply font-sans;
