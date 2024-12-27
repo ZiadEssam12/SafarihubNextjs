@@ -71,67 +71,38 @@ export default function ImageSlider({ data }) {
         photos={data}
         onDotClick={scrollTo}
       />
-      <div className="overflow-hidden w-full relative" ref={emblaRef}>
+      <div
+        className="overflow-x-hidden rounded-xl w-full relative bg-red-900"
+        ref={emblaRef}
+      >
         <div className="flex">
           {data.map((item, index) => (
-            <div
-              key={`${index}-${item.title}`}
-              className="flex-[0_0_100%] relative"
-            >
-              <Card img={item} />
+            <div key={`${index}-${item.title}`} className="flex-[0_0_100%]">
+              <Image
+                src={item}
+                alt="tour image"
+                className="w-full h-[500px] object-cover"
+                width={0}
+                height={0}
+                unoptimized
+              />
             </div>
           ))}
         </div>
-        <Buttons onPrevClick={scrollPrev} onNextClick={scrollNext} />
+        <button
+          onClick={scrollPrev}
+          className="absolute top-1/2 -left-4 md:left-2 transform -translate-y-1/2 bg-white/80 hover:bg-white transition-all rounded-full p-2.5 shadow-md z-10"
+        >
+          <MdiChevronUp className="-rotate-90 size-6" />
+        </button>
+
+        <button
+          onClick={scrollNext}
+          className="absolute top-1/2 -right-4 md:right-2 transform -translate-y-1/2 bg-white/80 hover:bg-white transition-all rounded-full p-2.5 shadow-md z-10"
+        >
+          <MdiChevronUp className="rotate-90 size-6" />
+        </button>
       </div>
-    </>
-  );
-}
-
-export function Card({ img }) {
-  return (
-    <div className="w-full h-full relative">
-      <Image
-        src={img}
-        alt="tour image"
-        className="rounded-xl h-full w-full"
-        width={0}
-        height={0}
-        unoptimized
-      />
-
-      {/* <p className="w-full h-full bg-red-900">here</p> */}
-    </div>
-  );
-}
-
-export function Buttons({ scrollPrev, scrollNext }) {
-  // Add console logs to debug
-  const handlePrevClick = () => {
-    console.log("Prev clicked");
-    scrollPrev?.();
-  };
-
-  const handleNextClick = () => {
-    console.log("Next clicked");
-    scrollNext?.();
-  };
-
-  return (
-    <>
-      <button
-        onClick={handlePrevClick}
-        className="absolute top-1/2 -left-4 md:left-2 transform -translate-y-1/2 bg-white/80 hover:bg-white transition-all rounded-full p-2.5 shadow-md z-10"
-      >
-        <MdiChevronUp className="-rotate-90 size-6" />
-      </button>
-
-      <button
-        onClick={handleNextClick}
-        className="absolute top-1/2 -right-4 md:right-2 transform -translate-y-1/2 bg-white/80 hover:bg-white transition-all rounded-full p-2.5 shadow-md z-10"
-      >
-        <MdiChevronUp className="rotate-90 size-6" />
-      </button>
     </>
   );
 }
