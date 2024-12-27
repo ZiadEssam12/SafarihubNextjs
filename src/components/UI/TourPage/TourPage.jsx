@@ -262,7 +262,6 @@ export default function TourPage() {
               CustomCard={TravelCard}
               data={travelPackages}
               CarouselButtons={CarouselButtons}
-              CarouselDots={CarouselDots}
             />
           </div>
         </main>
