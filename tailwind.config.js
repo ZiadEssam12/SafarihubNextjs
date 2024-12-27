@@ -15,7 +15,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Poppins", "Poppins Fallback: Arial", "sans-serif"],
+        sans: ["Poppins", "Arial", "sans-serif"],
       },
     },
   },
