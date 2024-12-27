@@ -1,10 +1,36 @@
 "use client";
 
-import React, { useState } from "react";
-import DashboardNavBar from "./navbar/Navbar";
-import SideSection from "./SideSection/SideSection";
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import DashboardNavBar from "@/components/UI/DashboardComponents/Navbar";
+import SideSection from "@/components/UI/DashboardComponents/SideBar";
 
-export default function DashboardLayout({ children }) {
+// Higher-order component to guard the route
+function withAdminGuard(WrappedComponent) {
+  return function AdminGuard(props) {
+    const router = useRouter();
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+      // Replace this with your actual user fetching logic
+      const user = { type: "user" }; // Example user object
+
+      if (user.type !== "admin") {
+        router.push("/");
+      } else {
+        setIsAdmin(true);
+      }
+    }, [router]);
+
+    if (!isAdmin) {
+      return null; // Or a loading spinner
+    }
+
+    return <WrappedComponent {...props} />;
+  };
+}
+
+function DashboardLayout({ children }) {
   const [closeSideSection, setCloseSideSection] = useState(true);
   function sideSectionToggle() {
     setCloseSideSection(closeSideSection ? false : true);
@@ -29,3 +55,5 @@ export default function DashboardLayout({ children }) {
     </>
   );
 }
+
+export default withAdminGuard(DashboardLayout);

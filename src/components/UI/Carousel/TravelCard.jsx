@@ -3,10 +3,14 @@
 import React from "react";
 import { MdiHeartOutline } from "@/icons/Icons";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function TravelCard({ title, description, price, image }) {
+export default function TravelCard({ id, title, description, price, image }) {
   return (
-    <div className="relative flex flex-col ms-1 bg-white border-2  border-transparent dark:border-gray-500  rounded-lg shadow-md overflow-hidden h-full user-select-none">
+    <Link
+      href={`/tours/${id}`}
+      className="relative flex flex-col ms-1 bg-white border-2  border-transparent dark:border-gray-500  rounded-lg shadow-md overflow-hidden h-full user-select-none"
+    >
       <div className="relative h-48 overflow-hidden">
         <Image
           src={image}
@@ -35,11 +39,11 @@ export default function TravelCard({ title, description, price, image }) {
           <div className="text-lg font-bold text-orange-500">
             ${price.toFixed(2)}
           </div>
-          <button className="bg-blue-600 text-white px-2 py-2 rounded-md hover:bg-blue-700 transition-colors">
-            ADD TO CART
+          <button className="bg-blue-600 text-white px-2 py-2 rounded-md hover:bg-blue-700 transition-colors capitalize">
+            add to cart
           </button>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

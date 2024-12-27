@@ -158,3 +158,11 @@ button[aria-label="Close"] {
 button[data-testid="dark-theme-toggle"] {
   display: none;
 } */
+
+.tour-title {
+  @apply text-[#1C2B38] text-4xl font-bold;
+}
+
+.color-dark {
+  @apply text-[#1C2B38];
+}

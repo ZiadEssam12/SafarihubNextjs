@@ -53,7 +53,10 @@ export default function DashboardNavBar({ sideSectionToggle }) {
             className="rotate-180 fill-black dark:fill-white"
           />
         </button>
-        <Link href="/dashboard" className="text-2xl font-semibold flex items-center gap-x-2">
+        <Link
+          href="/dashboard"
+          className="text-2xl font-semibold flex items-center gap-x-2"
+        >
           <Logo width="30" height="30" />
           عقاري
         </Link>
