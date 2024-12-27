@@ -6,6 +6,9 @@ import ReviewCard from "./ReviewCard";
 import { reviews } from "./ReviewsData";
 import ImageCarouselButton from "./ImageCarouselButton";
 import CarouselButtons from "../Carousel/CarouselButtons";
+import TravelCard from "../HomeCarousel/TravelCard";
+import { travelPackages } from "../HomeCarousel/travelPackages";
+import CarouselDots from "../Carousel/CarouselDots";
 
 const tour = {
   title: "Quad Bike Safari At Luxor From The West Bank",
@@ -114,7 +117,7 @@ export default function TourPage() {
 
         {/* booking options */}
         <div className="md:col-span-2 rounded-xl shadow-md pt-4 h-full">
-          <div className="tour-title !text-xl border-b-2 border-gray-100 pb-2">
+          <div className="tour-title border-b-2 border-gray-100 pb-2">
             <h3 className="px-4">Booking</h3>
           </div>
           <div className="px-4">
@@ -249,6 +252,17 @@ export default function TourPage() {
               CustomCard={ReviewCard}
               data={reviews}
               CarouselButtons={CarouselButtons}
+            />
+          </div>
+
+          <div>
+            <h3 className="tour-page-title capitalize">Related Tours</h3>
+
+            <Carousel
+              CustomCard={TravelCard}
+              data={travelPackages}
+              CarouselButtons={CarouselButtons}
+              CarouselDots={CarouselDots}
             />
           </div>
         </main>
