@@ -166,3 +166,11 @@ button[data-testid="dark-theme-toggle"] {
 .color-dark {
   @apply text-[#1C2B38];
 }
+
+.tour-page-title {
+  @apply text-[#1C2B38] text-xl font-bold;
+}
+
+.tour-page-table {
+  @apply cursor-pointer opacity-80 hover:opacity-100 transition-all relative before:absolute before:-bottom-1 before:w-0 hover:before:w-full before:transition-all before:duration-300 before:h-[2px] before:bg-[#1C2B38];
+}

@@ -2,12 +2,15 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import CarouselDots from "./CarouselDots";
-import CarouselButtons from "./CarouselButtons";
 
 const scrollTime = 4000;
 
-export default function Carousel({ data, CustomCard }) {
+export default function Carousel({
+  data,
+  CustomCard,
+  CarouselDots,
+  CarouselButtons,
+}) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
     loop: true,
@@ -79,13 +82,17 @@ export default function Carousel({ data, CustomCard }) {
         </div>
       </div>
 
-      <CarouselButtons onPrevClick={scrollPrev} onNextClick={scrollNext} />
+      {CarouselButtons && (
+        <CarouselButtons onPrevClick={scrollPrev} onNextClick={scrollNext} />
+      )}
 
-      <CarouselDots
-        selectedIndex={selectedIndex}
-        scrollSnaps={scrollSnaps}
-        onDotClick={scrollTo}
-      />
+      {CarouselDots && (
+        <CarouselDots
+          selectedIndex={selectedIndex}
+          scrollSnaps={scrollSnaps}
+          onDotClick={scrollTo}
+        />
+      )}
     </div>
   );
 }

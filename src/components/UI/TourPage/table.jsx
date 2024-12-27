@@ -7,34 +7,34 @@ export default function TourPageHead() {
 
   return (
     <>
-      <div className="px-5 py-4 sticky top-[85px] bg-white border-[0.5px] border-gray-500 rounded flex justify-around">
+      <div className="px-5 py-4 sticky z-[2] top-[85px] bg-white border-[0.5px] border-gray-500 rounded flex justify-around">
         <button
           onClick={() => scrollToSection("overview")}
-          className="cursor-pointer opacity-80 hover:opacity-100 transition-all relative before:absolute before:-bottom-1 before:w-0 hover:before:w-full before:transition-all before:duration-300 before:h-[2px] before:bg-black"
+          className="tour-page-table"
         >
           Overview
         </button>
         <button
           onClick={() => scrollToSection("highlights")}
-          className="cursor-pointer opacity-80 hover:opacity-100 transition-all relative before:absolute before:-bottom-1 before:w-0 hover:before:w-full before:transition-all before:duration-300 before:h-[2px] before:bg-black"
+          className="tour-page-table"
         >
           Highlights
         </button>
         <button
           onClick={() => scrollToSection("details")}
-          className="cursor-pointer opacity-80 hover:opacity-100 transition-all relative before:absolute before:-bottom-1 before:w-0 hover:before:w-full before:transition-all before:duration-300 before:h-[2px] before:bg-black"
+          className="tour-page-table"
         >
           Details
         </button>
         <button
           onClick={() => scrollToSection("inclusions")}
-          className="cursor-pointer opacity-80 hover:opacity-100 transition-all relative before:absolute before:-bottom-1 before:w-0 hover:before:w-full before:transition-all before:duration-300 before:h-[2px] before:bg-black"
+          className="tour-page-table"
         >
           Inclusions
         </button>
         <button
           onClick={() => scrollToSection("reviews")}
-          className="cursor-pointer opacity-80 hover:opacity-100 transition-all relative before:absolute before:-bottom-1 before:w-0 hover:before:w-full before:transition-all before:duration-300 before:h-[2px] before:bg-black"
+          className="tour-page-table"
         >
           Reviews
         </button>

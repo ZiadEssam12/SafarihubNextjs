@@ -1,8 +1,11 @@
-import { MdiChevronUp } from "@/icons/Icons";
 import { Button } from "flowbite-react";
 import Image from "next/image";
-import Link from "next/link";
 import TourPageHead from "./table";
+import Carousel from "../Carousel/Carousel";
+import ReviewCard from "./ReviewCard";
+import { reviews } from "./ReviewsData";
+import ImageCarouselButton from "./ImageCarouselButton";
+import CarouselButtons from "../Carousel/CarouselButtons";
 
 const tour = {
   title: "Quad Bike Safari At Luxor From The West Bank",
@@ -93,11 +96,6 @@ export default function TourPage() {
 
           {/* image slider */}
           <div className="w-full h-full relative">
-            {/* prev button */}
-            <button className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white opacity-50  hover:opacity-100 transition-all rounded-full p-2 shadow-md z-10">
-              <MdiChevronUp className="-rotate-90 size-6" />
-            </button>
-            {/* end prev button */}
             <div className="rounded-xl overflow-hidden h-full">
               <Image
                 src={main}
@@ -108,11 +106,8 @@ export default function TourPage() {
                 unoptimized
               />
             </div>
-            {/* next button */}
-            <button className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white opacity-50  hover:opacity-100 transition-all rounded-full p-2 shadow-md z-10">
-              <MdiChevronUp className="rotate-90 size-6" />
-            </button>
-            {/* end next button */}
+
+            <ImageCarouselButton />
           </div>
           {/* end image slider */}
         </div>
@@ -197,17 +192,17 @@ export default function TourPage() {
         <main className="py-14 space-y-10 ">
           {/* overview */}
           <div id="overview" className="scroll-mt-40">
-            <h3 className="tour-title !text-3xl capitalize">Overview</h3>
+            <h3 className="tour-page-title capitalize">Overview</h3>
             <p className="text-gray-700 my-2">{tour.overview}</p>
           </div>
 
           <div id="highlights" className="scroll-mt-40">
-            <h3 className="tour-title !text-3xl capitalize">highlights</h3>
+            <h3 className="tour-page-title capitalize">highlights</h3>
             <p className="text-gray-700 my-2">{tour.highlights}</p>
           </div>
 
           <div id="details" className="scroll-mt-40">
-            <h3 className="tour-title !text-3xl capitalize">details</h3>
+            <h3 className="tour-page-title capitalize">details</h3>
             {
               <ul className="text-gray-700 my-2">
                 {tour.details.map((item, index) => (
@@ -224,7 +219,7 @@ export default function TourPage() {
 
           <div id="inclusions" className="scroll-mt-40">
             <div>
-              <h3 className="tour-title !text-3xl capitalize">inclusions</h3>
+              <h3 className="tour-page-title capitalize">inclusions</h3>
               <ul className="text-gray-700 my-2">
                 {tour.inclusions.map((item, index) => (
                   <li key={index} className="flex gap-2">
@@ -235,7 +230,7 @@ export default function TourPage() {
               </ul>
             </div>
             <div className="mt-10">
-              <h3 className="tour-title !text-3xl capitalize">exclusions</h3>
+              <h3 className="tour-page-title capitalize">exclusions</h3>
               <ul className="text-gray-700 my-2">
                 {tour.exclusions.map((item, index) => (
                   <li key={index} className="flex gap-2">
@@ -245,6 +240,16 @@ export default function TourPage() {
                 ))}
               </ul>
             </div>
+          </div>
+
+          <div id="reviews" className="scroll-mt-40">
+            <h3 className="tour-page-title capitalize">Reviews</h3>
+
+            <Carousel
+              CustomCard={ReviewCard}
+              data={reviews}
+              CarouselButtons={CarouselButtons}
+            />
           </div>
         </main>
       </div>

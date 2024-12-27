@@ -1,5 +1,6 @@
-import Carousel from "./Carousel";
-import React from "react";
+import Carousel from "../Carousel/Carousel";
+import CarouselButtons from "../Carousel/CarouselButtons";
+import CarouselDots from "../Carousel/CarouselDots";
 import TravelCard from "./TravelCard";
 import { travelPackages } from "./travelPackages";
 
@@ -11,7 +12,12 @@ export default function TravelCarousel() {
           hot travel deals
         </h2>
       </div>
-      <Carousel CustomCard={TravelCard} data={travelPackages} />
+      <Carousel
+        CustomCard={TravelCard}
+        data={travelPackages}
+        CarouselButtons={CarouselButtons}
+        CarouselDots={CarouselDots}
+      />
     </div>
   );
 }

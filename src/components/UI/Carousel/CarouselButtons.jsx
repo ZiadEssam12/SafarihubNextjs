@@ -1,3 +1,5 @@
+"use client";
+
 import { MdiChevronRight, MdiChevronLeft } from "@/icons/Icons";
 
 export default function CarouselButtons({ onPrevClick, onNextClick }) {
