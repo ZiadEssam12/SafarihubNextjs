@@ -1,14 +1,14 @@
+"use client";
+
 import { Button } from "flowbite-react";
-import Image from "next/image";
 import TourPageHead from "./table";
-import Carousel from "../Carousel/Carousel";
 import ReviewCard from "./ReviewCard";
 import { reviews } from "./ReviewsData";
-import ImageCarouselButton from "./ImageCarouselButton";
 import CarouselButtons from "../Carousel/CarouselButtons";
 import TravelCard from "../HomeCarousel/TravelCard";
 import { travelPackages } from "../HomeCarousel/travelPackages";
-import CarouselDots from "../Carousel/CarouselDots";
+import ImageSlider, { Buttons, Card, CarouselDots } from "./CarosuelSettings";
+import Carousel from "../Carousel/Carousel";
 
 const tour = {
   title: "Quad Bike Safari At Luxor From The West Bank",
@@ -49,24 +49,16 @@ Starting from the historic city of Luxor, you'll venture into the mystical Sahar
 
   exclusions: ["Gratuities", "Personal expenses"],
 
-  photos: {
-    main: "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=1470",
-
-    previews: [
-      "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=1470",
-      "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=1470",
-      "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=1470",
-      "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=1470",
-    ],
-  },
+  photos: [
+    "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=1470",
+    "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=1470",
+    "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=1470",
+    "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&q=80&w=1470",
+  ],
 };
 
 export default function TourPage() {
-  const {
-    title,
-    price,
-    photos: { main, previews },
-  } = tour;
+  const { title, price, photos } = tour;
 
   return (
     <div className="mt-8 text-black">
@@ -78,47 +70,13 @@ export default function TourPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mt-4 w-full max-h-[500px]">
         <div className="flex gap-4 md:col-span-5">
-          {/* preview */}
-          <div>
-            {/* This div maintains full height */}
-            <div className="flex flex-col gap-3 h-[500px] overflow-y-auto">
-              {previews.map((item, index) => (
-                <Image
-                  key={index}
-                  src={item}
-                  alt={`preview-${index}`}
-                  width={0}
-                  height={0}
-                  className="object-cover w-32 h-24 rounded-xl"
-                  unoptimized
-                />
-              ))}
-            </div>
-          </div>
-          {/* end preview */}
-
-          {/* image slider */}
-          <div className="w-full h-full relative">
-            <div className="rounded-xl overflow-hidden h-full">
-              <Image
-                src={main}
-                alt={title}
-                width={0}
-                height={0}
-                className="object-cover w-full h-full"
-                unoptimized
-              />
-            </div>
-
-            <ImageCarouselButton />
-          </div>
-          {/* end image slider */}
+          <ImageSlider data={photos} />
         </div>
 
         {/* booking options */}
         <div className="md:col-span-2 rounded-xl shadow-md pt-4 h-full">
           <div className="tour-title border-b-2 border-gray-100 pb-2">
-            <h3 className="px-4">Booking</h3>
+            <h3 className="px-4 text-xl">Booking</h3>
           </div>
           <div className="px-4">
             <form className="flex flex-col justify-between">
