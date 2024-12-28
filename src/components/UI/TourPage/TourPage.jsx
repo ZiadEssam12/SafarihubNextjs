@@ -1,14 +1,12 @@
-"use client";
-
-import { Button } from "flowbite-react";
 import TourPageHead from "./table";
 import ReviewCard from "./ReviewCard";
 import { reviews } from "./ReviewsData";
 import CarouselButtons from "../Carousel/CarouselButtons";
 import TravelCard from "../HomeCarousel/TravelCard";
 import { travelPackages } from "../HomeCarousel/travelPackages";
-import ImageSlider, { Buttons, Card, CarouselDots } from "./CarosuelSettings";
 import Carousel from "../Carousel/Carousel";
+import TourForm from "./TourForm";
+import ImageSlider from "./CarosuelSettings";
 
 const tour = {
   title: "Quad Bike Safari At Luxor From The West Bank",
@@ -84,67 +82,7 @@ export default function TourPage() {
             <h3 className="px-4 text-xl">Booking</h3>
           </div>
           <div className="px-4">
-            <form className="flex flex-col justify-between">
-              <div className="space-y-2">
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="formDate" className="color-dark">
-                    From
-                  </label>
-                  <input
-                    type="date"
-                    id="formDate"
-                    placeholder="number of adults"
-                    className="rounded-lg"
-                    defaultValue={new Date().toISOString().split("T")[0]}
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="toDate" className="color-dark">
-                    To
-                  </label>
-                  <input
-                    type="date"
-                    id="toDate"
-                    placeholder="number of adults"
-                    className="rounded-lg"
-                    defaultValue={new Date().toISOString().split("T")[0]}
-                  />
-                </div>
-
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="numOfAdult" className="color-dark">
-                    Numebr of adults
-                  </label>
-                  <input
-                    type="number"
-                    id="numOfAdult"
-                    placeholder="number of adults"
-                    className="rounded-lg"
-                    min={1}
-                  />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <label htmlFor="numOfChild" className="color-dark">
-                    Numebr of children
-                  </label>
-                  <input
-                    type="number"
-                    id="numOfChild"
-                    placeholder="number of children"
-                    className="rounded-lg"
-                    min={1}
-                  />
-                </div>
-              </div>
-
-              <div className="text-center my-4">
-                <p className="text-sm">subtotal</p>
-                <h4 className="font-bold text-4xl color-dark">${price}</h4>
-              </div>
-
-              <Button className="w-full">Book Now</Button>
-            </form>
+            <TourForm price={price} />
           </div>
         </div>
         {/* end booking options */}

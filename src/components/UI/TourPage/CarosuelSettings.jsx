@@ -72,7 +72,7 @@ export default function ImageSlider({ data }) {
         onDotClick={scrollTo}
       />
       <div
-        className="overflow-x-hidden rounded-xl w-full relative bg-red-900"
+        className="overflow-x-hidden rounded-xl w-full relative"
         ref={emblaRef}
       >
         <div className="flex">
@@ -91,6 +91,8 @@ export default function ImageSlider({ data }) {
         </div>
         <button
           onClick={scrollPrev}
+          aria-label="Scroll to previous slide"
+          role="button"
           className="absolute top-1/2 -left-4 md:left-2 transform -translate-y-1/2 bg-white/80 hover:bg-white transition-all rounded-full p-2.5 shadow-md z-10"
         >
           <MdiChevronUp className="-rotate-90 size-6" />
@@ -98,6 +100,8 @@ export default function ImageSlider({ data }) {
 
         <button
           onClick={scrollNext}
+          aria-label="Scroll to next slide"
+          role="button"
           className="absolute top-1/2 -right-4 md:right-2 transform -translate-y-1/2 bg-white/80 hover:bg-white transition-all rounded-full p-2.5 shadow-md z-10"
         >
           <MdiChevronUp className="rotate-90 size-6" />

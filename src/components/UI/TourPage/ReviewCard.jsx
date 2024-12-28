@@ -1,6 +1,5 @@
 "use client";
 import { SolarStarLinear } from "@/icons/Icons";
-import React from "react";
 
 export default function ReviewCard({ name, content, date, rating }) {
   return (

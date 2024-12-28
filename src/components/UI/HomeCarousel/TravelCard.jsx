@@ -21,7 +21,11 @@ export default function TravelCard({ id, title, description, price, image }) {
           sizes="100vw"
           style={{ width: "100%" }} // optional
         />
-        <button className="absolute top-2 right-2 rounded-full transition-colors">
+        <button
+          className="absolute top-2 right-2 rounded-full transition-colors"
+          role="button"
+          aria-label={`add ${title} to wishlist`}
+        >
           <MdiHeartOutline className="size-8" />
         </button>
         <div className="absolute top-2 left-2 bg-orange-500 text-white px-3 py-1 rounded-md text-sm font-medium">
@@ -39,7 +43,11 @@ export default function TravelCard({ id, title, description, price, image }) {
           <div className="text-lg font-bold text-orange-500">
             ${price.toFixed(2)}
           </div>
-          <button className="bg-blue-600 text-white px-2 py-2 rounded-md hover:bg-blue-700 transition-colors capitalize">
+          <button
+            className="bg-blue-600 text-white px-2 py-2 rounded-md hover:bg-blue-700 transition-colors capitalize"
+            aria-label="add to cart"
+            role="button"
+          >
             add to cart
           </button>
         </div>
