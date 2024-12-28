@@ -93,7 +93,7 @@ export default function TourForm({ price }) {
           </label>
           <input
             type="date"
-            id="to"
+            id="toDate"
             min={formik.values.from || new Date().toISOString().split("T")[0]}
             {...formik.getFieldProps("to")}
             className={`rounded-lg ${

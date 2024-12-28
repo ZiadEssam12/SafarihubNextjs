@@ -4,6 +4,27 @@ import { MdiChevronUp } from "@/icons/Icons";
 import Image from "next/image";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
+import dynamic from "next/dynamic";
+
+const DynamicCarouselDots = dynamic(
+  () => import("./CarouselDots").then((mod) => mod.CarouselDots),
+  {
+    loading: () => (
+      <div className="flex flex-col gap-3 h-[500px] bg-gray-100 animate-pulse rounded-xl w-32" />
+    ),
+    ssr: false,
+  }
+);
+
+const DynamicCarouselSlides = dynamic(
+  () => import("./CarouselSlides").then((mod) => mod.CarouselSlides),
+  {
+    loading: () => (
+      <div className="w-full h-[500px] bg-gray-100 animate-pulse rounded-xl" />
+    ),
+    ssr: false,
+  }
+);
 
 const scrollTime = 4000;
 
@@ -66,7 +87,7 @@ export default function ImageSlider({ data }) {
 
   return (
     <>
-      <CarouselDots
+      <DynamicCarouselDots
         selectedIndex={selectedIndex}
         photos={data}
         onDotClick={scrollTo}
@@ -75,74 +96,12 @@ export default function ImageSlider({ data }) {
         className="overflow-x-hidden rounded-xl w-full relative"
         ref={emblaRef}
       >
-        <div className="flex">
-          {data.map((item, index) => (
-            <div key={`${index}-${item.title}`} className="flex-[0_0_100%]">
-              <Image
-                src={item}
-                alt="tour image"
-                className="w-full h-[500px] object-cover"
-                width={0}
-                height={0}
-                unoptimized
-              />
-            </div>
-          ))}
-        </div>
-        <button
-          onClick={scrollPrev}
-          aria-label="Scroll to previous slide"
-          role="button"
-          className="absolute top-1/2 -left-4 md:left-2 transform -translate-y-1/2 bg-white/80 hover:bg-white transition-all rounded-full p-2.5 shadow-md z-10"
-        >
-          <MdiChevronUp className="-rotate-90 size-6" />
-        </button>
-
-        <button
-          onClick={scrollNext}
-          aria-label="Scroll to next slide"
-          role="button"
-          className="absolute top-1/2 -right-4 md:right-2 transform -translate-y-1/2 bg-white/80 hover:bg-white transition-all rounded-full p-2.5 shadow-md z-10"
-        >
-          <MdiChevronUp className="rotate-90 size-6" />
-        </button>
+        <DynamicCarouselSlides
+          data={data}
+          scrollNext={scrollNext}
+          scrollPrev={scrollPrev}
+        />
       </div>
     </>
-  );
-}
-
-export function CarouselDots({ selectedIndex, photos, onDotClick }) {
-  // const activeThumbRef = useRef(null);
-
-  // useEffect(() => {
-  //   activeThumbRef.current?.scrollIntoView({
-  //     behavior: "smooth",
-  //     block: "nearest",
-  //   });
-  // }, [selectedIndex]);
-
-  return (
-    <div className="flex flex-col gap-3 h-[500px] overflow-y-auto">
-      {photos.map((item, index) => (
-        <button
-          key={index}
-          // ref={index === selectedIndex ? activeThumbRef : null}
-          onClick={() => onDotClick(index)}
-          aria-label={`Go to slide ${index + 1}`}
-          // className={`relative transition-all duration-300 ${
-          //   index !== selectedIndex ? "opacity-60" : ""
-          // }`}
-        >
-          <Image
-            src={item}
-            alt={`preview-${index}`}
-            width={0}
-            height={0}
-            className="object-cover w-32 h-24 rounded-xl"
-            unoptimized
-          />
-        </button>
-      ))}
-    </div>
   );
 }
