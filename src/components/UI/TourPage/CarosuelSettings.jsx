@@ -9,13 +9,7 @@ const DynamicCarouselDots = dynamic(
   {
     loading: () => (
       <div
-        className="
-        flex flex-row lg:flex-col 
-        gap-3 
-        w-full lg:w-auto 
-        h-32 lg:h-[500px]
-        bg-gray-100 animate-pulse 
-        rounded-xl
+        className="w-32 lg:w-auto h-32 lg:h-[500px] bg-gray-100 animate-pulse rounded-xl
       "
       ></div>
     ),
@@ -94,13 +88,15 @@ export default function ImageSlider({ data }) {
 
   return (
     <div className="flex flex-col-reverse h-full lg:flex-row lg:gap-4">
-      <DynamicCarouselDots
-        selectedIndex={selectedIndex}
-        photos={data}
-        onDotClick={scrollTo}
-      />
+      <div className="w-full lg:w-32">
+        <DynamicCarouselDots
+          selectedIndex={selectedIndex}
+          photos={data}
+          onDotClick={scrollTo}
+        />
+      </div>
       <div
-        className="overflow-x-hidden rounded-xl bg-blue-900  w-full relative"
+        className="overflow-x-hidden rounded-xl w-full relative"
         ref={emblaRef}
       >
         <DynamicCarouselSlides
