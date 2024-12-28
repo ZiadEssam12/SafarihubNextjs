@@ -3,7 +3,12 @@ import { Button } from "flowbite-react";
 
 export default function LoadingButton({ text, areaLabel, valid, loading }) {
   return (
-    <Button aria-label={areaLabel} type="submit" disabled={!valid || loading}>
+    <Button
+      aria-label={areaLabel}
+      type="submit"
+      disabled={!valid || loading}
+      className="w-full"
+    >
       {loading ? (
         <LineMdLoadingLoop width={20} height={20} className="fill-white" />
       ) : (

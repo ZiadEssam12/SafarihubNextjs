@@ -50,10 +50,10 @@ export default function TourForm({ price }) {
   }, [formik.values.numOfAdult, price]);
   return (
     <form
-      className="flex flex-col justify-between"
+      className="flex flex-col h-full px-4 justify-between  py-2 md:col-span-5"
       onSubmit={formik.handleSubmit}
     >
-      <div className="space-y-2">
+      <div className="grid grid-cols-2 md:grid-cols-1 gap-2 lg:gap-4">
         <div className="flex flex-col gap-1">
           <label
             htmlFor="formDate"
@@ -102,7 +102,7 @@ export default function TourForm({ price }) {
           />
         </div>
 
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 col-span-2 md:col-span-1 ">
           <label
             htmlFor="numOfAdult"
             className={`
@@ -131,7 +131,7 @@ export default function TourForm({ price }) {
             name="numOfAdult"
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1  col-span-2 md:col-span-1">
           <label
             htmlFor="numOfChild"
             className={`
@@ -161,17 +161,19 @@ export default function TourForm({ price }) {
           />
         </div>
       </div>
-      <div className="text-center my-4">
+      <div className="text-center">
         <p className="text-sm">subtotal</p>
         <h4 className="font-bold text-4xl color-dark">${totalPrice}</h4>
       </div>
-      <LoadingButton
-        className="w-full"
-        text="Book Now"
-        valid={formik.isValid}
-        areaLabel={"Book Now"}
-        loading={formik.isSubmitting}
-      />
+      <div className="space-y-4">
+        <LoadingButton
+          className="w-full block"
+          text="Book Now"
+          valid={formik.isValid}
+          areaLabel={"Book Now"}
+          loading={formik.isSubmitting}
+        />
+      </div>
     </form>
   );
 }

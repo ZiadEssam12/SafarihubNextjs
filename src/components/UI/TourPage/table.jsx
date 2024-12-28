@@ -7,7 +7,7 @@ export default function TourPageHead() {
 
   return (
     <>
-      <div className="px-5 py-4 sticky z-[2] top-20 bg-white border-[0.5px] border-gray-500 rounded flex justify-around">
+      <div className="hidden lg:px-5 py-4 sticky z-[2]  top-0 lg:top-20 bg-white border-[0.5px] border-gray-500 rounded md:flex justify-around">
         <button
           onClick={() => scrollToSection("overview")}
           className="tour-page-table"

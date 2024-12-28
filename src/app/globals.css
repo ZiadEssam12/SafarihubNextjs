@@ -89,7 +89,7 @@ body {
 }
 
 .tour-title {
-  @apply text-[#1C2B38] text-4xl font-bold;
+  @apply text-[#1C2B38] text-xl md:text-2xl lg:text-4xl font-bold;
 }
 
 .color-dark {
@@ -97,7 +97,7 @@ body {
 }
 
 .tour-page-title {
-  @apply text-[#1C2B38] text-xl font-bold;
+  @apply text-[#1C2B38] lg:text-xl font-bold;
 }
 
 .tour-page-table {

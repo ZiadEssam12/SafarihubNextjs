@@ -71,17 +71,17 @@ export default function TourPage() {
       </div>
       {/* end title */}
 
-      <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mt-4 w-full max-h-[500px]">
-        <div className="flex gap-4 md:col-span-5">
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mt-4 w-full min-h-[500px]">
+        <div className="md:col-span-5 h-full">
           <ImageSlider data={photos} />
         </div>
 
         {/* booking options */}
-        <div className="md:col-span-2 rounded-xl shadow-md pt-4 h-full">
-          <div className="tour-title border-b-2 border-gray-100 pb-2">
-            <h3 className="px-4 text-xl">Booking</h3>
+        <div className="md:col-span-2 rounded-xl shadow-md h-full flex flex-col">
+          <div className="tour-title border-b-2 border-gray-100 p-4">
+            <h3 className="text-xl">Booking</h3>
           </div>
-          <div className="px-4">
+          <div className="flex-1 overflow-auto">
             <TourForm price={price} />
           </div>
         </div>

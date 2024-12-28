@@ -1,7 +1,5 @@
 "use client";
 
-import { MdiChevronUp } from "@/icons/Icons";
-import Image from "next/image";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import dynamic from "next/dynamic";
@@ -10,7 +8,16 @@ const DynamicCarouselDots = dynamic(
   () => import("./CarouselDots").then((mod) => mod.CarouselDots),
   {
     loading: () => (
-      <div className="flex flex-col gap-3 h-[500px] bg-gray-100 animate-pulse rounded-xl w-32" />
+      <div
+        className="
+        flex flex-row lg:flex-col 
+        gap-3 
+        w-full lg:w-auto 
+        h-32 lg:h-[500px]
+        bg-gray-100 animate-pulse 
+        rounded-xl
+      "
+      ></div>
     ),
     ssr: false,
   }
@@ -86,14 +93,14 @@ export default function ImageSlider({ data }) {
   }, [emblaApi]);
 
   return (
-    <>
+    <div className="flex flex-col-reverse h-full lg:flex-row lg:gap-4">
       <DynamicCarouselDots
         selectedIndex={selectedIndex}
         photos={data}
         onDotClick={scrollTo}
       />
       <div
-        className="overflow-x-hidden rounded-xl w-full relative"
+        className="overflow-x-hidden rounded-xl bg-blue-900  w-full relative"
         ref={emblaRef}
       >
         <DynamicCarouselSlides
@@ -102,6 +109,6 @@ export default function ImageSlider({ data }) {
           scrollPrev={scrollPrev}
         />
       </div>
-    </>
+    </div>
   );
 }
