@@ -33,7 +33,10 @@ export default function TravelCard({ id, title, description, price, image }) {
         </div>
       </div>
       <div className="p-4 flex flex-col flex-grow">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">
+        <h3
+          className="text-lg font-semibold color-dark dark:text-gray-100 mb-2 line-clamp-1"
+          title={title}
+        >
           {title}
         </h3>
         <p className="text-gray-600 dark:text-gray-200 text-sm flex-grow">
