@@ -33,7 +33,7 @@ function slug(title) {
 
 const ImageCard = dynamic(() => import("./ImageCard"), {
   loading: () => (
-    <div className="h-[400px] bg-gray-200 relative animate-pulse rounded-xl"></div>
+    <div className="h-[400px] bg-gray-200 dark:bg-gray-800 relative animate-pulse rounded-xl"></div>
   ),
   ssr: false,
 });
@@ -44,7 +44,7 @@ export default function NileCruise() {
       <SectionHeader title="Nile Cruise" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 py-10">
         {NileCruises.map((item) => (
-          <Link href={`/nile-cruises/${slug(item.title)}`} key={item.id}>
+          <Link href={`/nile-cruise/${slug(item.title)}`} key={item.id}>
             <ImageCard item={item} />
           </Link>
         ))}
