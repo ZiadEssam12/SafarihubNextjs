@@ -93,7 +93,7 @@ export function InputWithDropDown({
       {error ? (
         <div className="absolute top-full w-full bg-white border border-darkBlue/30 rounded-md">
           <p className="text-red-500">
-            Error: Couldn't fetch countries list, please try again later
+            Error: Couldn&apos;t fetch countries list, please try again later
           </p>
         </div>
       ) : (

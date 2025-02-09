@@ -21,7 +21,7 @@ export default function ClientNavbar() {
                 Safari Hub
               </h5>
             </div>
-            <div className="flex gap-x-3 items-center">
+            <div className="flex gap-x-1 items-center">
               <div className="border-[1px] border-gray-300 rounded-lg z-[100]">
                 <Tooltip
                   content={`change mode to  ${
