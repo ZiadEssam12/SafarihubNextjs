@@ -28,7 +28,7 @@ export default function TravelCard({ id, title, description, price, image }) {
         >
           <MdiHeartOutline className="size-8" />
         </button>
-        <div className="absolute top-2 left-2 bg-orange-500 text-white px-3 py-1 rounded-md text-sm font-medium">
+        <div className="absolute top-2 left-2 bg-orange text-white px-3 py-1 rounded-md text-sm font-medium">
           Offer
         </div>
       </div>
@@ -43,7 +43,7 @@ export default function TravelCard({ id, title, description, price, image }) {
           {description}
         </p>
         <div className="mt-4 flex items-center justify-between">
-          <div className="text-lg font-bold text-orange-500">
+          <div className="text-lg font-bold text-orange">
             ${price.toFixed(2)}
           </div>
           <button

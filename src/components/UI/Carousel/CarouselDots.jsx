@@ -11,7 +11,7 @@ export default function CarouselDots({
           key={index}
           className={`w-2.5 h-2.5 rounded-full transition-colors ${
             index === selectedIndex
-              ? "bg-orange-500"
+              ? "bg-orange"
               : "bg-gray-300 hover:bg-gray-400"
           }`}
           onClick={() => onDotClick(index)}

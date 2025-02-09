@@ -23,7 +23,7 @@ const list = [
 export default function HowWorks() {
   return (
     <>
-      <div id="howItWorks" className="py-10 text-[#071c55] dark:text-white">
+      <div id="howItWorks" className="py-10 text-darkBlue dark:text-white">
         <h3 className="font-semibold text-[32px] capitalize">how it works</h3>
 
         <div className="flex flex-col  lg:flex-row gap-x-5 gap-y-10 pt-10">
@@ -34,7 +34,7 @@ export default function HowWorks() {
               <>
                 <div className="flex gap-x-5" key={`${index}-${item.title}`}>
                   <div>
-                    <span className="rounded-full size-[55px] flex items-center justify-center border-2 border-[#071c55] dark:border-white text-3xl user-select-none">
+                    <span className="rounded-full size-[55px] flex items-center justify-center border-2 border-darkBlue dark:border-white text-3xl user-select-none">
                       {index + 1}
                     </span>
                   </div>
@@ -49,7 +49,7 @@ export default function HowWorks() {
             <div className="w-full">
               <Link
                 href="/makeTrip"
-                className="w-full h-14 bg-[#071c55] text-white rounded-lg text-[24px] flex items-center justify-center"
+                className="w-full h-14 bg-darkBlue text-white rounded-lg text-[24px] flex items-center justify-center"
               >
                 BOOK NOW
               </Link>

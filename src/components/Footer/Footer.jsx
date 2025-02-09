@@ -6,11 +6,13 @@ import {
 } from "@/icons/Icons";
 import Link from "next/link";
 import React from "react";
+import CustomizeNileTrip from "../CustomizeNileTrip/CustomizeNileTrip";
 
 export default function Footer() {
   return (
     <>
-      <footer className="bg-[#071c55] py-10 dark:text-white">
+      <CustomizeNileTrip />
+      <footer className="bg-darkBlue py-10 text-white">
         <div className="container">
           <div id="footer-title" className="text-center pb-10   ">
             <h3 className="text-white text-3xl font-semibold">

@@ -11,7 +11,7 @@ export default function ImageCard({ item }) {
         height={400}
         quality={75}
       />
-      <h2 className="text-white text-2xl font-bold capitalize absolute bottom-3 z-[10] group-hover:bottom-6 transition-all duration-300">
+      <h2 className="text-white text-2xl font-bold capitalize absolute bottom-3 z-[10] group-hover:bottom-6 transition-all duration-150">
         {item.title}
       </h2>
     </div>

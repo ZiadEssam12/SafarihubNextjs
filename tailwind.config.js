@@ -14,6 +14,10 @@ module.exports = {
       padding: "3rem",
     },
     extend: {
+      colors: {
+        orange: "#F6951B",
+        darkBlue: "#071c55",
+      },
       fontFamily: {
         sans: ["Poppins", "Arial", "sans-serif"],
       },

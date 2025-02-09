@@ -106,10 +106,12 @@ export default function HeroForm() {
           <div className="flex flex-col gap-y-2 w-full md:w-fit px-8 md:px-0">
             <button
               type="submit"
-              className="w-full lg:w-fit justify-center flex items-center gap-2 bg-[#f57c00] hover:bg-orange-400 text-white text-sm font-bold py-2 px-4 border-b-4 border-orange-700 hover:border-orange-500 rounded"
+              className="w-full lg:w-fit justify-center flex items-center gap-2 bg-[#f57c00] hover:bg-orange text-white text-sm font-bold py-2 px-4 border-b-4 border-orange hover:border-orange rounded"
             >
               <UilSearch />
               Search
+
+
             </button>
           </div>
         </div>
