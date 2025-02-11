@@ -12,7 +12,6 @@ export default function Hero() {
               className="w-full object-cover max-h-[600px] h-[60vh] lg:h-auto hero-section"
               sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 400px"
               loading="lazy"
-              // layout="responsive" // This makes the image responsive
               width={1200} // Specify the original width
               height={800} // Specify the original height
               unoptimized

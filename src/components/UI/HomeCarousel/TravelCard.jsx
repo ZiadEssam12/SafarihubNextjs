@@ -1,26 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { MdiHeartOutline } from "@/icons/Icons";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function TravelCard({ id, title, description, price, image }) {
+  const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <Link
       href={`/tours/${id}`}
       className="relative flex flex-col ms-1 bg-white border-2  border-transparent dark:border-gray-500  rounded-lg shadow-md overflow-hidden h-full user-select-none"
     >
       <div className="relative h-48 overflow-hidden">
-        <Image
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover"
-          width={0}
-          height={0}
-          sizes="100vw"
-          style={{ width: "100%" }} // optional
-        />
+        <div className="w-full h-full relative">
+          {/* Skeleton Loader */}
+          {!imageLoaded && <div className="absolute inset-0 bg-gray-200"></div>}
+          {/* Image Component */}
+          <Image
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover"
+            width={0} // Set to 0 for dynamic sizing
+            height={0} // Set to 0 for dynamic sizing
+            sizes="100vw"
+            onLoad={() => setImageLoaded(true)} // Mark image as loaded
+          />
+        </div>
         <button
           className="absolute top-2 right-2 rounded-full transition-colors"
           role="button"
