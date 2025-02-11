@@ -26,11 +26,11 @@ function getCountryList({ setCountries, setError }) {
   fetch("https://countriesnow.space/api/v0.1/countries/iso")
     .then((response) => response.json())
     .then((data) => {
-      console.log("data", data);
       setCountries(data.data);
     })
     .catch((error) => {
       setError(error);
+      
     });
 }
 

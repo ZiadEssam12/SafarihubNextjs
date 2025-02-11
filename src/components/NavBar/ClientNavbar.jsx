@@ -3,7 +3,7 @@
 import { DarkThemeToggle, Tooltip, useThemeMode } from "flowbite-react";
 import React from "react";
 import Logo from "../Logo/Logo";
-import { MdiCartOutline } from "@/icons/Icons";
+import { IconamoonSearchThin, MdiCartOutline } from "@/icons/Icons";
 import Link from "next/link";
 export default function ClientNavbar() {
   const { mode } = useThemeMode();
@@ -21,8 +21,31 @@ export default function ClientNavbar() {
                 Safari Hub
               </h5>
             </div>
-            <div className="flex gap-x-1 items-center">
-              <div className="border-[1px] border-gray-300 rounded-lg z-[100]">
+            <div className="flex gap-x-1 items-center justify-end">
+              <div className="relative">
+                {/* search bar */}
+                <input
+                  name="search"
+                  id="search"
+                  placeholder="Search"
+                  className="py-2 pl-4 pr-8 border-[1px] border-darkBlue/30 rounded-full text-darkBlue text-sm font-normal"
+                />
+                {/* end of search bar */}
+                <span className="absolute right-3 top-1/2 -translate-y-1/2 stroke-darkBlue fill-darkBlue">
+                  <IconamoonSearchThin width={20} height={20} />
+                </span>
+              </div>
+              <div>
+                <Link
+                  href="/cart"
+                  className="  fill-darkBlue stroke-darkBlue px-3 h-[40px] flex items-center justify-center hover:bg-gray-100 rounded-lg"
+                  title="Go to Cart"
+                >
+                  <MdiCartOutline width={20} height={20} />
+                  <span className="text-sm font-normal text-darkBlue">(1)</span>
+                </Link>
+              </div>
+              <div className=" z-[100]">
                 <Tooltip
                   content={`change mode to  ${
                     mode == "dark" ? "light" : "dark"
@@ -32,13 +55,6 @@ export default function ClientNavbar() {
                   <DarkThemeToggle />
                 </Tooltip>
               </div>
-              <Link
-                href="/cart"
-                className="border-[1px] border-gray-300 rounded-lg  fill-darkBlue stroke-darkBlue size-[40px] flex items-center justify-center"
-                title="Go to Cart"
-              >
-                <MdiCartOutline width={20} height={20} />
-              </Link>
             </div>
           </div>
         </div>

@@ -17,14 +17,11 @@ const initalValues = {
 };
 
 const validationSchema = object({
-  email: string()
-    .email("البريد الالكتروني غير صحيح")
-    .required("البريد الالكتروني مطلوب"),
+  email: string().email("Invalid email address").required("Email is required"),
   password: string()
-    .min(8, "يجب أن لا يقل طول كلمة المرور عن 8 احرف او ارقام")
-    .required("كلمة المرور مطلوبة"),
+    .min(8, "Password must be at least 8 characters")
+    .required("Password is required"),
 });
-
 
 export default function LoginPage() {
   const router = useRouter();
@@ -48,8 +45,8 @@ export default function LoginPage() {
       <div className="flex h-screen flex-1 flex-col justify-center items-stretch md:items-center px-6 py-12 lg:px-8 bg-white dark:bg-gray-900">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col items-center">
           <Logo />
-          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white">
-            سجل الدخول إلى حسابك
+          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white capitalize">
+            sign in
           </h2>
         </div>
 
@@ -58,9 +55,9 @@ export default function LoginPage() {
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm/6 font-medium text-gray-900 dark:text-white"
+                className="block text-sm/6 font-medium text-gray-900 dark:text-white capitalize"
               >
-                البريد الالكتروني
+                Email address
               </label>
               <div className="mt-2">
                 <input
@@ -89,14 +86,14 @@ export default function LoginPage() {
                   htmlFor="password"
                   className="block text-sm/6 font-medium text-gray-900 dark:text-white"
                 >
-                  كلمة المرور
+                  Password
                 </label>
                 <div className="text-sm">
                   <Link
                     href={"/forgetPassword"}
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500 capitalize"
                   >
-                    هل نسيت كلمة المرور؟
+                    Forget password?
                   </Link>
                 </div>
               </div>
@@ -123,7 +120,7 @@ export default function LoginPage() {
 
             <div>
               <LoadingButton
-                text="تسجيل الدخول"
+                text="Signing in"
                 areaLabel={"sign in button"}
                 valid={formik.isValid && formik.dirty}
                 loading={loading}
@@ -132,12 +129,12 @@ export default function LoginPage() {
           </form>
 
           <p className="mt-10 text-center text-sm/6 text-gray-500 dark:text-white">
-            لست لديك حساب؟{" "}
+            Do not have an account?
             <Link
               href="/signup"
-              className="font-semibold text-indigo-600 hover:text-indigo-500"
+              className="font-semibold text-indigo-600 hover:text-indigo-500 ml-1"
             >
-              قم بالتسجيل الان
+              Sign up now
             </Link>
           </p>
         </div>
