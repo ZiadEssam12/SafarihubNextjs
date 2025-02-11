@@ -58,9 +58,9 @@ export default function HowWorks() {
           {/* end left side */}
 
           <div className="flex-1 bg-[#f6951b]  h-80 rounded-[45px]">
-            <div className="rounded-[45px] overflow-hidden h-full bg-red-900  translate-x-5 translate-y-5">
+            <div className="rounded-[45px] overflow-hidden h-full  translate-x-5 translate-y-5">
               <Image
-                src="/video.webp"
+                src="/Video.webp"
                 width={0}
                 height={0}
                 alt="video button"

@@ -73,7 +73,7 @@ export default function Carousel({
         <div className="flex gap-4 px-4">
           {data.map((item, index) => (
             <div
-              key={`${index}-${item.title}`}
+              key={item.id || `${index}-${item.title}`}
               className="flex-[0_0_100%] min-w-0 md:flex-[0_0_calc(50%-8px)] lg:flex-[0_0_calc(25%-8px)]"
             >
               <CustomCard {...item} />
