@@ -5,11 +5,11 @@ export default function CarouselDots({
   onDotClick,
 }) {
   return (
-    <div className="flex justify-center gap-2 mt-4">
+    <div className=" hidden md:flex justify-center gap-2 mt-4">
       {scrollSnaps.map((_, index) => (
         <button
           key={index}
-          className={`size-[24px] rounded-full transition-colors ${
+          className={`w-2.5 h-2.5 rounded-full transition-colors ${
             index === selectedIndex
               ? "bg-orange"
               : "bg-gray-300 hover:bg-gray-400"
