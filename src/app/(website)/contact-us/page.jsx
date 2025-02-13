@@ -6,8 +6,6 @@ import {
   RiFacebookFill,
   SolarPhoneCallingOutline,
 } from "@/icons/Icons";
-;
-
 export default function page() {
   return (
     <div className="min-h-screen flex flex-col justify-between gap-8 py-12">
@@ -21,13 +19,15 @@ export default function page() {
       </div>
       {/* end head */}
 
-      <div className="flex-1 rounded-lg grid grid-cols-5 bg-white p-3">
+      <div className="flex-1 rounded-lg grid grid-cols-1 lg:grid-cols-5 bg-white p-3">
         {/* left side */}
-        <div className="h-full col-span-2 p-10 bg-[#011C2B] rounded-lg flex flex-col justify-between">
+        <div className="h-full col-span-1 lg:col-span-2 p-3 lg:p-10 bg-[#011C2B] rounded-lg flex flex-col justify-between gap-y-4">
           {/* top */}
-          <div>
-            <h2 className="font-semibold text-[28px]">Contact Information</h2>
-            <p className="text-lg text-[#C9C9C9]">
+          <div className="flex flex-col items-center">
+            <h2 className="font-semibold text-xl lg:text-[28px]">
+              Contact Information
+            </h2>
+            <p className="text-sm lg:text-lg text-[#C9C9C9]">
               Say something to start a live chat!
             </p>
           </div>
@@ -36,7 +36,7 @@ export default function page() {
           {/* center - contact info */}
           <div className="flex flex-col gap-6">
             {/* phone numbers */}
-            <div className="flex gap-3 items-center">
+            <div className="flex flex-col lg:flex-row items-center gap-3">
               {/* icon */}
               <div className="fill-white stroke-white">
                 <SolarPhoneCallingOutline width={30} height={30} />
@@ -51,7 +51,7 @@ export default function page() {
             {/* end phone numbers */}
 
             {/* email numbers */}
-            <div className="flex gap-3 items-center">
+            <div className="flex flex-col lg:flex-row items-center gap-3">
               {/* icon */}
               <div>
                 <IcOutlineEmail width={24} height={24} />
@@ -66,7 +66,7 @@ export default function page() {
             {/* end email numbers */}
 
             {/* location numbers */}
-            <div className="flex gap-3">
+            <div className="flex flex-col lg:flex-row text-center items-center lg:items-start lg:text-start gap-3">
               {/* icon */}
               <div>
                 <CarbonLocationFilled width={24} height={24} />
@@ -88,7 +88,7 @@ export default function page() {
 
           {/* bottom - social media accounts */}
 
-          <div className="flex gap-6">
+          <div className="flex justify-center lg:justify-start gap-2 lg:gap-6">
             {/* facebook */}
             <a
               href="https://www.facebook.com/test"
@@ -124,7 +124,7 @@ export default function page() {
         {/* end left side */}
 
         {/* right side */}
-        <div className="h-full col-span-3 p-10">
+        <div className="h-full col-span-1 lg:col-span-3 p-3 lg:p-10">
           <ContactUsForm />
         </div>
       </div>
