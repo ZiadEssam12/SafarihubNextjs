@@ -18,15 +18,15 @@ module.exports = {
         orange: "#F6951B",
         darkBlue: "#071c55",
       },
-      fontFamily: {
-        poppins: ["Poppins", "sans-serif"],
-      },
-      fontWeight: {
-        regular: "400", // Map font weights to their respective values
-        medium: "500",
-        semibold: "600",
-        bold: "700",
-      },
+      // fontFamily: {
+      //   poppins: ["Poppins", "sans-serif"],
+      // },
+      // fontWeight: {
+      //   regular: "400", // Map font weights to their respective values
+      //   medium: "500",
+      //   semibold: "600",
+      //   bold: "700",
+      // },
     },
   },
   plugins: [flowbite.plugin(), require("tailwind-container-break-out")],

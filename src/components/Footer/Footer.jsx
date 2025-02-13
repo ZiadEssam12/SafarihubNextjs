@@ -82,7 +82,7 @@ export default function Footer() {
                     <BasilFacebookOutline width={30} height={30} />
                   </a>
                   <a href="" title="follow us on instagram">
-                    <MdiInstagram width={30} height={30} />
+                    <MdiInstagram width={30} height={30} className="fill-white" />
                   </a>
                 </div>
               </div>

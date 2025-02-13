@@ -9,7 +9,7 @@ export default function Logo({ width = "60", height = "60" }) {
       src={websiteLogo}
       width={width}
       height={height}
-      // className="h-10 w-auto"
+      className="object-contain"
     />
   );
 }

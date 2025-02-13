@@ -6,7 +6,7 @@ export default function Navbar() {
   return (
     <>
       <ClientNavbar />
-      <div className="hidden bg-darkBlue w-full h-20 sticky top-0 z-30  lg:flex items-center font-medium text-white">
+      <div className="hidden bg-darkBlue w-full h-20 sticky top-0 z-30  lg:flex items-center font-normal text-white">
         <div className="container flex items-center justify-between">
           <div className=" flex items-center gap-x-3 ">
             <Link
@@ -81,7 +81,7 @@ export default function Navbar() {
               Rent A Car
             </Link>
             <Link
-              href="/"
+              href="/contact-us"
               className="flex-shrink-0 lg:text-sm xl:text-base px-2 py-2"
             >
               Contact Us
