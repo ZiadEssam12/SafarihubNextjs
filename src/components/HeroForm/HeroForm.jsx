@@ -47,13 +47,14 @@ export default function HeroForm() {
                 className="border-0 outline-transparent dark:bg-gray-700 focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent  w-full"
               />
               <button
-                className="absolute right-1 bg-gray-100 rounded-full text-white"
+                className="absolute right-1 bg-gray-100 rounded-full text-white mr-2"
                 onClick={(e) => {
                   e.preventDefault();
                   formik.setFieldValue("destination", "");
                 }}
+                aria-label="clear destination"
               >
-                <MaterialSymbolsLightClose />
+                <MaterialSymbolsLightClose width={24} height={24} />
               </button>
             </div>
           </div>
@@ -73,13 +74,14 @@ export default function HeroForm() {
                 className="border-0 dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent w-full"
               />
               <button
-                className="absolute right-1 bg-gray-100 rounded-full text-white"
+                className="absolute right-1 bg-gray-100 rounded-full text-white  mr-2"
                 onClick={(e) => {
                   e.preventDefault();
                   formik.setFieldValue("category", "");
                 }}
+                aria-label="clear category"
               >
-                <MaterialSymbolsLightClose />
+                <MaterialSymbolsLightClose width={24} height={24} />
               </button>
             </div>
           </div>
@@ -110,8 +112,6 @@ export default function HeroForm() {
             >
               <UilSearch />
               Search
-
-
             </button>
           </div>
         </div>

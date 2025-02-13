@@ -10,8 +10,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html>
-      <head lang="en">
+    <html lang="en">
+      <head>
         <link
           rel="preload"
           href="/fonts/poppins/Poppins-Regular.woff2"

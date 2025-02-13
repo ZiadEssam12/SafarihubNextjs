@@ -12,9 +12,9 @@ export default function CustomizeNileTrip() {
           backgroundPosition: "center",
         }}
       >
-        <h5 className="font-bold text-2xl">
+        <p className="font-bold text-2xl">
           Customize Your Nile River Cruises 2025
-        </h5>
+        </p>
         <Link
           href="/makeATrip"
           className="text-black bg-white rounded-full px-3 py-2"
