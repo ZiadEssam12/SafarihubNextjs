@@ -35,10 +35,24 @@ export default function ContactUsForm() {
   });
 
   return (
-    <form className="w-full text-[#8D8D8D]  grid grid-cols-2 gap-x-12 gap-y-6">
+    <form
+      onSubmit={formik.handleSubmit}
+      className="w-full text-[#8D8D8D]  grid grid-cols-2 gap-x-12 gap-y-6"
+    >
       {/* first name */}
       <div className="col-span-1">
-        <label htmlFor="contact_fname" className=" font-medium text-xs">
+        <label
+          htmlFor="contact_fname"
+          className={`${
+            formik.touched.contact_fname &&
+            formik.errors.contact_fname &&
+            "text-red-500"
+          } ${
+            formik.touched.contact_fname &&
+            !formik.errors.contact_fname &&
+            "text-darkBlue"
+          } font-medium text-xs`}
+        >
           First Name
         </label>
         <input
@@ -46,13 +60,30 @@ export default function ContactUsForm() {
           name="contact_fname"
           id="contact_fname"
           className="w-full pl-0 border-[0px] focus:borer-[0px] focus:ring-0 border-b-2 border-[#8D8D8D] focus:border-darkBlue focus:text-darkBlue"
+          {...formik.getFieldProps("contact_fname")}
         />
+        {formik.touched.contact_fname && formik.errors.contact_fname ? (
+          <div className="text-red-500 text-xs mt-1">
+            {formik.errors.contact_fname}
+          </div>
+        ) : null}
       </div>
       {/* end first name */}
 
       {/* Last name */}
       <div className="col-span-1">
-        <label htmlFor="contact_lname" className="font-medium text-xs">
+        <label
+          htmlFor="contact_lname"
+          className={`${
+            formik.touched.contact_lname &&
+            formik.errors.contact_lname &&
+            "text-red-500"
+          } ${
+            formik.touched.contact_lname &&
+            !formik.errors.contact_lname &&
+            "text-darkBlue"
+          } font-medium text-xs`}
+        >
           Last Name
         </label>
         <input
@@ -60,13 +91,30 @@ export default function ContactUsForm() {
           name="contact_lname"
           id="contact_lname"
           className="w-full pl-0 border-[0px] focus:borer-[0px] focus:ring-0 border-b-2 border-[#8D8D8D] focus:border-darkBlue focus:text-darkBlue"
+          {...formik.getFieldProps("contact_lname")}
         />
+        {formik.touched.contact_lname && formik.errors.contact_lname ? (
+          <div className="text-red-500 text-xs mt-1">
+            {formik.errors.contact_lname}
+          </div>
+        ) : null}
       </div>
       {/* end Last name */}
 
       {/* Email name */}
       <div className="col-span-1">
-        <label htmlFor="contact_email" className="font-medium text-xs">
+        <label
+          htmlFor="contact_email"
+          className={`${
+            formik.touched.contact_email &&
+            formik.errors.contact_email &&
+            "text-red-500"
+          } ${
+            formik.touched.contact_email &&
+            !formik.errors.contact_email &&
+            "text-darkBlue"
+          } font-medium text-xs`}
+        >
           Email
         </label>
         <input
@@ -74,13 +122,31 @@ export default function ContactUsForm() {
           name="contact_email"
           id="contact_email"
           className="w-full pl-0 border-[0px] focus:borer-[0px] focus:ring-0 border-b-2 border-[#8D8D8D] focus:border-darkBlue focus:text-darkBlue"
+          {...formik.getFieldProps("contact_email")}
         />
+
+        {formik.touched.contact_email && formik.errors.contact_email ? (
+          <div className="text-red-500 text-xs mt-1">
+            {formik.errors.contact_email}
+          </div>
+        ) : null}
       </div>
       {/* end Email name */}
 
       {/* phone  */}
       <div className="col-span-1">
-        <label htmlFor="contact_phone" className="font-medium text-xs">
+        <label
+          htmlFor="contact_phone"
+          className={`${
+            formik.touched.contact_phone &&
+            formik.errors.contact_phone &&
+            "text-red-500"
+          } ${
+            formik.touched.contact_phone &&
+            !formik.errors.contact_phone &&
+            "text-darkBlue"
+          } font-medium text-xs`}
+        >
           Phone
         </label>
         <input
@@ -90,13 +156,30 @@ export default function ContactUsForm() {
           pattern="[0-9]{10,15}"
           inputMode="numeric"
           className="w-full pl-0 border-[0px] focus:borer-[0px] focus:ring-0 border-b-2 border-[#8D8D8D] focus:border-darkBlue focus:text-darkBlue"
+          {...formik.getFieldProps("contact_phone")}
         />
+        {formik.touched.contact_phone && formik.errors.contact_phone ? (
+          <div className="text-red-500 text-xs mt-1">
+            {formik.errors.contact_phone}
+          </div>
+        ) : null}
       </div>
       {/* end phone name */}
 
       {/* message */}
       <div className="col-span-2">
-        <label htmlFor="contact_message" className="font-medium text-xs">
+        <label
+          htmlFor="contact_message"
+          className={`${
+            formik.touched.contact_message &&
+            formik.errors.contact_message &&
+            "text-red-500"
+          } ${
+            formik.touched.contact_message &&
+            !formik.errors.contact_message &&
+            "text-darkBlue"
+          } font-medium text-xs`}
+        >
           Message
         </label>
         <textarea
@@ -104,7 +187,13 @@ export default function ContactUsForm() {
           id="contact_message"
           className="w-full pl-0  border-[0px]  focus:borer-[0px] focus:ring-0 border-b-2 border-[#8D8D8D] focus:border-darkBlue focus:text-darkBlue placeholder:text-[14px] font-normal"
           placeholder="Type your message here..."
+          {...formik.getFieldProps("contact_message")}
         />
+        {formik.touched.contact_message && formik.errors.contact_message ? (
+          <div className="text-red-500 text-xs">
+            {formik.errors.contact_message}
+          </div>
+        ) : null}
       </div>
 
       <div className="col-span-2 flex items-center justify-end">
@@ -168,11 +257,11 @@ export default function ContactUsForm() {
 //           onBlur={formik.handleBlur}
 //           value={formik.values.contact_fname}
 //         />
-//         {formik.touched.contact_fname && formik.errors.contact_fname ? (
-//           <div className="text-red-500 text-xs">
-//             {formik.errors.contact_fname}
-//           </div>
-//         ) : null}
+// {formik.touched.contact_fname && formik.errors.contact_fname ? (
+//   <div className="text-red-500 text-xs">
+//     {formik.errors.contact_fname}
+//   </div>
+// ) : null}
 //       </div>
 //       {/* end first name */}
 

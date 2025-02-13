@@ -47,7 +47,7 @@ export default function HeroForm() {
                 className="border-0 outline-transparent dark:bg-gray-700 focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent  w-full"
               />
               <button
-                className="absolute right-1 bg-gray-100 rounded-full text-white mr-2"
+                className="absolute right-1 bg-gray-100 rounded-full text-white"
                 onClick={(e) => {
                   e.preventDefault();
                   formik.setFieldValue("destination", "");
@@ -74,7 +74,7 @@ export default function HeroForm() {
                 className="border-0 dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent w-full"
               />
               <button
-                className="absolute right-1 bg-gray-100 rounded-full text-white  mr-2"
+                className="absolute right-1 bg-gray-100 rounded-full text-white"
                 onClick={(e) => {
                   e.preventDefault();
                   formik.setFieldValue("category", "");
