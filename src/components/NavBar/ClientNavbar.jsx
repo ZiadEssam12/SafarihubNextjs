@@ -12,17 +12,17 @@ export default function ClientNavbar() {
     <>
       <div className="w-full">
         <div className=" border-b-[0.5px] border-gray-300 dark:bg-gray-900">
-          <div className="container px-12 flex items-center  h-20 py-4 justify-between ">
-            <div className="flex gap-x-3  items-center">
+          <div className=" container px-12 flex items-center  h-20 py-4 justify-between ">
+            <Link href="/" className="flex gap-x-3 items-center">
               <figure className="flex items-center">
-                <Logo />
+                <Logo width={40} height={40} />
               </figure>
-              <h5 className="text-3xl font-bold text-black dark:text-white">
+              <p className="text-sm lg:text-3xl font-bold text-black dark:text-white">
                 Safari Hub
-              </h5>
-            </div>
+              </p>
+            </Link>
             <div className="flex gap-x-1 items-center justify-end">
-              <div className="relative">
+              <div className="relative hidden lg:block">
                 {/* search bar */}
                 <input
                   name="search"

@@ -69,7 +69,7 @@ export default function Navbar() {
               Hidden Gems
             </Link>
             <Link
-              href="/"
+              href="/make-trip"
               className="flex-shrink-0 lg:text-sm xl:text-base px-2 py-2"
             >
               Make Your Trip
@@ -81,7 +81,7 @@ export default function Navbar() {
               Rent A Car
             </Link>
             <Link
-              href="/contact-us"
+              href="/contact-us#contact"
               className="flex-shrink-0 lg:text-sm xl:text-base px-2 py-2"
             >
               Contact Us

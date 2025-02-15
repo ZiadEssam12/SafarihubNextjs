@@ -8,7 +8,10 @@ import {
 } from "@/icons/Icons";
 export default function page() {
   return (
-    <div className="min-h-screen flex flex-col justify-between gap-8 py-12">
+    <div
+      id="contact"
+      className="min-h-screen flex flex-col justify-between gap-8 py-12 scroll-m-10"
+    >
       {/* head */}
 
       <div className="flex flex-col gap-2 justify-center items-center">
