@@ -1,4 +1,4 @@
-import ContactUsForm from "@/components/UI/Forms/ContactUsForm/ContactUsForm";
+import ContactFormWrapper from "@/components/UI/Forms/ContactUsForm/ContactFormWrapper";
 import {
   CarbonLocationFilled,
   IcOutlineEmail,
@@ -128,7 +128,7 @@ export default function page() {
 
         {/* right side */}
         <div className="h-full col-span-1 lg:col-span-3 p-3 lg:p-10">
-          <ContactUsForm />
+          <ContactFormWrapper />
         </div>
       </div>
     </div>
