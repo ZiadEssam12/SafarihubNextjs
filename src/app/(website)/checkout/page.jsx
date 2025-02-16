@@ -1,4 +1,4 @@
-import CheckoutForm from "@/components/UI/Forms/CheckoutForm/CheckoutForm";
+import CheckoutFormWrappr from "@/components/UI/Forms/CheckoutForm/CheckoutFormWrapper";
 
 let order = [
   {
@@ -20,7 +20,7 @@ export default function Checkout() {
         </h2>
         {/* form */}
 
-        <CheckoutForm />
+        <CheckoutFormWrappr />
         {/* end form */}
       </div>
 

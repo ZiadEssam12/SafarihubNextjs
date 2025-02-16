@@ -1,5 +1,6 @@
-import HeroForm from "@/components/HeroForm/HeroForm";
 import Image from "next/image";
+import HeroFormWrapper from "../Forms/HeroForm/HeroFormWrapper";
+
 export default function Hero() {
   return (
     <>
@@ -23,7 +24,7 @@ export default function Hero() {
       </div>
 
       <div id="triPackUp" className="px-4 md:px-0 -translate-y-3 ">
-        <HeroForm />
+        <HeroFormWrapper />
       </div>
     </>
   );
