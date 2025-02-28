@@ -1,87 +1,93 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {
+  initialValues,
+  validationSchema,
+} from "../Forms/MakeYourTripForm/Schema";
+import { useFormik } from "formik";
+
 import Options from "./Options";
+import MakeYourTripForm from "../Forms/MakeYourTripForm/MakeYourTripForm";
 
-//
-// this page formed from some steps
-// --> step 1
-// where first step the user has to choose option for the trip
-// and then choose the date of the trip
-// options component is step one
+// Form inputs:
+// step 1:
+// select option (duration , from , to , month)
 
-// --> step 2
-// second step the user has to fill the information about the trip
-// then user submits the form
+// step 2:
+// f name l name
+// nationality
+// phone (email address)
+// number of adults
+// number of children
+// number of infants
+
+// budget  (min max)
+
+// additonal information
+
+const handleSubmit = (values) => {
+  console.log(values);
+};
 
 export default function MakeYourTrip() {
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: handleSubmit,
+  });
+
   const [step, setStep] = useState(1);
   const [selectedOption, setSelectedOption] = useState("option1");
 
   return (
-    <>
-      {step === 1 && (
-        <Options
-          selectedOption={selectedOption}
-          setSelectedOption={setSelectedOption}
-          setStep={setStep}
-          step={step}
-        />
-      )}
-      {step >= 2 && (
-        <div className="col-span-6 h-full container py-3">
-          <h2 className="font-semibold text-xl lg:text-[28px] text-darkBlue text-center">
-            Fill The Information
-          </h2>
-          <div className="h-full">
-            <form className="h-full flex flex-col justify-between">
-              <div className="flex-1 flex flex-col gap-2 mt-3">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="border border-darkBlue rounded-lg p-2"
-                />
-                <input
-                  type="text"
-                  placeholder="Email"
-                  className="border border-darkBlue rounded-lg p-2"
-                />
-                <input
-                  type="text"
-                  placeholder="Phone"
-                  className="border border-darkBlue rounded-lg p-2"
-                />
-                <input
-                  type="text"
-                  placeholder="Address"
-                  className="border border-darkBlue rounded-lg p-2"
-                />
-                <input
-                  type="text"
-                  placeholder="City"
-                  className="border border-darkBlue rounded-lg p-2"
-                />
-                <input
-                  type="text"
-                  placeholder="Country"
-                  className="border border-darkBlue rounded-lg p-2"
-                />
-              </div>
-              <div className="flex gap-4 justify-center py-3">
-                <button
-                  className="text-white rounded-lg bg-orange w-[100px] py-2"
-                  onClick={() => setStep((prev) => prev - 1)}
-                >
-                  Back
-                </button>
-                <button className="bg-orange text-white rounded-lg w-[100px] py-2">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-    </>
+    <form
+      className="h-full flex-1 flex flex-col justify-between"
+      onSubmit={formik.handleSubmit}
+    >
+      <div className="flex-1 grid gap-3 grid-cols-6 rounded-lg p-3 bg-white">
+        {step === 1 && (
+          <Options
+            selectedOption={selectedOption}
+            setSelectedOption={setSelectedOption}
+            formik={formik}
+          />
+        )}
+        {step >= 2 && <MakeYourTripForm formik={formik} />}
+      </div>
+      <div className="col-span-6 flex flex-row-reverse gap-4 justify-center py-3 mt-auto">
+        {step === 1 ? (
+          <button
+            type="button"
+            className="text-white rounded-lg bg-orange w-[100px] py-2"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setStep((prev) => prev + 1);
+            }}
+          >
+            Next
+          </button>
+        ) : (
+          <>
+            <button
+              className="bg-orange text-white rounded-lg w-[100px] py-2"
+              type="submit"
+            >
+              Submit
+            </button>
+            <button
+              className="text-white rounded-lg bg-orange w-[100px] py-2"
+              onClick={(e) => {
+                e.preventDefault();
+                setStep((prev) => prev - 1);
+              }}
+            >
+              Back
+            </button>
+          </>
+        )}
+      </div>
+    </form>
   );
 }

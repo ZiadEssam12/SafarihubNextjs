@@ -1,5 +1,6 @@
 "use client";
 
+import FormFieldWithValidation from "@/components/FormFieldWithValidation/FormFieldWithValidation";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -41,124 +42,46 @@ export default function ContactUsForm() {
     >
       {/* first name */}
       <div className="col-span-1">
-        <label
-          htmlFor="contact_fname"
-          className={`${
-            formik.touched.contact_fname &&
-            formik.errors.contact_fname &&
-            "text-red-500"
-          } ${
-            formik.touched.contact_fname &&
-            !formik.errors.contact_fname &&
-            "text-darkBlue"
-          } font-medium text-xs`}
-        >
-          First Name
-        </label>
-        <input
-          type="text"
-          name="contact_fname"
+        <FormFieldWithValidation
           id="contact_fname"
-          className="w-full pl-0 border-[0px] focus:borer-[0px] focus:ring-0 border-b-2 border-[#8D8D8D] focus:border-darkBlue focus:text-darkBlue"
-          {...formik.getFieldProps("contact_fname")}
+          touched={formik.touched.contact_fname}
+          errors={formik.errors.contact_fname}
+          field={formik.getFieldProps("contact_fname")}
+          label="First Name"
         />
-        {formik.touched.contact_fname && formik.errors.contact_fname ? (
-          <div className="text-red-500 text-xs mt-1">
-            {formik.errors.contact_fname}
-          </div>
-        ) : null}
       </div>
 
       {/* Last name */}
       <div className="col-span-1">
-        <label
-          htmlFor="contact_lname"
-          className={`${
-            formik.touched.contact_lname &&
-            formik.errors.contact_lname &&
-            "text-red-500"
-          } ${
-            formik.touched.contact_lname &&
-            !formik.errors.contact_lname &&
-            "text-darkBlue"
-          } font-medium text-xs`}
-        >
-          Last Name
-        </label>
-        <input
-          type="text"
-          name="contact_lname"
-          id="contact_lname"
-          className="w-full pl-0 border-[0px] focus:borer-[0px] focus:ring-0 border-b-2 border-[#8D8D8D] focus:border-darkBlue focus:text-darkBlue"
-          {...formik.getFieldProps("contact_lname")}
+        <FormFieldWithValidation
+          id={"contact_lname"}
+          touched={formik.touched.contact_lname}
+          errors={formik.errors.contact_lname}
+          field={formik.getFieldProps("contact_lname")}
+          label={"Last Name"}
         />
-        {formik.touched.contact_lname && formik.errors.contact_lname ? (
-          <div className="text-red-500 text-xs mt-1">
-            {formik.errors.contact_lname}
-          </div>
-        ) : null}
       </div>
 
       {/* Email */}
       <div className="col-span-1">
-        <label
-          htmlFor="contact_email"
-          className={`${
-            formik.touched.contact_email &&
-            formik.errors.contact_email &&
-            "text-red-500"
-          } ${
-            formik.touched.contact_email &&
-            !formik.errors.contact_email &&
-            "text-darkBlue"
-          } font-medium text-xs`}
-        >
-          Email
-        </label>
-        <input
-          type="email"
-          name="contact_email"
-          id="contact_email"
-          className="w-full pl-0 border-[0px] focus:borer-[0px] focus:ring-0 border-b-2 border-[#8D8D8D] focus:border-darkBlue focus:text-darkBlue"
-          {...formik.getFieldProps("contact_email")}
+        <FormFieldWithValidation
+          id={"contact_email"}
+          touched={formik.touched.contact_email}
+          errors={formik.errors.contact_email}
+          field={formik.getFieldProps("contact_email")}
+          label={"Email"}
         />
-        {formik.touched.contact_email && formik.errors.contact_email ? (
-          <div className="text-red-500 text-xs mt-1">
-            {formik.errors.contact_email}
-          </div>
-        ) : null}
       </div>
 
       {/* Phone */}
       <div className="col-span-1">
-        <label
-          htmlFor="contact_phone"
-          className={`${
-            formik.touched.contact_phone &&
-            formik.errors.contact_phone &&
-            "text-red-500"
-          } ${
-            formik.touched.contact_phone &&
-            !formik.errors.contact_phone &&
-            "text-darkBlue"
-          } font-medium text-xs`}
-        >
-          Phone
-        </label>
-        <input
-          type="tel"
-          name="contact_phone"
-          id="contact_phone"
-          pattern="[0-9]{10,15}"
-          inputMode="numeric"
-          className="w-full pl-0 border-[0px] focus:borer-[0px] focus:ring-0 border-b-2 border-[#8D8D8D] focus:border-darkBlue focus:text-darkBlue"
-          {...formik.getFieldProps("contact_phone")}
+        <FormFieldWithValidation
+          id={"contact_phone"}
+          touched={formik.touched.contact_phone}
+          errors={formik.errors.contact_phone}
+          field={formik.getFieldProps("contact_phone")}
+          label={"Phone"}
         />
-        {formik.touched.contact_phone && formik.errors.contact_phone ? (
-          <div className="text-red-500 text-xs mt-1">
-            {formik.errors.contact_phone}
-          </div>
-        ) : null}
       </div>
 
       {/* Message */}

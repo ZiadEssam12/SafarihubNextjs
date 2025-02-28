@@ -4,7 +4,7 @@ export default function page() {
   return (
     <div
       id="makeATrip"
-      className="min-h-screen flex flex-col justify-between gap-y-12 py-12 scroll-m-12 text-darkBlue"
+      className="min-h-screen flex flex-col justify-between gap-y-6 py-12 scroll-m-12 text-darkBlue"
     >
       {/* head */}
       <div>
@@ -15,9 +15,7 @@ export default function page() {
       {/* end head */}
 
       {/* body */}
-      <div className=" flex-1 grid gap-3 grid-cols-6 bg-white rounded-lg p-3">
-        <MakeYourTrip />
-      </div>
+      <MakeYourTrip />
       {/* end body */}
     </div>
   );
