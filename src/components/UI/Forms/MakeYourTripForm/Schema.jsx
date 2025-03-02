@@ -38,7 +38,7 @@ const validationSchema = Yup.object({
   nationality: Yup.string(),
   phone: Yup.string().required("Phone is Required"),
   email: Yup.string().email().required("Email is Required"),
-  adults: Yup.number().required("Adults is Required"),
+  adults: Yup.number().min(1).required("Adults is Required"),
   children: Yup.number().typeError("Budget Min must be a number"),
   infants: Yup.number().typeError("Budget Min must be a number"),
 
@@ -46,7 +46,12 @@ const validationSchema = Yup.object({
     .min(1, "Budget min must be greater than or equal to 1")
     .required("Budget Min is Required")
     .typeError("Budget Min must be a number"),
-  budgetMax: Yup.number().typeError("Budget max must be a number"),
+  budgetMax: Yup.number()
+    .min(
+      Yup.ref("budgetMin"),
+      "Maximum Budget must be greater than or equal to minimum budget "
+    )
+    .typeError("Budget max must be a number"),
   additionalInformation: Yup.string(),
 });
 

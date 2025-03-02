@@ -16,7 +16,7 @@ export default function CustomizeNileTrip() {
           Customize Your Nile River Cruises 2025
         </p>
         <Link
-          href="/makeATrip"
+          href="/make-trip"
           className="text-black bg-white rounded-full px-3 py-2"
         >
           Start Now

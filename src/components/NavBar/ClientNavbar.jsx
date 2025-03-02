@@ -10,7 +10,7 @@ export default function ClientNavbar() {
 
   return (
     <>
-      <div className="w-full">
+      <div className="w-full  bg-white">
         <div className=" border-b-[0.5px] border-gray-300 dark:bg-gray-900">
           <div className=" container px-12 flex items-center  h-20 py-4 justify-between ">
             <Link href="/" className="flex gap-x-3 items-center">

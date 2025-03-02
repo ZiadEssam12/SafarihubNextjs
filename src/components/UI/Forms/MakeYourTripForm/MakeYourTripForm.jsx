@@ -123,7 +123,7 @@ export default function MakeYourTripForm({ formik }) {
 
           {/* date */}
           <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex flex-col">
+            <div className="flex-1 flex flex-col">
               <FormFieldWithValidation
                 id="budgetMin"
                 type={"number"}
@@ -135,7 +135,7 @@ export default function MakeYourTripForm({ formik }) {
               />
             </div>
 
-            <div className="flex flex-col">
+            <div className="flex-1 flex flex-col">
               <FormFieldWithValidation
                 id="budgetMax"
                 type={"number"}
@@ -143,7 +143,6 @@ export default function MakeYourTripForm({ formik }) {
                 errors={formik.errors.budgetMax}
                 touched={formik.touched.budgetMax}
                 field={formik.getFieldProps("budgetMax")}
-                min={1}
               />
             </div>
           </div>

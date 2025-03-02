@@ -16,7 +16,7 @@ export default function Navbar() {
               Home
             </Link>
             <Link
-              href="/"
+              href="/about-us"
               className="flex-shrink-0 lg:text-sm xl:text-base px-2 py-2"
             >
               About Us

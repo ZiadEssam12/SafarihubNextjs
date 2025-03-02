@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
           content="A dashboard website that helps companies to Follow up on their work"
         />
       </head>
-      <body className={`dark:bg-gray-700 overflow-x-hidden bg-gray-100`}>
+      <body className={`dark:bg-gray-700 overflow-x-hidden bg-gray-100/35`}>
         {children}
       </body>
     </html>
