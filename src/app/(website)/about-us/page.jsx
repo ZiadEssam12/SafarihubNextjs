@@ -116,8 +116,8 @@ export default function page() {
                   Award-Winning Service
                 </h3>
                 <p className="text-muted-foreground">
-                  Voted "Best Cultural Tour Operator 2023" by Travel Middle
-                  East.
+                  Voted &quot;Best Cultural Tour Operator 2023&quot; by Travel
+                  Middle East.
                 </p>
               </div>
 
