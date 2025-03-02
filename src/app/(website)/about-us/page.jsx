@@ -125,8 +125,8 @@ export default function page() {
                 <LucideLeaf className="h-10 w-10 text-primary mb-4" />
                 <h3 className="text-xl font-bold mb-2">Sustainable Tourism</h3>
                 <p className="text-muted-foreground">
-                  Committed to preserving Egypt's heritage and supporting local
-                  communities.
+                  Committed to preserving Egypt&apos;s heritage and supporting
+                  local communities.
                 </p>
               </div>
 
