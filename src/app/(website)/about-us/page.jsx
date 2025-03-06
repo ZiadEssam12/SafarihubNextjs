@@ -4,6 +4,7 @@ import WhyChooseUS from "@/components/UI/AboutUs/WhyChooseUS";
 import TourPackages from "@/components/UI/AboutUs/TourPackages";
 import MeetTheTeam from "@/components/UI/AboutUs/MeetTheTeam";
 import OurStory from "@/components/UI/AboutUs/OurStory";
+import DestinationsSection from "@/components/UI/AboutUs/DestinationsSection";
 
 export const metadata = {
   title: "Egypt Explorer - Discover Ancient Egypt",
@@ -33,7 +34,7 @@ export default function page() {
             </p>
           </div>
         </section>
-        
+
         <div className="container mx-auto px-12 py-16 space-y-24">
           {/* Our Story Section */}
           <OurStory />
@@ -42,6 +43,7 @@ export default function page() {
           <MeetTheTeam />
 
           {/* Destinations Section */}
+          <DestinationsSection />
 
           {/* Tour Packages */}
           <TourPackages />
