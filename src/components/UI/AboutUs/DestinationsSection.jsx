@@ -1,4 +1,6 @@
+import { SolarPhoneCallingOutline } from "@/icons/Icons";
 import ClientTabs from "app/(website)/about-us/ClientTabs";
+import Link from "next/link";
 import React from "react";
 
 export default function DestinationsSection() {
