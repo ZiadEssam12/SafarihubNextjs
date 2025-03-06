@@ -1,10 +1,9 @@
-import {
-  LucideAward,
-  LucideClock,
-  LucideLeaf,
-  SolarPhoneCallingOutline,
-} from "@/icons/Icons";
+import { TablerUsers } from "@/icons/Icons";
 import Image from "next/image";
+import WhyChooseUS from "@/components/UI/AboutUs/WhyChooseUS";
+import TourPackages from "@/components/UI/AboutUs/TourPackages";
+import MeetTheTeam from "@/components/UI/AboutUs/MeetTheTeam";
+import OurStory from "@/components/UI/AboutUs/OurStory";
 
 export const metadata = {
   title: "Egypt Explorer - Discover Ancient Egypt",
@@ -34,124 +33,21 @@ export default function page() {
             </p>
           </div>
         </section>
+        
         <div className="container mx-auto px-12 py-16 space-y-24">
           {/* Our Story Section */}
-          <section className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-              <p className="text-lg text-muted-foreground mb-6">
-                Founded in 2010 by history enthusiasts, Egypt Explorer began
-                with a passion for sharing Egypt&apos;s rich heritage
-                responsibly. Today, we&apos;re a trusted name in historical
-                tours, partnering with local communities to preserve cultural
-                treasures while delivering unmatched adventures through the land
-                of pharaohs.
-              </p>
-              <div className="bg-gray-200 p-6 rounded-lg border border-primary/20">
-                <h3 className="text-xl font-semibold mb-3">Our Mission</h3>
-                <p className="text-muted-foreground">
-                  To ignite your passion for ancient civilizations through
-                  ethical, immersive, and transformative journeys across
-                  Egypt&apos;s historical landscapes.
-                </p>
-              </div>
-            </div>
-            <div className="relative h-[400px] rounded-lg overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1539768942893-daf53e448371?q=80&w=1171&auto=format&fit=crop"
-                alt="Egyptian Temple"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </section>
+          <OurStory />
 
           {/* Meet the Team Section */}
-          <section>
-            <h2 className="text-3xl font-bold mb-8 text-center">
-              Meet the Team
-            </h2>
-            <p className="text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12">
-              Our guides aren&apos;t just experts—they&apos;re storytellers,
-              historians, and your window into Egypt&apos;s soul.
-            </p>
-
-            {/* cards */}
-            <div className="grid md:grid-cols-3 gap-8"></div>
-          </section>
+          <MeetTheTeam />
 
           {/* Destinations Section */}
-          <section>
-            <h2 className="text-3xl font-bold mb-8 text-center">
-              Top Historical Experiences
-            </h2>
-
-            {/* tabs */}
-
-            <div className="mt-12 bg-gray-100 p-8 rounded-lg text-center">
-              <h3 className="text-2xl font-bold mb-4">Not Sure Where to Go?</h3>
-              <p className="text-lg mb-6">
-                Our experts will help you craft the perfect Egyptian adventure
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <button className="flex justify-center items-center gap-2 bg-black hover:bg-black/90 transition-all duration-150 py-2 px-8 text-white rounded-md">
-                  <SolarPhoneCallingOutline className="h-4 w-4" />
-                  Call Us: 01001264478
-                </button>
-                <button className="bg-white px-5 py-2 rounded-md border-[1px] border-gray-300 hover:bg-transparent transition-all duration-150">
-                  Let&apos;s Chat
-                </button>
-              </div>
-            </div>
-          </section>
 
           {/* Tour Packages */}
-          <section>
-            <h2 className="text-3xl font-bold mb-8 text-center">
-              Tour Packages
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-8"></div>
-
-            <div className="mt-10 text-center"></div>
-          </section>
+          <TourPackages />
 
           {/* Why Choose Us */}
-          <section>
-            <h2 className="text-3xl font-bold mb-8 text-center">
-              Why Choose Us?
-            </h2>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-card p-6 rounded-lg border">
-                <LucideAward className="h-10 w-10 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">
-                  Award-Winning Service
-                </h3>
-                <p className="text-muted-foreground">
-                  Voted &quot;Best Cultural Tour Operator 2023&quot; by Travel
-                  Middle East.
-                </p>
-              </div>
-
-              <div className="bg-card p-6 rounded-lg border">
-                <LucideLeaf className="h-10 w-10 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">Sustainable Tourism</h3>
-                <p className="text-muted-foreground">
-                  Committed to preserving Egypt&apos;s heritage and supporting
-                  local communities.
-                </p>
-              </div>
-
-              <div className="bg-card p-6 rounded-lg border">
-                <LucideClock className="h-10 w-10 text-primary mb-4" />
-                <h3 className="text-xl font-bold mb-2">24/7 Support</h3>
-                <p className="text-muted-foreground">
-                  Instant booking support. Call us anytime at 01001264478.
-                </p>
-              </div>
-            </div>
-          </section>
+          <WhyChooseUS />
         </div>
       </main>
     </>
