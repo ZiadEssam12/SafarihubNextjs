@@ -1,7 +1,6 @@
 import { LucideUser } from "@/icons/Icons";
 import Link from "next/link";
 import ClientNavbar from "./ClientNavbar";
-import HamburgerMenu from "./HamburgerMenu";
 
 export const links = [
   {
@@ -96,7 +95,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-      <HamburgerMenu />
+      
     </>
   );
 }

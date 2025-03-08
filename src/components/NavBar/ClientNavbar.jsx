@@ -65,7 +65,6 @@ export default function ClientNavbar() {
                 <button
                   onClick={() => {
                     setShowHamMenu((prev) => !prev);
-                    console.log("showHamMenu :", showHamMenu);
                   }}
                   className="text-2xl fill-black flex items-center p-2 hover:bg-gray-100 rounded-md"
                 >
