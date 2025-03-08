@@ -11,11 +11,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
-      {
-        source: "/",
-        destination: "/home", // Redirects root (/) to /home
-        permanent: true, // This is a 301 (permanent) redirect
-      },
+      // {
+      //   source: "/",
+      //   destination: "/home", // Redirects root (/) to /home
+      //   permanent: true, // This is a 301 (permanent) redirect
+      // },
     ];
   },
 };

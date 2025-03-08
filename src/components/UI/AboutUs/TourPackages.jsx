@@ -16,7 +16,7 @@ export default function TourPackages() {
           </div>
 
           {/* body */}
-          <div className="pb-4 border-b-[1px] my-4 flex items-start  gap-2">
+          <div className="my-4 flex items-start  gap-2">
             <span>
               <TablerUsers width={24} height={24} />
             </span>
@@ -28,7 +28,7 @@ export default function TourPackages() {
           </div>
 
           {/* footer */}
-          <div>
+          <div className="pt-4 border-t-[1px]">
             <p className="font-medium">From $4,200/person</p>
             <button className="bg-black hover:bg-black/90 transition-colors duration-150 w-full h-[40px] text-white mt-2 rounded-md">
               Book Now
@@ -43,7 +43,7 @@ export default function TourPackages() {
           </div>
 
           {/* body */}
-          <div className="pb-4 border-b-[1px] my-4 flex items-start  gap-2">
+          <div className="my-4 flex items-start  gap-2">
             <span>
               <TablerUsers width={24} height={24} />
             </span>
@@ -55,7 +55,7 @@ export default function TourPackages() {
           </div>
 
           {/* footer */}
-          <div>
+          <div className="pt-4 border-t-[1px] ">
             <p className="font-medium">Custom quotes available</p>
             <button className="bg-black hover:bg-black/90 transition-colors duration-150 w-full h-[40px] text-white mt-2 rounded-md">
               Inquire Now
@@ -72,7 +72,7 @@ export default function TourPackages() {
           </div>
 
           {/* body */}
-          <div className="pb-4 border-b-[1px] my-4 flex items-start  gap-2">
+          <div className="my-4 flex items-start  gap-2">
             <span>
               <TablerUsers width={24} height={24} />
             </span>
@@ -84,7 +84,7 @@ export default function TourPackages() {
           </div>
 
           {/* footer */}
-          <div>
+          <div className="pt-4 border-t-[1px]">
             <p className="font-medium">From $4,200/person</p>
             <button className="bg-black hover:bg-black/90 transition-colors duration-150 w-full h-[40px] text-white mt-2 rounded-md">
               Reserve Spot

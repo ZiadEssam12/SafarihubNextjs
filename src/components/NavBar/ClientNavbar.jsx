@@ -1,16 +1,22 @@
 "use client";
 
 import { DarkThemeToggle, Tooltip, useThemeMode } from "flowbite-react";
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../Logo/Logo";
-import { IconamoonSearchThin, MdiCartOutline } from "@/icons/Icons";
+import {
+  IconamoonSearchThin,
+  MaterialSymbolsMenuRounded,
+  MdiCartOutline,
+} from "@/icons/Icons";
 import Link from "next/link";
+import HamburgerMenu from "./HamburgerMenu";
 export default function ClientNavbar() {
   const { mode } = useThemeMode();
+  const [showHamMenu, setShowHamMenu] = useState(false);
 
   return (
     <>
-      <div className="w-full  bg-white">
+      <div className="w-full bg-white">
         <div className=" border-b-[0.5px] border-gray-300 dark:bg-gray-900">
           <div className=" container px-12 flex items-center  h-20 py-4 justify-between ">
             <Link href="/" className="flex gap-x-3 items-center">
@@ -55,9 +61,30 @@ export default function ClientNavbar() {
                   <DarkThemeToggle />
                 </Tooltip>
               </div>
+              <div className="md:hidden relative">
+                <button
+                  onClick={() => {
+                    setShowHamMenu((prev) => !prev);
+                    console.log("showHamMenu :", showHamMenu);
+                  }}
+                  className="text-2xl fill-black flex items-center p-2 hover:bg-gray-100 rounded-md"
+                >
+                  <MaterialSymbolsMenuRounded
+                    width={24}
+                    height={24}
+                    className="fill-black stroke-black"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      <div className="absolute w-full  bg-red-900">
+        {
+          // hamburger menu
+          showHamMenu && <HamburgerMenu />
+        }
       </div>
     </>
   );

@@ -8,13 +8,15 @@ export default function HeroForm() {
     destination: String(),
     category: String(),
     days: Number(),
-    range: Number(),
+    minBudget: Number(),
+    maxBudget: Number(),
   };
   const validationSchema = object({
     destination: string(),
     category: string(),
     days: number(),
-    range: number().max(11000),
+    minBudget: number(),
+    maxBudget: number(),
   });
 
   function onSubmit(values) {
@@ -44,7 +46,7 @@ export default function HeroForm() {
                 value={formik.values.destination}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="border-0 outline-transparent dark:bg-gray-700 focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent  w-full"
+                className="border-0 placeholder:text-sm placeholder:capitalize outline-transparent dark:bg-gray-700 focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent  w-full"
               />
               <button
                 className="absolute right-1 bg-gray-100 rounded-full text-white"
@@ -100,10 +102,35 @@ export default function HeroForm() {
               className="border-0 dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
             />
           </div>
-          <div className="flex flex-col gap-y-2 w-full md:w-fit px-8 md:px-0">
-            <label htmlFor="price" className="ms-2">
-              Price ($0 - $11000)
+          <div className="flex flex-col gap-y-2 w-full md:w-[150px] px-8 md:px-0 ">
+            <label htmlFor="days" className="ms-2">
+              Minimum Budget
             </label>
+            <input
+              type="number"
+              min={1}
+              id="BudgetMin"
+              name="BudgetMin"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="eg. 100"
+              className="border-0 placeholder:text-sm placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
+            />
+          </div>
+          <div className="flex flex-col gap-y-2 w-full md:w-[150px] px-8 md:px-0">
+            <label htmlFor="days" className="ms-2">
+              Maximum Budget
+            </label>
+            <input
+              type="number"
+              min={1}
+              id="BudgetMax"
+              name="BudgeMax"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              placeholder="eg. 1000"
+              className="border-0 placeholder:text-sm placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
+            />
           </div>
           <div className="flex flex-col gap-y-2 w-full md:w-fit px-8 md:px-0">
             <button

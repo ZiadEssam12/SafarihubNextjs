@@ -48,7 +48,7 @@ export default function HowWorks() {
 
             <div className="w-full">
               <Link
-                href="/makeTrip"
+                href="/make-trip"
                 className="w-full h-14 bg-darkBlue text-white rounded-lg text-[24px] flex items-center justify-center"
               >
                 BOOK NOW
