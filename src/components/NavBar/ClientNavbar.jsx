@@ -61,7 +61,7 @@ export default function ClientNavbar() {
                   <DarkThemeToggle />
                 </Tooltip>
               </div>
-              <div className="md:hidden relative">
+              <div className="md:hidden relative rounded-md">
                 <button
                   onClick={() => {
                     setShowHamMenu((prev) => !prev);
@@ -79,12 +79,10 @@ export default function ClientNavbar() {
           </div>
         </div>
       </div>
-      <div className="absolute w-full  bg-red-900">
-        {
-          // hamburger menu
-          showHamMenu && <HamburgerMenu />
-        }
-      </div>
+      <HamburgerMenu
+        showHamMenu={showHamMenu}
+        setShowHamMenu={setShowHamMenu}
+      />
     </>
   );
 }
