@@ -57,7 +57,7 @@ export default function HowWorks() {
           </div>
           {/* end left side */}
 
-          <div className="flex-1 bg-orange  h-80 rounded-[45px]">
+          <div className="flex-1 bg-orange  size-80 rounded-[45px]">
             <div className="rounded-[45px] overflow-hidden h-full  translate-x-5 translate-y-5">
               <Image
                 src="/Video.jpg"

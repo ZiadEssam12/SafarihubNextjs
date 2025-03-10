@@ -18,12 +18,12 @@ export default function ClientNavbar() {
     <>
       <div className="w-full bg-white">
         <div className=" border-b-[0.5px] border-gray-300 dark:bg-gray-900">
-          <div className=" container px-12 flex items-center  h-20 py-4 justify-between ">
+          <div className="container  flex items-center  h-20 py-4 justify-between ">
             <Link href="/" className="flex gap-x-3 items-center">
-              <figure className="flex items-center">
+              {/* <figure className="flex items-center">
                 <Logo width={40} height={40} />
-              </figure>
-              <p className="text-sm lg:text-3xl font-bold text-black dark:text-white">
+              </figure> */}
+              <p className="text-sm lg:text-3xl font-bold text-orange">
                 Safari Hub
               </p>
             </Link>

@@ -15,7 +15,7 @@ export const metadata = {
 export default function page() {
   return (
     <>
-      <main className="min-h-screen bg-background text-darkBlue mx-break-out">
+      <main className="min-h-screen bg-background text-darkBlue mx-break-out overflow-hidden">
         {/* Hero Section */}
         <section className="relative h-[60vh] w-full">
           <Image
@@ -35,7 +35,7 @@ export default function page() {
           </div>
         </section>
 
-        <div className="container mx-auto px-12 py-16 space-y-24">
+        <div className="container mx-auto px-4 lg:px-12 py-16 space-y-24">
           {/* Our Story Section */}
           <OurStory />
 

@@ -1,6 +1,7 @@
 import { EditIcon, TrashIcon } from "@/icons/Icons";
 import Image from "next/image";
 import Link from "next/link";
+import DeleteButton from "./DeleteButton";
 
 export const metadata = {
   title: "Cart",
@@ -52,7 +53,7 @@ export default function page() {
             key={item.id}
             className="flex h-[180px] border-[1px] border-orange rounded-lg overflow-hidden"
           >
-            <div className="w-[250px] h-full relative">
+            <div className="hidden md:block w-[250px] h-full relative">
               <Image src={item.image} layout="fill" alt={item.name} />
             </div>
             <div className="flex flex-col justify-between text-black dark:text-white p-4 w-full">
@@ -68,9 +69,7 @@ export default function page() {
                   <button title="click to edit trip">
                     <EditIcon />
                   </button>
-                  <button title="click to delete trip">
-                    <TrashIcon />
-                  </button>
+                  <DeleteButton productId={item.id} />
                 </div>
               </div>
 
