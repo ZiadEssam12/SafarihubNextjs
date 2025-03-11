@@ -23,7 +23,7 @@ export default function ClientNavbar() {
               {/* <figure className="flex items-center">
                 <Logo width={40} height={40} />
               </figure> */}
-              <p className="text-sm lg:text-3xl font-bold text-orange">
+              <p className="text-lg lg:text-3xl font-bold text-orange">
                 Safari Hub
               </p>
             </Link>
