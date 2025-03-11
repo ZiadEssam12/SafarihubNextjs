@@ -50,11 +50,11 @@ export default function TourForm({ price }) {
   }, [formik.values.numOfAdult, price]);
   return (
     <form
-      className="flex flex-col h-full px-4 justify-between  py-2 md:col-span-5"
+      className="flex flex-col h-full px-4 justify-between py-2 md:col-span-5"
       onSubmit={formik.handleSubmit}
     >
-      <div className="flex flex-col gap-2 lg:gap-4">
-        <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-2 lg:gap-4 w-full">
+        <div className="flex flex-col gap-1 w-full">
           <label
             htmlFor="formDate"
             className={`
@@ -63,6 +63,7 @@ export default function TourForm({ price }) {
                 ? "text-red-500"
                 : "color-dark"
             }
+            w-full
             `}
           >
             From
@@ -72,13 +73,13 @@ export default function TourForm({ price }) {
             id="formDate"
             min={new Date().toISOString().split("T")[0]}
             {...formik.getFieldProps("from")}
-            className={`rounded-lg ${
+            className={`rounded-lg w-full ${
               formik.touched.from && formik.errors.from ? "border-red-500" : ""
             }`}
           />
         </div>
 
-        <div className=" flex flex-col gap-1">
+        <div className="flex flex-col gap-1 w-full">
           <label
             htmlFor="toDate"
             className={`
@@ -87,6 +88,7 @@ export default function TourForm({ price }) {
                 ? "text-red-500"
                 : "color-dark"
             }
+            w-full
             `}
           >
             To
@@ -96,13 +98,13 @@ export default function TourForm({ price }) {
             id="toDate"
             min={formik.values.from || new Date().toISOString().split("T")[0]}
             {...formik.getFieldProps("to")}
-            className={`rounded-lg ${
+            className={`rounded-lg w-full ${
               formik.touched.to && formik.errors.to ? "border-red-500" : ""
             }`}
           />
         </div>
 
-        <div className="flex flex-col gap-1  ">
+        <div className="flex flex-col gap-1 w-full">
           <label
             htmlFor="numOfAdult"
             className={`
@@ -111,6 +113,7 @@ export default function TourForm({ price }) {
                 ? "text-red-500"
                 : "color-dark"
             }
+            w-full
             `}
           >
             Numebr of adults
@@ -119,7 +122,7 @@ export default function TourForm({ price }) {
             type="number"
             id="numOfAdult"
             placeholder="number of adults"
-            className={`rounded-lg ${
+            className={`rounded-lg w-full ${
               formik.touched.numOfAdult &&
               formik.errors.numOfAdult &&
               "border-red-500"
@@ -131,7 +134,7 @@ export default function TourForm({ price }) {
             name="numOfAdult"
           />
         </div>
-        <div className="flex flex-col gap-1  ">
+        <div className="flex flex-col gap-1 w-full">
           <label
             htmlFor="numOfChild"
             className={`
@@ -140,6 +143,7 @@ export default function TourForm({ price }) {
                 ? "text-red-500"
                 : "color-dark"
             }
+            w-full
             `}
           >
             Numebr of children
@@ -148,7 +152,7 @@ export default function TourForm({ price }) {
             type="number"
             id="numOfChild"
             placeholder="number of children"
-            className={`rounded-lg ${
+            className={`rounded-lg w-full ${
               formik.touched.numOfChild &&
               formik.errors.numOfChild &&
               "border-red-500"

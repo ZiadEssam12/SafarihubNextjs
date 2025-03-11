@@ -67,6 +67,7 @@ export default function ClientNavbar() {
                     setShowHamMenu((prev) => !prev);
                   }}
                   className="text-2xl fill-black flex items-center p-2 hover:bg-gray-100 rounded-md"
+                  aria-label="open menu"
                 >
                   <MaterialSymbolsMenuRounded
                     width={24}
