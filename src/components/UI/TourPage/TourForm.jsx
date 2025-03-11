@@ -53,8 +53,8 @@ export default function TourForm({ price }) {
       className="flex flex-col h-full px-4 justify-between  py-2 md:col-span-5"
       onSubmit={formik.handleSubmit}
     >
-      <div className="grid grid-cols-2 md:grid-cols-1 gap-2 lg:gap-4">
-        <div className="col-span-2 md:col-span-1 flex flex-col gap-1">
+      <div className="flex flex-col gap-2 lg:gap-4">
+        <div className="flex flex-col gap-1">
           <label
             htmlFor="formDate"
             className={`
@@ -78,7 +78,7 @@ export default function TourForm({ price }) {
           />
         </div>
 
-        <div className="col-span-2 md:col-span-1 flex flex-col gap-1">
+        <div className=" flex flex-col gap-1">
           <label
             htmlFor="toDate"
             className={`
@@ -102,7 +102,7 @@ export default function TourForm({ price }) {
           />
         </div>
 
-        <div className="flex flex-col gap-1 col-span-2 md:col-span-1 ">
+        <div className="flex flex-col gap-1  ">
           <label
             htmlFor="numOfAdult"
             className={`
@@ -131,7 +131,7 @@ export default function TourForm({ price }) {
             name="numOfAdult"
           />
         </div>
-        <div className="flex flex-col gap-1  col-span-2 md:col-span-1">
+        <div className="flex flex-col gap-1  ">
           <label
             htmlFor="numOfChild"
             className={`
