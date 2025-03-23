@@ -1,29 +1,70 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import RentCarSteps from "./RentCarSteps";
+import { useFormik } from "formik";
+import {
+  RentCarDefaultValues,
+  RentCarSchema,
+} from "../Forms/RentCarForm/RentCarSchema";
 
 const steps = [
   {
-    title: "Car Information",
-    content: "Car Information",
+    title: "Time & Location",
+    content: "Time & Location",
   },
   {
     title: "Personal Information",
     content: "Personal Information",
   },
   {
-    title: "Payment",
-    content: "Payment",
+    title: "Confirmation",
+    content: "Confirmation",
   },
 ];
 
 export default function RentCar() {
-  const [step, setStep] = useState(1);
+  const formik = useFormik({
+    initialValues: RentCarDefaultValues,
+    validationSchema: RentCarSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
+  const [currentStep, setCurrentStep] = useState(1);
+  const ref = useRef(null);
+
+  const handleNavigate = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (ref.current) {
+      window.scrollTo({
+        top: ref.current.offsetTop - 100, // Adding scroll padding top of 100px
+        behavior: "smooth",
+      });
+    }
+  };
+
+  const next = (e) => {
+    handleNavigate(e);
+
+    if (currentStep === 3) return;
+    setCurrentStep((prev) => prev + 1);
+    // Scroll to the top of the form when moving to the next step
+  };
+
+  const prev = (e) => {
+    handleNavigate(e);
+    if (currentStep === 1) return;
+    setCurrentStep((prev) => prev - 1);
+  };
 
   return (
     <>
-      <section className="w-full flex-1 flex flex-col gap-3">
-        {/* 1- steps  */}
+      <section
+        className="w-3/4 flex-1 flex flex-col px-10 py-14 rounded-xl bg-white shadow-md "
+        ref={ref}
+      >
         <div className="flex justify-center items-center">
           {/* Progress Bar */}
           {/* 
@@ -35,9 +76,9 @@ export default function RentCar() {
           {/* Steps */}
           <div className="w-3/4 relative flex  py-2 border-b-2 ">
             <div
-              className="absolute bg-darkBlue h-2 w-1/3 rounded-full z-10 -bottom-1 transition-all duration-300"
+              className="hidden md:block absolute bg-darkBlue h-2 w-1/3 rounded-full z-10 -bottom-1 transition-all duration-300"
               style={{
-                transform: `translateX(${(step - 1) * 100}%)`,
+                transform: `translateX(${(currentStep - 1) * 100}%)`,
               }}
             />
             {steps.map((item, index) => (
@@ -47,14 +88,16 @@ export default function RentCar() {
               >
                 <span
                   className={`text-2xl font-bold size-10 text-white flex items-center justify-center ${
-                    step === index + 1 ? "bg-darkBlue" : "bg-darkBlue/70"
+                    currentStep === index + 1 ? "bg-darkBlue" : "bg-darkBlue/70"
                   } rounded-md`}
                 >
                   {index + 1}
                 </span>
                 <span
-                  className={`text-lg font-semibold ${
-                    step === index + 1 ? "text-darkBlue" : "text-darkBlue/70"
+                  className={`font-semibold md:text-lg ${
+                    currentStep === index + 1
+                      ? "text-darkBlue text-sm "
+                      : "hidden md:block text-darkBlue/70 text-[0px]"
                   }`}
                 >
                   {item.title}
@@ -63,26 +106,18 @@ export default function RentCar() {
             ))}
           </div>
         </div>
-        {/* 2- form  */}
-        <div className="flex-1 flex flex-col justify-between items-center p-10 rounded-xl bg-white shadow-md">
-          <div className="flex gap-2">
-            <button
-              onClick={() => {
-                setStep((prev) => (prev === 1 ? 1 : prev - 1));
-              }}
-            >
-              prev
-            </button>
-            <button
-              onClick={() => {
-                setStep((prev) => (prev === 3 ? 3 : prev + 1));
-              }}
-            >
-              Next
-            </button>
+        <form className="flex-1 flex items-center w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
+            {/* 2- form  */}
+            <RentCarSteps
+              currentStep={currentStep}
+              setCurrentStep={setCurrentStep}
+              next={next}
+              prev={prev}
+              formik = {formik}
+            />
           </div>
-        </div>
-        {/* test button */}
+        </form>
       </section>
     </>
   );

@@ -7,6 +7,7 @@ export default function FormFieldWithValidation({
   errors,
   label,
   field,
+  lableFortSize = "text-xs",
   ...props
 }) {
   return (
@@ -15,7 +16,7 @@ export default function FormFieldWithValidation({
         htmlFor={id}
         className={`${touched && errors && "text-red-500"} ${
           touched && !errors && "text-darkBlue"
-        } font-medium text-xs capitalize`}
+        } font-medium ${lableFortSize} capitalize`}
       >
         {label}
       </label>
