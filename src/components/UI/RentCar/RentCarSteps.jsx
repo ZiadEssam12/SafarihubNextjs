@@ -1,4 +1,9 @@
+import { useFormik } from "formik";
 import React, { Suspense, lazy } from "react";
+import {
+  RentCarDefaultValues,
+  RentCarSchema,
+} from "../Forms/RentCarForm/RentCarSchema";
 
 const FirstStep = lazy(() => import("./FirstStep"));
 const SecondStep = lazy(() => import("./SecondStep"));
@@ -10,7 +15,14 @@ const SkeletonLoader = () => (
   </div>
 );
 
-export default function RentCarSteps({ currentStep, next, prev, formik }) {
+export default function RentCarSteps({ currentStep, next, prev }) {
+  const formik = useFormik({
+    initialValues: RentCarDefaultValues,
+    validationSchema: RentCarSchema,
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
   return (
     <>
       <Suspense fallback={<SkeletonLoader />}>
@@ -18,9 +30,7 @@ export default function RentCarSteps({ currentStep, next, prev, formik }) {
             step 1 :
             pick up date / time , location and drop off location
         */}
-        {currentStep === 1 && (
-          <FirstStep next={next} prev={prev} formik={formik} />
-        )}
+        {currentStep === 1 && <FirstStep next={next} formik={formik} />}
         {/* 
             step 2 : 
             name , email , phone , nationality , num of adult and num of children

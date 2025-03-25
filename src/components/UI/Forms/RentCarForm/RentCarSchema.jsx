@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 export const RentCarDefaultValues = {
   pickUpDate: "",
-  pickUpTime: "",
+  pickUpTime: "12:00", // Set default time here instead
   pickUpLocation: "",
   dropOffLocation: "",
   name: "",

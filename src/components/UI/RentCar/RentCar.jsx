@@ -1,70 +1,40 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import RentCarSteps from "./RentCarSteps";
-import { useFormik } from "formik";
-import {
-  RentCarDefaultValues,
-  RentCarSchema,
-} from "../Forms/RentCarForm/RentCarSchema";
 
 const steps = [
   {
-    title: "Time & Location",
-    content: "Time & Location",
+    title: "Car Information",
+    content: "Car Information",
   },
   {
     title: "Personal Information",
     content: "Personal Information",
   },
   {
-    title: "Confirmation",
-    content: "Confirmation",
+    title: "Booking Summary",
+    content: "Booking Summary",
   },
 ];
 
 export default function RentCar() {
-  const formik = useFormik({
-    initialValues: RentCarDefaultValues,
-    validationSchema: RentCarSchema,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
   const [currentStep, setCurrentStep] = useState(1);
-  const ref = useRef(null);
 
-  const handleNavigate = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    if (ref.current) {
-      window.scrollTo({
-        top: ref.current.offsetTop - 100, // Adding scroll padding top of 100px
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const next = (e) => {
-    handleNavigate(e);
-
+  const next = () => {
     if (currentStep === 3) return;
     setCurrentStep((prev) => prev + 1);
-    // Scroll to the top of the form when moving to the next step
   };
 
-  const prev = (e) => {
-    handleNavigate(e);
+  const prev = () => {
     if (currentStep === 1) return;
     setCurrentStep((prev) => prev - 1);
   };
 
   return (
     <>
-      <section
-        className="w-3/4 flex-1 flex flex-col px-10 py-14 rounded-xl bg-white shadow-md "
-        ref={ref}
-      >
+      <section className="w-full flex-1 flex flex-col px-10 py-14 rounded-xl bg-white shadow-md ">
+        {/* 1- steps  */}
         <div className="flex justify-center items-center">
           {/* Progress Bar */}
           {/* 
@@ -106,7 +76,7 @@ export default function RentCar() {
             ))}
           </div>
         </div>
-        <form className="flex-1 flex items-center w-full">
+        <div className="flex-1 flex items-center w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
             {/* 2- form  */}
             <RentCarSteps
@@ -114,10 +84,9 @@ export default function RentCar() {
               setCurrentStep={setCurrentStep}
               next={next}
               prev={prev}
-              formik = {formik}
             />
           </div>
-        </form>
+        </div>
       </section>
     </>
   );
