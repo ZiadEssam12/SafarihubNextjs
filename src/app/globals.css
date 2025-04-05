@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "flowbite/plugin";
 
 /* styles.css */
 @font-face {
