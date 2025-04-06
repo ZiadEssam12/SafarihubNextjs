@@ -4,7 +4,7 @@
 // import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { object, string } from "yup";
-import { Label } from "flowbite-react";
+// import { Label } from "flowbite-react";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -72,11 +72,14 @@ export default function LoginPage() {
                 />
               </div>
               {formik.touched.email && formik.errors.email && (
-                <Label
-                  color="failure"
-                  className="my-2"
-                  value={formik.errors.email}
-                />
+                // <Label
+                //   color="failure"
+                //   className="my-2"
+                //   value={formik.errors.email}
+                // />
+                <div className="text-red-500 text-sm mt-1">
+                  {formik.errors.email}
+                </div>
               )}
             </div>
 

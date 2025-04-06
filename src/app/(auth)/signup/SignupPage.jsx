@@ -2,7 +2,7 @@
 
 import { useFormik } from "formik";
 import { object, string, ref } from "yup";
-import { Label } from "flowbite-react";
+// import { Label } from "flowbite-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -72,7 +72,8 @@ export default function SignupPage() {
         />
       </div>
       {formik.touched[id] && formik.errors[id] && (
-        <Label color="failure" className="my-2" value={formik.errors[id]} />
+        // <Label color="failure" className="my-2" value={formik.errors[id]} />
+        <div className="text-red-500 text-sm mt-1">{formik.errors[id]}</div>
       )}
     </div>
   );

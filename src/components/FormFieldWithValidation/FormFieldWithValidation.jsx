@@ -7,7 +7,7 @@ export default function FormFieldWithValidation({
   errors,
   label,
   field,
-  lableFortSize = "text-xs",
+  lableFortSize = "",
   ...props
 }) {
   return (
@@ -30,7 +30,7 @@ export default function FormFieldWithValidation({
         {...props}
       />
       {touched && errors ? (
-        <div className="text-red-500 text-xs mt-1">{errors}</div>
+        <div className="text-red-500 text-sm mt-1">{errors}</div>
       ) : null}
     </>
   );

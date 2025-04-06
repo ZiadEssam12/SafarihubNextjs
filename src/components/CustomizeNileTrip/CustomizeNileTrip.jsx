@@ -3,7 +3,7 @@ import React from "react";
 
 export default function CustomizeNileTrip() {
   return (
-    <div className="container mx-auto w-[90%] my-8">
+    <div className="container w-[90%] my-8">
       <div
         className="w-full h-[170px] bg-darkBlue flex flex-col lg:flex-row items-center justify-center lg:justify-between  rounded-2xl px-8"
         style={{

@@ -4,7 +4,7 @@ import HeroFormWrapper from "../Forms/HeroForm/HeroFormWrapper";
 export default function Hero() {
   return (
     <>
-      <div className="flex justify-center items-center mx-break-out">
+      <div className="flex justify-center items-center break-out">
         <div className="w-full">
           <figure className="w-full h-1/2">
             <Image
@@ -23,7 +23,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div id="triPackUp" className="px-4 md:px-0 -translate-y-3 ">
+      <div id="triPackUp" className="px-4 md:px-0 -translate-y-3">
         <HeroFormWrapper />
       </div>
     </>

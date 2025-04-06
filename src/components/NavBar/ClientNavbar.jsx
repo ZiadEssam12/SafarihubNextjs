@@ -1,8 +1,7 @@
 "use client";
 
-import { DarkThemeToggle, Tooltip, useThemeMode } from "flowbite-react";
+// import { DarkThemeToggle, Tooltip, useThemeMode } from "flowbite-react";
 import React, { useState } from "react";
-import Logo from "../Logo/Logo";
 import {
   IconamoonSearchThin,
   MaterialSymbolsMenuRounded,
@@ -11,14 +10,14 @@ import {
 import Link from "next/link";
 import HamburgerMenu from "./HamburgerMenu";
 export default function ClientNavbar() {
-  const { mode } = useThemeMode();
+  // const { mode } = useThemeMode();
   const [showHamMenu, setShowHamMenu] = useState(false);
 
   return (
     <>
       <div className="w-full bg-white">
         <div className=" border-b-[0.5px] border-gray-300 dark:bg-gray-900">
-          <div className="container  flex items-center  h-20 py-4 justify-between ">
+          <div className="container flex items-center  h-20 py-4 justify-between ">
             <Link href="/" className="flex gap-x-3 items-center">
               {/* <figure className="flex items-center">
                 <Logo width={40} height={40} />
@@ -52,14 +51,14 @@ export default function ClientNavbar() {
                 </Link>
               </div>
               <div className=" z-[100]">
-                <Tooltip
+                {/* <Tooltip
                   content={`change mode to  ${
                     mode == "dark" ? "light" : "dark"
                   }`}
                   placement="bottom"
                 >
                   <DarkThemeToggle />
-                </Tooltip>
+                </Tooltip> */}
               </div>
               <div className="md:hidden relative rounded-md">
                 <button

@@ -13,8 +13,8 @@ const steps = [
     content: "Personal Information",
   },
   {
-    title: "Booking Summary",
-    content: "Booking Summary",
+    title: "Payment",
+    content: "Payment",
   },
 ];
 

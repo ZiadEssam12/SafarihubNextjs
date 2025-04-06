@@ -5,7 +5,9 @@ import HowWorks from "@/components/UI/HowWorks/HowWorks";
 export default function Home() {
   return (
     <>
-      <Hero />
+      <div className="mx-break-out">
+        <Hero />
+      </div>
       {/* <TravelCarousel /> */}
       <div className="py-12">
         <div className="mb-12">

@@ -1,5 +1,14 @@
 @import "tailwindcss";
-@plugin "flowbite/plugin";
+
+@theme {
+  --color-orange: #f6951b;
+  --color-darkBlue: #071c55;
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+}
 
 /* styles.css */
 @font-face {
@@ -196,4 +205,8 @@ button[aria-label="Close"] {
 .fade-exit-active {
   opacity: 0;
   transition: opacity 500ms ease-in-out;
+}
+
+.break-out {
+  @apply relative left-1/2 w-dvw max-w-none -translate-x-1/2;
 }

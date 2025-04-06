@@ -46,7 +46,7 @@ export default function HeroForm() {
                 value={formik.values.destination}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="border-0 placeholder:text-sm placeholder:capitalize outline-transparent dark:bg-gray-700 focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent  w-full"
+                className="w-full p-2 border-0 placeholder:text-sm placeholder:capitalize outline-transparent dark:bg-gray-700 focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
               />
               <button
                 className="absolute right-1 bg-gray-100 rounded-full text-white"
@@ -73,7 +73,7 @@ export default function HeroForm() {
                 value={formik.values.category}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="border-0 dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent w-full"
+                className="w-full p-2 border-0 dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent w-full"
               />
               <button
                 className="absolute right-1 bg-gray-100 rounded-full text-white"
@@ -99,11 +99,11 @@ export default function HeroForm() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder="Number of days?"
-              className="border-0 dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
+              className="w-full p-2 border-0 dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
             />
           </div>
           <div className="flex flex-col gap-y-2 w-full md:w-[150px] px-8 md:px-0 ">
-            <label htmlFor="days" className="ms-2">
+            <label htmlFor="days" className="ms-2  text-[14px]">
               Minimum Budget
             </label>
             <input
@@ -114,11 +114,11 @@ export default function HeroForm() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder="eg. 100"
-              className="border-0 placeholder:text-sm placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
+              className="w-full p-2 border-0 placeholder:text-sm placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
             />
           </div>
           <div className="flex flex-col gap-y-2 w-full md:w-[150px] px-8 md:px-0">
-            <label htmlFor="days" className="ms-2">
+            <label htmlFor="days" className="ms-2 text-[14px]">
               Maximum Budget
             </label>
             <input
@@ -129,7 +129,7 @@ export default function HeroForm() {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder="eg. 1000"
-              className="border-0 placeholder:text-sm placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
+              className="w-full p-2 border-0 placeholder:text-sm placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
             />
           </div>
           <div className="flex flex-col gap-y-2 w-full md:w-fit px-8 md:px-0">

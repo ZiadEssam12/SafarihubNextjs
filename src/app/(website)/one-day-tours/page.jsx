@@ -60,14 +60,14 @@ export default function OneDayTours() {
             <Link
               key={index}
               href={"/one-day-tours" + tour.link}
-              className="relative transition-transform duration-300 ease-in-out hover:scale-105"
+              className="relative group overflow-hidden"
             >
               <Image
                 src={tour.img}
                 alt={tour.title}
                 width={0}
                 height={0}
-                className="object-fit w-full h-[200px]"
+                className="object-fit w-full h-[200px] transition-transform duration-[700ms] ease-in-out  group-hover:hover:scale-105"
                 unoptimized
               />
               <h2 className="text-2xl font-bold absolute bottom-4 left-4 border-t-[1px] border-white pt-1 uppercase ">
