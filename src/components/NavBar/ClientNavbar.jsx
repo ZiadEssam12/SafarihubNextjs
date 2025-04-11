@@ -1,4 +1,3 @@
-
 "use client";
 
 // import { DarkThemeToggle, Tooltip, useThemeMode } from "flowbite-react";
@@ -29,7 +28,7 @@ export default function ClientNavbar() {
               {/* <figure className="flex items-center">
                 <Logo width={40} height={40} />
               </figure> */}
-              <p className="text-lg lg:text-3xl font-bold text-orange">
+              <p className="text-lg lg:text-3xl font-bold text-orange user-select-none ">
                 Safari Hub
               </p>
             </Link>
@@ -40,11 +39,11 @@ export default function ClientNavbar() {
                   name="search"
                   id="search"
                   placeholder="Search"
-                  className="py-2 pl-4 pr-8 text-start w-[150px] cursor-pointer border-[1px] border-darkBlue/30 rounded-full text-darkBlue text-sm font-normal"
+                  className="py-2 pl-4 pr-8 text-start w-[150px] capitalize cursor-pointer border-[1px] border-darkBlue/30 rounded-full text-darkBlue text-sm font-normal"
                   onClick={handleToggle}
                   title="Click To Open Search Bar"
                 >
-                  search
+                  search...
                 </button>
                 {/* end of search bar */}
                 <span className="absolute right-3 top-1/2 -translate-y-1/2 stroke-darkBlue fill-darkBlue">

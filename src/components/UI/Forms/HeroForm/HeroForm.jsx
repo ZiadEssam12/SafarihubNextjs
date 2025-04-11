@@ -73,7 +73,7 @@ export default function HeroForm() {
                 value={formik.values.category}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                className="w-full p-2 border-0 dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent w-full"
+                className="w-full p-2 border-0 dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
               />
               <button
                 className="absolute right-1 bg-gray-100 rounded-full text-white"
@@ -132,10 +132,10 @@ export default function HeroForm() {
               className="w-full p-2 border-0 placeholder:text-sm placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
             />
           </div>
-          <div className="flex flex-col gap-y-2 w-full md:w-fit px-8 md:px-0">
+          <div className="py-1 self-end  gap-y-2 w-full md:w-fit px-8 md:px-0 ">
             <button
               type="submit"
-              className="w-full lg:w-fit justify-center flex items-center gap-2 bg-[#f57c00] hover:bg-orange text-white text-sm font-bold py-2 px-4 border-b-4 border-orange hover:border-orange rounded"
+              className="w-full lg:w-fit justify-center flex items-center gap-2 bg-[#f57c00] cursor-pointer hover:bg-orange text-white text-sm font-bold py-2 px-4 border-b-4 border-orange hover:border-orange rounded"
             >
               <UilSearch />
               Search

@@ -106,7 +106,7 @@ export default function page() {
       </div>
 
       <div className="flex justify-center items-center gap-3">
-        <button className="bg-[#d9362b] hover:bg-[#d9362b]/80 shadow-lg transition-colors duration-300 text-white px-5 py-4 rounded-lg">
+        <button className="bg-[#d9362b] hover:bg-[#d9362b]/80 cursor-pointer shadow-lg transition-colors duration-300 text-white px-5 py-4 rounded-lg">
           Clear Cart
         </button>
         <Link

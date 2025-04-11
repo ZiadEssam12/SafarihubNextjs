@@ -4,7 +4,7 @@
 // import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { object, string } from "yup";
-// import { Label } from "flowbite-react";
+import { Label } from "flowbite-react";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -35,27 +35,26 @@ export default function LoginPage() {
       setTimeout(() => {
         setLoading(false);
         formik.resetForm();
-        router.push("/dashboard"); // Navigate to the dashboard
+        router.push("/");
       }, 1000);
     },
   });
 
   return (
     <>
-      <div className="flex h-screen flex-1 flex-col justify-center items-stretch md:items-center px-6 py-12 lg:px-8 bg-white dark:bg-gray-900">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col items-center">
-          <Logo />
-          <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight text-gray-900 dark:text-white capitalize">
-            sign in
-          </h2>
-        </div>
-
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={formik.handleSubmit}>
+      <div className="flex h-screen flex-1 flex-col justify-center items-stretch md:items-center px-6 py-12 lg:px-8  dark:bg-darkBlue text-darkBlue">
+        <div className="bg-white dark:bg-gray-800 text-darkBlue dark:text-white p-12 mt-10 mx-auto w-full sm:max-w-sm md:max-w-[640px] rounded-md">
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col items-center">
+            <Logo />
+            <h2 className="mt-10 text-center text-2xl/9 font-bold tracking-tight  dark:text-white capitalize">
+              sign in
+            </h2>
+          </div>
+          <form className="space-y-6 mt-4" onSubmit={formik.handleSubmit}>
             <div>
               <label
                 htmlFor="email"
-                className="block text-sm/6 font-medium text-gray-900 dark:text-white capitalize"
+                className="block text-sm/6 font-medium  dark:text-white capitalize"
               >
                 Email address
               </label>
@@ -65,29 +64,26 @@ export default function LoginPage() {
                   name="email"
                   type="email"
                   autoComplete="email"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md border-0 py-1.5 pl-3  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
               </div>
-              {formik.touched.email && formik.errors.email && (
-                // <Label
-                //   color="failure"
-                //   className="my-2"
-                //   value={formik.errors.email}
-                // />
-                <div className="text-red-500 text-sm mt-1">
-                  {formik.errors.email}
-                </div>
-              )}
+              <div>
+                {formik.touched.email && formik.errors.email && (
+                  <Label color="red" className="my-2 text-red-900">
+                    {formik.errors.email}
+                  </Label>
+                )}
+              </div>
             </div>
 
             <div>
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="password"
-                  className="block text-sm/6 font-medium text-gray-900 dark:text-white"
+                  className="block text-sm/6 font-medium  dark:text-white"
                 >
                   Password
                 </label>
@@ -106,24 +102,22 @@ export default function LoginPage() {
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
+                  className="block w-full rounded-md border-0 py-1.5  shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6"
                   value={formik.values.password}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                 />
               </div>
               {formik.touched.password && formik.errors.password && (
-                <Label
-                  color="failure"
-                  className="my-2"
-                  value={formik.errors.password}
-                />
+                <Label color="red" className="my-2 text-red-900">
+                  {formik.errors.password}
+                </Label>
               )}
             </div>
 
             <div>
               <LoadingButton
-                text="Signing in"
+                text="Sign in"
                 areaLabel={"sign in button"}
                 valid={formik.isValid && formik.dirty}
                 loading={loading}

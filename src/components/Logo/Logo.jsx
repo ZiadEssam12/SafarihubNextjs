@@ -1,15 +1,7 @@
-import React from "react";
-import websiteLogo from "../../../public/logo.svg";
-import Image from "next/image";
-
-export default function Logo({ width = "60", height = "60" }) {
+export default function Logo() {
   return (
-    <Image
-      alt="لوجو عقاري"
-      src={websiteLogo}
-      width={width}
-      height={height}
-      className="object-contain"
-    />
+    <div className="text-lg lg:text-3xl font-bold text-orange user-select-none ">
+      Safari Hub
+    </div>
   );
 }

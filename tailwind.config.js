@@ -8,7 +8,6 @@ module.exports = {
     // content,
   ],
 
-  plugins: [require("tailwind-container-break-out")],
 };
 
 // plugins: [require('tailwind-container-break-out')]

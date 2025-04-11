@@ -23,7 +23,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <div id="triPackUp" className="px-4 md:px-0 -translate-y-3">
+      <div id="triPackUp" className="px-4 md:px-0 -translate-y-1/4">
         <HeroFormWrapper />
       </div>
     </>

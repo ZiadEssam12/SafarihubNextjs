@@ -2,7 +2,7 @@
 
 import { useFormik } from "formik";
 import { object, string, ref } from "yup";
-// import { Alert } from "flowbite-react";
+import { Alert } from "flowbite-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import LoadingButton from "@/components/button/Button";
@@ -116,7 +116,7 @@ export default function ResetPasswordPage() {
               {/* alert when input not valid */}
               {formik.touched.confirmNewPassword &&
                 formik.errors.confirmNewPassword && (
-                  <Alert color="failure" className="my-2">
+                  <Alert color="red" className="my-2">
                     {formik.errors.confirmNewPassword}
                   </Alert>
                 )}

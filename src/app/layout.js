@@ -49,9 +49,7 @@ export default function RootLayout({ children }) {
         />
       </head>
 
-      <body
-        className={`dark:bg-gray-700 overflow-x-hidden bg-gray-100/35`}
-      >
+      <body className={`dark:bg-gray-700 overflow-x-hidden bg-gray-100/35`}>
         <Navbar />
         <main className="container min-h-screen">{children}</main>
         <Footer />

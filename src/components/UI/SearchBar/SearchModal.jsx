@@ -1,48 +1,11 @@
-import { CiArrowRightSm, UilSearch } from "@/icons/Icons";
-import Link from "next/link";
+import { UilSearch } from "@/icons/Icons";
 import React, { useState, useEffect } from "react";
-
-const searchResults = [
-  {
-    id: 1,
-    title: "Serengeti Safari Adventure",
-    slug: "serengeti-safari-adventure",
-    location: "Tanzania, Africa",
-    category: "safari",
-  },
-  {
-    id: 2,
-    title: "Maasai Mara Wildlife Tour",
-    slug: "maasai-mara-wildlife-tour",
-    location: "Kenya, Africa",
-    category: "safari",
-  },
-  {
-    id: 3,
-    title: "Kruger National Park Expedition",
-    slug: "kruger-national-park-expedition",
-    location: "South Africa",
-    category: "safari",
-  },
-  {
-    id: 4,
-    title: "Okavango Delta Adventure",
-    slug: "okavango-delta-adventure",
-    location: "Botswana, Africa",
-    category: "safari",
-  },
-  {
-    id: 5,
-    title: "Etosha National Park Tour",
-    slug: "etosha-national-park-tour",
-    location: "Namibia, Africa",
-    category: "safari",
-  },
-];
+import { SearchResults } from "./SearchResults";
 
 export const SearchModal = ({ show, toggle }) => {
   const [value, setValue] = useState("");
   const [scrollbarWidth, setScrollbarWidth] = useState(0);
+  const [searchResults, setSearchResults] = useState([{}]);
 
   // Function to calculate scrollbar width
   const calculateScrollbarWidth = () => {
@@ -77,12 +40,30 @@ export const SearchModal = ({ show, toggle }) => {
     return () => {
       document.body.style.overflow = "auto";
       document.body.style.paddingRight = "0";
+
+      setValue("");
     };
   }, [show]);
 
   // Handle input change
   const handleChange = (e) => {
     setValue(e.target.value);
+    setSearchResults([
+      {
+        id: 1,
+        title: "Egypt Safari Adventure",
+        slug: "Egypt Egypt Egypt",
+        location: "Egypt, Egypt",
+        category: "Egypt",
+      },
+      {
+        id: 2,
+        title: "fayoum Safari Adventure",
+        slug: "Egypt Egypt Egypt",
+        location: "Egypt, Egypt",
+        category: "Egypt",
+      },
+    ]);
   };
 
   // Check if toggle returns null when modal is not shown
@@ -91,15 +72,18 @@ export const SearchModal = ({ show, toggle }) => {
   return (
     <>
       <div
-        className="w-screen h-screen fixed top-0 z-[9999] flex flex-col gap-3 justify-center items-center text-darkBlue backdrop-blur-[3px] bg-black/30 backdrop-filter"
+        className="w-screen h-screen fixed top-0 z-[9999] flex flex-col gap-3 justify-center items-center text-darkBlue bg-black/10  backdrop-blur-[3px] backdrop-filter"
         onClick={(e) => {
           // Close modal when clicking the backdrop
           if (e.target === e.currentTarget) toggle();
         }}
       >
         <div
-          className="bg-white w-1/2 h-fit rounded-xl shadow-md max-h-[80vh] flex flex-col"
+          className="bg-white w-2/3 lg:w-1/2 h-fit rounded-xl shadow-md max-h-[80vh] flex flex-col"
           onClick={(e) => e.stopPropagation()}
+          onKeyDown={(e) => {
+            if (show && e.key === "Escape") toggle();
+          }}
         >
           {/* Top part where input and search icon */}
           <div className="p-4 border-b-[1px] border-gray-200 flex justify-between items-center gap-3">
@@ -119,38 +103,19 @@ export const SearchModal = ({ show, toggle }) => {
 
           {/* Bottom part where results are displayed */}
           <div className="w-full overflow-y-auto py-3 flex-1">
-            <p className="font-bold text-sm px-4">Recent Added trips</p>
-            <div className="py-4">
-              {searchResults
-                .filter((item) =>
-                  item.title.toLowerCase().includes(value.toLowerCase())
-                )
-                .map((item) => (
-                  <Link
-                    key={item.id}
-                    className="group p-4 border-b-[1px] border-gray-200 flex justify-between items-center hover:bg-gray-100 transition-all duration-200"
-                    href={`/trip/${item.slug}`}
-                    onClick={toggle}
-                  >
-                    <h3 className="font-semibold flex-1">{item.title}</h3>
-                    <p className="text-sm text-gray-500 flex-1">
-                      {item.location}
-                    </p>
-                    <p className="text-sm text-gray-500 flex items-center gap-x-1 fill:darkBlue stroke-darkBlue">
-                      See details{" "}
-                      <span className="group-hover:translate-x-1 transition-all duration-200 ">
-                        <CiArrowRightSm />
-                      </span>
-                    </p>
-                  </Link>
-                ))}
-            </div>
+            <SearchResults
+              toggle={toggle}
+              value={value}
+              searchResultsList={searchResults}
+            />
           </div>
         </div>
-        <p className="bg-white p-2 rounded-md shadow-md text-center text-sm">
-          Press <span className="font-bold">ESC</span> or click outside to close
-          the search bar.
-        </p>
+        <div className="bg-white p-2 rounded-md shadow-md text-center text-sm flex gap-1">
+          <p className="hidden lg:block">
+            Press <span className="font-bold">ESC</span> or
+          </p>
+          click outside to close the search bar.
+        </div>
       </div>
     </>
   );

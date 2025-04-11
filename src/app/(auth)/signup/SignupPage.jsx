@@ -52,7 +52,7 @@ export default function SignupPage() {
   });
 
   const renderField = (id, label, type = "text") => (
-    <div>
+    <div className="w-full">
       <label
         htmlFor={id}
         className="block text-sm font-medium text-gray-900 dark:text-white"
@@ -80,44 +80,46 @@ export default function SignupPage() {
 
   return (
     <>
-      <div className="flex h-fit flex-1 flex-col justify-center items-stretch md:items-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col">
-          <Logo />
-          <h2 className="mt-3 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-            تسجيل حساب جديد
-          </h2>
-        </div>
+      <div className="flex h-fit flex-1 flex-col justify-center items-stretch md:items-center px-6 py-12 lg:px-8 b">
+        <div className="bg-white dark:bg-gray-800 text-black dark:text-white p-12 mt-10 mx-auto w-full sm:max-w-sm md:max-w-[640px] rounded-md">
+          <div className="sm:mx-auto sm:w-full sm:max-w-sm flex flex-col items-center">
+            <Logo />
+            <h2 className="mt-3 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+              Register a new Account
+            </h2>
+          </div>
 
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-3" onSubmit={formik.handleSubmit}>
-            {renderField("name", "الاسم")}
-            {renderField("email", "البريد الالكتروني", "email")}
-            {renderField("phoneNumber", "رقم الهاتف")}
+          <div className="mt-8 ">
+            <form className="space-y-3" onSubmit={formik.handleSubmit}>
+              {renderField("name", "Name")}
+              {renderField("email", "Email Address", "email")}
+              {renderField("phoneNumber", "Phone Number")}
 
-            <div className="flex flex-col lg:flex-row justify-between w-full">
-              {renderField("password", "كلمة المرور", "password")}
-              {renderField("confirmPassword", "تأكيد كلمة المرور", "password")}
-            </div>
+              <div className="flex flex-col lg:flex-row justify-between w-full gap-x-2 gap-y-4">
+                {renderField("password", "Password", "password")}
+                {renderField("confirmPassword", "Confirm Password", "password")}
+              </div>
 
-            <div>
-              <LoadingButton
-                text="التسجيل"
-                areaLabel={"sign up button"}
-                valid={formik.isValid && formik.dirty}
-                loading={loading}
-              />
-            </div>
-          </form>
+              <div>
+                <LoadingButton
+                  text="Sign Up"
+                  areaLabel={"sign up button"}
+                  valid={formik.isValid && formik.dirty}
+                  loading={loading}
+                />
+              </div>
+            </form>
 
-          <p className="mt-10 text-center text-sm text-gray-500">
-            هل لديك حساب بالفعل؟{" "}
-            <Link
-              href="/login"
-              className="font-semibold text-indigo-600 hover:text-indigo-500"
-            >
-              قم بتسجيل الدخول
-            </Link>
-          </p>
+            <p className="mt-10 text-center text-sm text-gray-500 capitalize">
+              Already Have an Account?
+              <Link
+                href="/login"
+                className="font-semibold text-indigo-600 hover:text-indigo-500 ml-1"
+              >
+                Sign in Now
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
     </>

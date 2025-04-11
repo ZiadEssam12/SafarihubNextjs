@@ -12,6 +12,7 @@ export default function Footer() {
   return (
     <>
       <CustomizeNileTrip />
+
       <footer className="bg-darkBlue py-10 text-white">
         <div className="container">
           <div id="footer-title" className="text-center pb-10   ">
@@ -82,7 +83,11 @@ export default function Footer() {
                     <BasilFacebookOutline width={30} height={30} />
                   </a>
                   <a href="" title="follow us on instagram">
-                    <MdiInstagram width={30} height={30} className="fill-white" />
+                    <MdiInstagram
+                      width={30}
+                      height={30}
+                      className="fill-white"
+                    />
                   </a>
                 </div>
               </div>
