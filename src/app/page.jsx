@@ -3,8 +3,23 @@ import HomeCarousel from "@/components/UI/HomeCarousel/HomeCarousel";
 import HowWorks from "@/components/UI/HowWorks/HowWorks";
 
 export default async function Home() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours/featured`);
-  const { data } = await res.json();
+  let data = [];
+
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/tours/featured`
+    );
+
+    if (!res.ok) {
+      throw new Error(`Failed to fetch data: ${res.status}`);
+    }
+
+    const responseData = await res.json();
+    data = responseData.data || [];
+  } catch (error) {
+    console.error("Error fetching featured tours:", error);
+    // You could also use error boundaries or other error handling methods
+  }
 
   return (
     <>
