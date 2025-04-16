@@ -7,8 +7,6 @@ import TourForm from "./TourForm";
 import ImageSlider from "./CarosuelSettings";
 
 export default function TourPage({ data }) {
-  console.log("data:", data);
-
   return (
     <div className="mt-8 text-black">
       {/* title */}
@@ -54,7 +52,7 @@ export default function TourPage({ data }) {
                   <span className="mr-2 font-medium">{index + 1}.</span>
                   <span>{highlight}</span>
                 </li>
-              ))} 
+              ))}
             </ul>
           </div>
 

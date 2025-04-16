@@ -3,9 +3,9 @@ import HomeCarousel from "@/components/UI/HomeCarousel/HomeCarousel";
 import HowWorks from "@/components/UI/HowWorks/HowWorks";
 
 export default async function Home() {
-  const res = await fetch("http://localhost:3000/api/tours/featured");
+  const res = await fetch(`${process.env.BASE_URL}/tours/featured`);
   const { data } = await res.json();
-  
+
   return (
     <>
       <Hero />
