@@ -5,11 +5,18 @@ import { MdiHeartOutline } from "@/icons/Icons";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function TravelCard({ id, title, description, price, image }) {
+export default function TravelCard({
+  id,
+  title,
+  overview_text,
+  start_from,
+  gallery,
+  slug,
+}) {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <Link
-      href={`/tours/${id}`}
+      href={`/tours/${slug}`}
       className="relative flex flex-col ms-1 bg-white border-2  border-transparent dark:border-gray-500  rounded-lg shadow-md overflow-hidden h-full user-select-none"
     >
       <div className="relative h-48 overflow-hidden">
@@ -18,7 +25,7 @@ export default function TravelCard({ id, title, description, price, image }) {
           {!imageLoaded && <div className="absolute inset-0 bg-gray-200"></div>}
           {/* Image Component */}
           <Image
-            src={image}
+            src={gallery[0]}
             alt={title}
             className="w-full h-full object-cover"
             width={0} // Set to 0 for dynamic sizing
@@ -45,13 +52,14 @@ export default function TravelCard({ id, title, description, price, image }) {
         >
           {title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-200 text-sm flex-grow">
-          {description}
+        <p
+          className="text-gray-600 dark:text-gray-200 text-sm flex-grow line-clamp-4"
+          title={overview_text}
+        >
+          {overview_text}
         </p>
         <div className="mt-4 flex items-center justify-between">
-          <div className="text-lg font-bold text-orange">
-            ${price.toFixed(2)}
-          </div>
+          <div className="text-lg font-bold text-orange">${start_from}</div>
           <button
             className="bg-blue-600 text-white px-2 py-2 rounded-md hover:bg-blue-700 transition-colors capitalize"
             aria-label="add to cart"

@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model Tour {
+  id              Int             @id @default(autoincrement())
+  slug            String          @unique
+  reviews_number  Int             @default(0)
+  adult_price     Float
+  child_price     Float
+  infant_price    Float           @default(0)
+  pricing_groups  PricingGroup[]
+  enabled         Boolean         @default(true)
+  gallery         String[]
+  duration_in_days Int
+  offer           Float           @default(0)
+  offer_end_date  DateTime?
+  start_from      Float
+  rate            Float           @default(0)
+  overview_text   String
+  title           String
+  highlights      String[]
+  excluded        String[]          
+  included        String[]          
+  duration        String
+  categories      TourToCategory[]
+  destinations    TourToDestination[]
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+}
+
+model PricingGroup {
+  id          Int     @id @default(autoincrement())
+  from        Int
+  to          Int
+  price       Float
+  child_price Float
+  tour        Tour    @relation(fields: [tourId], references: [id], onDelete: Cascade)
+  tourId      Int
+}
+
+model Category {
+  id        Int              @id @default(autoincrement())
+  title     String           @unique
+  slug      String           @unique
+  tours     TourToCategory[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+}
+
+model Destination {
+  id        Int                 @id @default(autoincrement())
+  title     String              @unique
+  slug      String              @unique
+  tours     TourToDestination[]
+  createdAt DateTime            @default(now())
+  updatedAt DateTime            @updatedAt
+}
+
+model TourToCategory {
+  tour       Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
+  tourId     Int
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId Int
+
+  @@id([tourId, categoryId])
+}
+
+model TourToDestination {
+  tour          Tour        @relation(fields: [tourId], references: [id], onDelete: Cascade)
+  tourId        Int
+  destination   Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+  destinationId Int
+
+  @@id([tourId, destinationId])
+}

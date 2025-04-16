@@ -2,7 +2,10 @@ import Hero from "@/components/UI/Hero/Hero";
 import HomeCarousel from "@/components/UI/HomeCarousel/HomeCarousel";
 import HowWorks from "@/components/UI/HowWorks/HowWorks";
 
-export default function Home() {
+export default async function Home() {
+  const res = await fetch("http://localhost:3000/api/tours/featured");
+  const { data } = await res.json();
+  
   return (
     <>
       <Hero />
@@ -13,7 +16,7 @@ export default function Home() {
             hot travel deals
           </h2>
         </div>
-        <HomeCarousel />
+        <HomeCarousel carouselData={data} />
       </div>
       <HowWorks />
     </>

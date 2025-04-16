@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { travelPackages } from "./travelPackages";
+// import { travelPackages } from "./travelPackages";
 
 const TravelCard = dynamic(() => import("./TravelCard"), {
   ssr: false,
@@ -29,11 +29,12 @@ const CarouselDots = dynamic(
   }
 );
 
-export default function HomeCarousel() {
+export default function HomeCarousel({ carouselData }) {
+  console.log("check :", carouselData);
   return (
     <Carousel
       CustomCard={TravelCard}
-      data={travelPackages}
+      data={carouselData}
       CarouselButtons={CarouselButtons}
       CarouselDots={CarouselDots}
     />

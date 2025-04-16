@@ -1,0 +1,142 @@
+[
+  {
+    "slug": "Private-3-Day-Hiking-Adventure-in-Bahariya-Oasis-Gara-Cave",
+    "reviews_number": 0,
+    "adult_price": 571,
+    "child_price": 165,
+    "infant_price": 0,
+    "pricing_groups": [
+      {
+        "from": 2,
+        "to": 3,
+        "price": 325,
+        "child_price": 165
+      },
+      {
+        "from": 4,
+        "to": 6,
+        "price": 237,
+        "child_price": 165
+      },
+      {
+        "from": 7,
+        "to": 100,
+        "price": 191,
+        "child_price": 165
+      }
+    ],
+    "enabled": true,
+    "gallery": [
+      "https://sunpyramidtours.com/storage/media/tours/package-3-days-2-nights-to-white-desert-bahariya-start-from-255/New Project (25).webp",
+      "https://sunpyramidtours.com/storage/media/tours/package-3-days-2-nights-to-white-desert-bahariya-start-from-255/New Project (28).webp",
+      "https://sunpyramidtours.com/storage/media/tours/day-tour-to-white-desert-and-bahariya-oasis-tour-start-from-115/cSPoEskIqvZrEOa6QHtoGqvg4BplTJTZPEF7ja79.webp"
+    ],
+    "duration_in_days": 3,
+    "offer": 0,
+    "offer_end_date": null,
+    "start_from": 191,
+    "rate": 0,
+    "category": "MULTI_DAYS_TOUR",
+    "overview_text": "Escape Cairo's bustle and embark on a 3-day hiking adventure in Bahariya Oasis and Gara Cave. Explore the Black Desert, White Desert, Crystal Mountain and camp under a starry sky, with no hidden fees.",
+    "title": "Private 3-Day Hiking Adventure in Bahariya Oasis & Gara Cave",
+    "overview": "Experience the magic of the Egyptian desert with this thrilling 3-day hiking adventure through Bahariya Oasis and the legendary Gara Cave. This all-inclusive tour takes you through the most spectacular landscapes of Egypt's western desert.",
+    "highlights": "Hike through the stunning Black Desert's volcanic landscapes.\nMarvel at the sparkling formations of Crystal Mountain.\nExplore the surreal white limestone formations of White Desert.\nVenture into the mysterious depths of Gara Cave.\nCamp under a breathtaking star-lit sky in the Egyptian Sahara.",
+    "excluded": [
+      "Extras: Services not listed in the itinerary.",
+      "Tipping: Gratuities for guides and drivers.",
+      "Personal Expenses: Souvenirs and extra purchases.",
+      "Optional Activities: Any additional excursions.",
+      "Beverages: Drinks beyond the included soft drinks and water."
+    ],
+    "included": [
+      "4x4 Desert Adventure: Private off-road tour of the White Desert & Gara Cave.",
+      "Camping Gear: Includes sleeping bags",
+      "Camel Blankets and tents",
+      "Entrance Fees: Access to all historical sites and landmarks.",
+      "Meals & Drinks: All meals",
+      "bottled water",
+      "and soft drinks as per itinerary.",
+      "Accommodation: Stay as mentioned in the itinerary.",
+      "Taxes & Service Charges: No hidden costs."
+    ],
+    "duration": "3 Days",
+    "type": "Private Tour",
+    "categories": [
+      {
+        "title": "Adventure Tours",
+        "slug": "adventure-tours"
+      },
+      {
+        "title": "Desert Tours",
+        "slug": "desert-tours"
+      }
+    ],
+    "destinations": [
+      {
+        "title": "Cairo",
+        "slug": "cairo"
+      },
+      {
+        "title": "Bahariya Oasis",
+        "slug": "bahariya-oasis"
+      }
+    ]
+  },
+  {
+    "slug": "luxor-nile-cruise-4-days",
+    "reviews_number": 28,
+    "adult_price": 499.99,
+    "child_price": 299.5,
+    "infant_price": 0,
+    "enabled": true,
+    "gallery": ["luxor-tour.jpg", "nile/luxury.webp"],
+    "duration_in_days": 4,
+    "offer": 15,
+    "offer_end_date": "2025-06-10T00:00:00Z",
+    "start_from": 449.99,
+    "rate": 4.8,
+    "category": "NILE_CRUISES",
+    "overview_text": "Luxury Nile cruise from Luxor to Aswan",
+    "title": "4-Day Luxor to Aswan Nile Cruise",
+    "overview": "Experience the timeless beauty of Egypt aboard a luxury cruise ship sailing the legendary Nile River from Luxor to Aswan.",
+    "highlights": "Valley of the Kings;Temple of Karnak;Edfu Temple;Kom Ombo Temple;Philae Temple",
+    "excluded": "Gratuities;Personal expenses;Optional tours;Drinks",
+    "included": "All meals;Accommodation in luxury cabin;Guided excursions;Entrance fees;Airport/hotel transfers",
+    "duration": "4 days / 3 nights",
+    "type": "Group Tour",
+    "pricing_groups": [
+      {
+        "from": 1,
+        "to": 2,
+        "price": 499.99,
+        "child_price": 299.5
+      },
+      {
+        "from": 3,
+        "to": 5,
+        "price": 449.99,
+        "child_price": 274.5
+      }
+    ],
+    "categories": [
+      {
+        "title": "Luxury Tours",
+        "slug": "luxury-tours"
+      },
+      {
+        "title": "Nile Cruises",
+        "slug": "nile-cruises"
+      }
+    ],
+    "destinations": [
+      {
+        "title": "Luxor",
+        "slug": "luxor"
+      },
+      {
+        "title": "Aswan",
+        "slug": "aswan"
+      }
+    ]
+  }
+]

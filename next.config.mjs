@@ -9,6 +9,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.unsplash.com",
       },
+      {
+        // "https://sunpyramidtours.com/storage/media/tours/package-3-days-2-nights-to-white-desert-bahariya-start-from-255/New Project (25).webp"
+        protocol: "https",
+        hostname: "sunpyramidtours.com",
+      },
     ],
   },
   async redirects() {
