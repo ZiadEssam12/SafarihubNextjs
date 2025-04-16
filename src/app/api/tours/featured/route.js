@@ -1,7 +1,5 @@
-import { PrismaClient } from "generated/prisma";
 import { NextResponse } from "next/server";
-
-const Prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 // GET /api/tours/featured - get a small set of tours with minimal data
 export async function GET(request) {
@@ -10,7 +8,7 @@ export async function GET(request) {
     let limit = parseInt(searchParams.get("limit") || "10");
     if (limit > 20) limit = 20; // Limit to a maximum of 20
 
-    const featuredTours = await Prisma.tour.findMany({
+    const featuredTours = await prisma.tour.findMany({
       take: limit,
       orderBy: {
         rate: "desc", // Order by rating to get the best tours

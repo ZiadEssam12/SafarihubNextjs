@@ -54,7 +54,7 @@ export default function TourPage({ data }) {
                   <span className="mr-2 font-medium">{index + 1}.</span>
                   <span>{highlight}</span>
                 </li>
-              ))}
+              ))} 
             </ul>
           </div>
 

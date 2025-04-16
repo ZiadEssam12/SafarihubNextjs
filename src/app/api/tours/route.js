@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "../../../generated/prisma";
-import slugify from "slugify";
+import prisma from "@/lib/prisma";
 
-const prisma = new PrismaClient();
 
 // GET /api/tours - get all tours with pagination and limit
 export async function GET(request) {

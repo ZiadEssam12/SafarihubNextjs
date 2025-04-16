@@ -1,7 +1,5 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "../../../../generated/prisma";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 // GET /api/tours/[id] - get a single tour by ID or slug
 export async function GET(request, { params }) {
