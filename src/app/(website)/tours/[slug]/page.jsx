@@ -6,7 +6,7 @@ export default async function Page({ params }) {
   const slug = (await params).slug;
 
   // Use an absolute URL for production or a relative URL
-  const res = await fetch(`${process.env.BASE_URL}/tours/${slug}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours/${slug}`);
   const { data } = await res.json();
 
   return (
