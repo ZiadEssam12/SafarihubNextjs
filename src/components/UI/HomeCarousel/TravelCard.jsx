@@ -1,11 +1,28 @@
 "use client";
 
 import React, { useState } from "react";
+import dynamic from "next/dynamic";
 import { MdiHeartOutline } from "@/icons/Icons";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function TravelCard({
+// Create a fallback loading component
+const LoadingCard = () => (
+  <div className="relative flex flex-col ms-1 bg-white border-2 border-transparent dark:border-gray-500 rounded-lg shadow-md overflow-hidden h-full animate-pulse">
+    <div className="h-48 bg-gray-200"></div>
+    <div className="p-4 flex flex-col flex-grow">
+      <div className="h-6 bg-gray-200 rounded mb-2"></div>
+      <div className="h-24 bg-gray-200 rounded mb-4"></div>
+      <div className="mt-4 flex items-center justify-between">
+        <div className="h-6 w-16 bg-gray-200 rounded"></div>
+        <div className="h-8 w-24 bg-gray-200 rounded"></div>
+      </div>
+    </div>
+  </div>
+);
+
+// Regular component implementation
+function TravelCardComponent({
   id,
   title,
   overview_text,
@@ -13,25 +30,20 @@ export default function TravelCard({
   gallery,
   slug,
 }) {
-  const [imageLoaded, setImageLoaded] = useState(false);
   return (
     <Link
       href={`/tours/${slug}`}
-      className="relative flex flex-col ms-1 bg-white border-2  border-transparent dark:border-gray-500  rounded-lg shadow-md overflow-hidden h-full user-select-none"
+      className="relative flex flex-col ms-1 bg-white border-2 border-transparent dark:border-gray-500 rounded-lg shadow-md overflow-hidden h-full user-select-none"
     >
       <div className="relative h-48 overflow-hidden">
         <div className="w-full h-full relative">
-          {/* Skeleton Loader */}
-          {!imageLoaded && <div className="absolute inset-0 bg-gray-200"></div>}
-          {/* Image Component */}
           <Image
             src={gallery[0]}
             alt={title}
             className="w-full h-full object-cover"
-            width={0} // Set to 0 for dynamic sizing
-            height={0} // Set to 0 for dynamic sizing
+            width={0}
+            height={0}
             sizes="100vw"
-            onLoad={() => setImageLoaded(true)} // Mark image as loaded
           />
         </div>
         <button
@@ -71,4 +83,14 @@ export default function TravelCard({
       </div>
     </Link>
   );
+}
+
+// Dynamic import with next/dynamic
+const DynamicTravelCard = dynamic(() => Promise.resolve(TravelCardComponent), {
+  loading: () => <LoadingCard />,
+  ssr: true, // Set to false if you don't want server-side rendering
+});
+
+export default function TravelCard(props) {
+  return <DynamicTravelCard {...props} />;
 }

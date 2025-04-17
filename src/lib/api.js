@@ -4,18 +4,25 @@
 export async function fetchTours() {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours`);
-    
 
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.status}`);
     }
 
-    const data = await response.json();
+    const responseData = await response.json();
 
-    return data || [];
+    // Return the data and pagination from the response
+    return {
+      data: responseData.data || [],
+      pagination: responseData.pagination || {},
+    };
   } catch (error) {
     console.error("Error fetching tours:", error);
-    return [];
+    // Always return a valid structure even on error
+    return {
+      data: [],
+      pagination: {},
+    };
   }
 }
 

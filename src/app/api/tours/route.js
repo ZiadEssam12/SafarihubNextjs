@@ -96,6 +96,7 @@ export async function GET(request) {
       {
         success: false,
         error: "Failed to fetch tours",
+        
       },
       { status: 500 }
     );
