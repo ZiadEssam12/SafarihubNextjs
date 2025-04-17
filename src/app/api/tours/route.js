@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
-
 // GET /api/tours - get all tours with pagination and limit
 export async function GET(request) {
   try {
@@ -9,7 +8,7 @@ export async function GET(request) {
 
     // Pagination parameters
     const page = parseInt(searchParams.get("page") || "1");
-    let limit = parseInt(searchParams.get("limit") || "10");
+    let limit = parseInt(searchParams.get("limit") || "20");
 
     if (limit > 20) limit = 20;
 
@@ -78,7 +77,6 @@ export async function GET(request) {
       };
       return formattedTour;
     });
-
     return NextResponse.json(
       {
         success: true,

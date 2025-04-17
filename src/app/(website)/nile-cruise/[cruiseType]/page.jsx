@@ -1,11 +1,11 @@
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import TravelCard from "@/components/UI/HomeCarousel/TravelCard";
-import { travelPackages } from "@/components/UI/HomeCarousel/travelPackages";
+import { fetchToursByCategory } from "@/lib/api";
 
 export default async function CruiseType({ params }) {
   const cruiseType = (await params).cruiseType;
-  let data = travelPackages;
-  data = data.slice(0, 7);
+  const data = await fetchToursByCategory(cruiseType);
+
   return (
     <>
       <SectionHeader title={cruiseType.replace(/-/g, " ")} />

@@ -1,6 +1,8 @@
-import { travelPackages } from "@/components/UI/HomeCarousel/travelPackages";
 import ToursListings from "@/components/UI/ToursListings/ToursListings";
+import { fetchToursByCategory } from "@/lib/api";
 
-export default function MultiDaysTours() {
-  return <ToursListings data={travelPackages} place="Multi Days Tours" />;
+export default async function MultiDaysTours() {
+  const data = await fetchToursByCategory("multi-days-tours");
+
+  return <ToursListings data={data} place="Multi Days Tours" />;
 }
