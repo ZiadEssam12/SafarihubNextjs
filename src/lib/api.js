@@ -33,9 +33,10 @@ export async function fetchTours() {
  */
 export async function fetchToursByCategory(category) {
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/tours/categories/${category}`
-    );
+    const response = await fetch(`${baseUrl}/tours`, {
+      cache: "no-store", // Disable caching during build
+      next: { revalidate: 60 }, // Revalidate every minute
+    });
 
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.status}`);
