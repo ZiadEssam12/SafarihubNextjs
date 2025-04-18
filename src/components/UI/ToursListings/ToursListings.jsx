@@ -1,8 +1,9 @@
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import React from "react";
 import TravelCard from "../HomeCarousel/TravelCard";
+import Pagination from "@/components/Pagination/Pagination";
 
-export default function ToursListings({ data, place }) {
+export default function ToursListings({ data, place, pagination = {} }) {
   return (
     <>
       <SectionHeader title={place} />
@@ -14,6 +15,8 @@ export default function ToursListings({ data, place }) {
           </div>
         ))}
       </div>
+
+      <Pagination pagination={pagination} baseUrl="/hidden-gems" />
     </>
   );
 }
