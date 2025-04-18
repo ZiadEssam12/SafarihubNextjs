@@ -1,4 +1,5 @@
 import TourPage from "@/components/UI/TourPage/TourPage";
+import { fetchFeaturedTours } from "@/lib/api";
 import React from "react";
 
 export default async function Page({ params }) {
@@ -9,9 +10,11 @@ export default async function Page({ params }) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours/${slug}`);
   const { data } = await res.json();
 
+  const feturedData = fetchFeaturedTours();
+
   return (
     <>
-      <TourPage data={data} />
+      <TourPage data={data} feturedData={feturedData} />
     </>
   );
 }

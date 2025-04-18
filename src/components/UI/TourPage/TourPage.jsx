@@ -5,6 +5,7 @@ import CarouselButtons from "../Carousel/CarouselButtons";
 import Carousel from "../Carousel/Carousel";
 import TourForm from "./TourForm";
 import ImageSlider from "./CarosuelSettings";
+import FeaturedToursSection from "@/components/FeaturedToursSection/FeaturedToursSection";
 
 export default function TourPage({ data }) {
   return (
@@ -37,7 +38,7 @@ export default function TourPage({ data }) {
         <TourPageHead />
         {/* end head */}
 
-        <main className="py-14 space-y-10 ">
+        <div className="py-14 space-y-10 ">
           {/* overview */}
           <div id="overview" className="scroll-mt-40">
             <h3 className="tour-page-title capitalize">Overview</h3>
@@ -118,16 +119,8 @@ export default function TourPage({ data }) {
             )}
           </div>
 
-          <div>
-            <h3 className="tour-page-title capitalize">Related Tours</h3>
-            {/* 
-            <Carousel
-              CustomCard={TravelCard}
-              data={travelPackages}
-              CarouselButtons={CarouselButtons}
-            /> */}
-          </div>
-        </main>
+          <FeaturedToursSection />
+        </div>
       </div>
     </div>
   );
