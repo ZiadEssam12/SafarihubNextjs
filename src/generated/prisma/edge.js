@@ -215,7 +215,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgres://neondb_owner:npg_Npy6xEMhHs4k@ep-bitter-water-abnn3lef-pooler.eu-west-2.aws.neon.tech/neondb?sslmode=require"
+        "value": "postgresql://postgres:postgres@localhost:5432/safarihub?schema=public"
       }
     }
   },
