@@ -21,7 +21,7 @@ const Carousel = dynamic(() => import("@/components/UI/Carousel/Carousel"), {
   loading: () => (
     <div className="animate-pulse bg-gray-100 h-80 w-full rounded-md p-4">
       <div className="flex gap-4 overflow-hidden">
-        {[1, 2, 3].map((i) => (
+        {[1, 2, 3, 4].map((i) => (
           <div
             key={i}
             className="bg-gray-200 h-64 w-80 flex-shrink-0 rounded-md"
