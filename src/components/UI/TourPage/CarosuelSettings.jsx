@@ -13,7 +13,7 @@ const DynamicCarouselDots = dynamic(
       "
       ></div>
     ),
-    ssr: false,
+    ssr: true,
   }
 );
 
