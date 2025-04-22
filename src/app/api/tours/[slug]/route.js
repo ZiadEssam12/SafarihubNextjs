@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 // GET /api/tours/[id] - get a single tour by ID or slug
 export async function GET(request, { params }) {
   try {
-    const { slug } = params;
+    const { slug } = await params;
 
     if (!slug) {
       return NextResponse.json(

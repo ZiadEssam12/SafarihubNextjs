@@ -13,6 +13,7 @@ export function CarouselSlides({ data, scrollNext, scrollPrev }) {
               className="w-full  h-[530px] object-cover"
               width={0}
               height={0}
+              laoding={index === 0 ? "eager" : "lazy"}
               priority={index === 0}
               unoptimized
             />
