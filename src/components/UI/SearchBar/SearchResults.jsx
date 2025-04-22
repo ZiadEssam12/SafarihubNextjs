@@ -40,14 +40,19 @@ export const SearchResults = ({
       </div>
       <div>
         {loading && (
-          <div className="flex flex-col justify-center items-center py-4">
-            {[1, 2, 3, 4, 5].map((item) => (
+          <>
+            {[1, 2, 3, 4, 5].map((item, index) => (
               <div
-                key={item}
-                className="animate-pulse bg-gray-200 w-full h-10 rounded-md mb-2"
-              ></div>
+                key={index}
+                className="group p-4 border-b-[1px] border-gray-200 flex justify-between items-center hover:bg-gray-100 transition-all duration-200"
+              >
+                {/* Title skeleton */}
+                <div className="h-5 flex-1 bg-gray-200 rounded animate-pulse"></div>
+                {/* "See details" skeleton */}
+                <div className="h-4 w-24 bg-gray-100 rounded ml-4 animate-pulse"></div>
+              </div>
             ))}
-          </div>
+          </>
         )}
       </div>
     </>
