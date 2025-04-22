@@ -22,9 +22,6 @@ export const SearchResults = ({
               onClick={toggle}
             >
               <h3 className="font-semibold flex-1">{item.title}</h3>
-              {/* <p className="text-sm text-gray-500 flex-1 hidden md:block">
-                {item.destinations[0]?.destination?.name}
-              </p> */}
               <p className="text-sm text-gray-500 flex items-center gap-x-1 fill:darkBlue stroke-darkBlue">
                 See details
                 <span className="group-hover:translate-x-1 transition-all duration-200 ">
@@ -33,9 +30,16 @@ export const SearchResults = ({
               </p>
             </Link>
           ))}
+
+        {/* Show message if not loading and no results */}
+        {!loading && searchResultsList.length === 0 && (
+          <div className="text-center text-gray-500 py-4">
+            No results found.
+          </div>
+        )}
       </div>
       <div>
-        {(loading || !searchResultsList.length) && (
+        {loading && (
           <div className="flex flex-col justify-center items-center py-4">
             {[1, 2, 3, 4, 5].map((item) => (
               <div
