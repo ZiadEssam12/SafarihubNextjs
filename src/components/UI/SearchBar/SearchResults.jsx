@@ -16,7 +16,7 @@ export const SearchResults = ({
         {!loading &&
           searchResultsList.map((item) => (
             <Link
-              key={item.id}
+              key={item.slug}
               className="group p-4 border-b-[1px] border-gray-200 flex justify-between items-center hover:bg-gray-100 transition-all duration-200"
               href={`/tours/${item.slug}`}
               onClick={toggle}

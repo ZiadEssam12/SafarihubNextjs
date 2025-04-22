@@ -106,6 +106,7 @@ export const SearchModal = ({ show, toggle }) => {
               toggle={toggle}
               value={value}
               searchResultsList={searchResults}
+              loading={loading}
             />
           </div>
         </div>
