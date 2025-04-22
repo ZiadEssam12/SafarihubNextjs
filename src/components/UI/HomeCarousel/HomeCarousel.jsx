@@ -30,7 +30,6 @@ const CarouselDots = dynamic(
 );
 
 export default function HomeCarousel({ carouselData }) {
-  console.log("check :", carouselData);
   return (
     <Carousel
       CustomCard={TravelCard}

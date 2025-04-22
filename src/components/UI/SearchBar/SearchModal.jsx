@@ -1,11 +1,15 @@
+"use client";
+
 import { UilSearch } from "@/icons/Icons";
 import React, { useState, useEffect } from "react";
 import { SearchResults } from "./SearchResults";
+import { searchTours } from "@/lib/api";
 
 export const SearchModal = ({ show, toggle }) => {
   const [value, setValue] = useState("");
   const [scrollbarWidth, setScrollbarWidth] = useState(0);
-  const [searchResults, setSearchResults] = useState([{}]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Function to calculate scrollbar width
   const calculateScrollbarWidth = () => {
@@ -19,6 +23,17 @@ export const SearchModal = ({ show, toggle }) => {
     outer.parentNode.removeChild(outer);
     return scrollbarWidthValue;
   };
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      setLoading(true);
+      const data = await searchTours(value);
+      setSearchResults(data);
+      setLoading(false);
+    };
+
+    fetchResults();
+  }, [value]);
 
   // Prevent background scrolling when modal is open
   useEffect(() => {
@@ -48,22 +63,6 @@ export const SearchModal = ({ show, toggle }) => {
   // Handle input change
   const handleChange = (e) => {
     setValue(e.target.value);
-    setSearchResults([
-      {
-        id: 1,
-        title: "Egypt Safari Adventure",
-        slug: "Egypt Egypt Egypt",
-        location: "Egypt, Egypt",
-        category: "Egypt",
-      },
-      {
-        id: 2,
-        title: "fayoum Safari Adventure",
-        slug: "Egypt Egypt Egypt",
-        location: "Egypt, Egypt",
-        category: "Egypt",
-      },
-    ]);
   };
 
   // Check if toggle returns null when modal is not shown

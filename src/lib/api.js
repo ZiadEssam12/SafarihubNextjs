@@ -78,3 +78,21 @@ export async function fetchFeaturedTours() {
     return [];
   }
 }
+
+export async function searchTours(q) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/tours/search?q=${q}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    return responseData.data || [];
+  } catch (error) {
+    console.error("Error searching tours:", error);
+    return [];
+  }
+}

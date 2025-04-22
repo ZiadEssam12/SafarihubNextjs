@@ -31,19 +31,17 @@ export default function HowWorks() {
 
           <div className="flex-1 space-y-12 ">
             {list.map((item, index) => (
-              <>
-                <div className="flex gap-x-5" key={`${index}-${item.title}`}>
-                  <div>
-                    <span className="rounded-full size-[55px] flex items-center justify-center border-2 border-darkBlue dark:border-white text-3xl user-select-none">
-                      {index + 1}
-                    </span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl capitalize">{item.title}</h3>
-                    <p>{item.description}</p>
-                  </div>
+              <div className="flex gap-x-5" key={item.title}>
+                <div>
+                  <span className="rounded-full size-[55px] flex items-center justify-center border-2 border-darkBlue dark:border-white text-3xl user-select-none">
+                    {index + 1}
+                  </span>
                 </div>
-              </>
+                <div>
+                  <h3 className="text-xl capitalize">{item.title}</h3>
+                  <p>{item.description}</p>
+                </div>
+              </div>
             ))}
 
             <div className="w-full">
