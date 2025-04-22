@@ -17,9 +17,9 @@ export default function TourPage({ data }) {
       {/* end title */}
 
       <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mt-4 w-full min-h-[500px]">
-        {/* <div className="md:col-span-5 h-full">
+        <div className="md:col-span-5 h-full">
           <ImageSlider data={data.gallery} />
-        </div> */}
+        </div>
 
         {/* booking options */}
         <div className="md:col-span-2 rounded-xl shadow-md h-full flex flex-col">

@@ -8,12 +8,8 @@ const DynamicCarouselDots = dynamic(
   () => import("./CarouselDots").then((mod) => mod.CarouselDots),
   {
     loading: () => (
-      <div
-        className="w-32 lg:w-auto h-32 lg:h-[500px] bg-gray-100 animate-pulse rounded-xl
-      "
-      ></div>
+      <div className="w-32 lg:w-auto h-32 lg:h-[500px] bg-gray-100 animate-pulse rounded-xl" />
     ),
-    ssr: true,
   }
 );
 
@@ -23,7 +19,6 @@ const DynamicCarouselSlides = dynamic(
     loading: () => (
       <div className="w-full h-[500px] bg-gray-100 animate-pulse rounded-xl" />
     ),
-    ssr: false,
   }
 );
 
@@ -79,11 +74,12 @@ export default function ImageSlider({ data }) {
   useEffect(() => {
     if (!emblaApi) return;
 
-    const autoScroll = setInterval(() => {
-      if (emblaApi) emblaApi.scrollNext();
-    }, scrollTime); // Scrolls every 3 seconds
+    let autoScroll = setInterval(() => {
+      emblaApi.scrollNext();
+    }, scrollTime);
 
-    return () => clearInterval(autoScroll); // Cleanup on unmount
+    emblaApi.on("pointerDown", () => clearInterval(autoScroll));
+    return () => clearInterval(autoScroll);
   }, [emblaApi]);
 
   return (
