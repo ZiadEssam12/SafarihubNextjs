@@ -1,21 +1,27 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 export function CarouselDots({ selectedIndex, photos, onDotClick }) {
   const [blurredImages, setBlurredImages] = useState([]);
 
+  // useMemo to generate blur URLs
+  const blurUrls = useMemo(() => {
+    return photos.map((imageUrl) => {
+      const uploadIndex = imageUrl.indexOf("/upload/");
+      if (uploadIndex === -1) return "";
+      return (
+        imageUrl.slice(0, uploadIndex + 8) +
+        "w_100/e_blur:1000,q_auto,f_webp/" +
+        imageUrl.slice(uploadIndex + 8)
+      );
+    });
+  }, [photos]);
+
   useEffect(() => {
     async function getBlurredImages() {
       const blurred = await Promise.all(
-        photos.map(async (imageUrl) => {
-          // Insert transformation after "/upload/"
-          const uploadIndex = imageUrl.indexOf("/upload/");
-          if (uploadIndex === -1) return "";
-          // Insert transformation string after "/upload/"
-          const blurUrl =
-            imageUrl.slice(0, uploadIndex + 8) + // "/upload/" is 8 chars
-            "w_100/e_blur:1000,q_auto,f_webp/" +
-            imageUrl.slice(uploadIndex + 8);
+        blurUrls.map(async (blurUrl) => {
+          if (!blurUrl) return "";
           const response = await fetch(blurUrl);
           const buffer = await response.arrayBuffer();
           const data = btoa(
@@ -24,14 +30,13 @@ export function CarouselDots({ selectedIndex, photos, onDotClick }) {
               ""
             )
           );
-          console.log(data);
           return `data:image/webp;base64,${data}`;
         })
       );
       setBlurredImages(blurred);
     }
     getBlurredImages();
-  }, [photos]);
+  }, [blurUrls]);
 
   return (
     <div
@@ -75,7 +80,7 @@ export function CarouselDots({ selectedIndex, photos, onDotClick }) {
                 alt={`preview-${index}`}
                 width={128}
                 height={96}
-                className="object-cover w-24 h-24 lg:w-32 lg:h-24 rounded-xl hidden"
+                className="object-cover w-24 h-24 lg:w-32 lg:h-24 rounded-xl"
                 unoptimized
               />
             )}
