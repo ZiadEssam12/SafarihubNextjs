@@ -12,6 +12,10 @@
   padding-inline: 2rem;
 }
 
+* {
+  scroll-behavior: smooth;
+}
+
 /* styles.css */
 @font-face {
   font-family: "Poppins";
