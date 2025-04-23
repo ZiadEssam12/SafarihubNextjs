@@ -6,14 +6,16 @@ export function CarouselSlides({ data, scrollNext, scrollPrev }) {
     <>
       <div className="flex">
         {data.map((item, index) => (
-          <div key={`${index}-${item.title}`} className="flex-[0_0_100%]">
+          <div
+            key={`${index}-${item.title}`}
+            className="flex-[0_0_100%] relative h-[530px] w-full"
+          >
             <Image
               src={item}
               alt="tour image"
-              className="w-full  h-[530px] object-cover"
-              width={0}
-              height={0}
-              laoding={index === 0 ? "eager" : "lazy"}
+              className="object-cover"
+              fill
+              loading={index === 0 ? "eager" : "lazy"}
               priority={index === 0}
               unoptimized
             />
