@@ -88,7 +88,7 @@ function TravelCardComponent({
 // Dynamic import with next/dynamic
 const DynamicTravelCard = dynamic(() => Promise.resolve(TravelCardComponent), {
   loading: () => <LoadingCard />,
-  ssr: false, // Set to false if you don't want server-side rendering
+  ssr: true, // Set to false if you don't want server-side rendering
 });
 
 export default function TravelCard(props) {

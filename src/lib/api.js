@@ -96,3 +96,21 @@ export async function searchTours(q) {
     return [];
   }
 }
+
+export async function FetchOneDayTrip(place) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/tours/one-day-tours/${place}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    return responseData.data || [];
+  } catch (error) {
+    console.error("Error fetching one day trip:", error);
+    return [];
+  }
+}
