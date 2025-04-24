@@ -1,22 +1,28 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-// returns
-// title , slug , in image from the gallary , tour price
-
 export async function GET(request, { params }) {
   const { place } = await params;
-  console.log("place", place);
+
   const formattedPlace = place.replace(/-/g, " ");
 
+  // Get pagination parameters from URL query params
+  const url = new URL(request.url);
+  const page = parseInt(url.searchParams.get("page") || "1");
+  const limit = parseInt(url.searchParams.get("limit") || "10");
+
+  // Calculate skip value for pagination
+  const skip = (page - 1) * limit;
+
   try {
+    // Query to get paginated data
     const data = await prisma.tour.findMany({
-      take: 20,
+      skip,
+      take: limit,
       where: {
         destinations: {
           some: {
             destination: {
-              // Add this level to access the actual Destination model
               title: {
                 contains: formattedPlace,
                 mode: "insensitive",
@@ -34,12 +40,32 @@ export async function GET(request, { params }) {
       },
     });
 
-    // Transform the data to return just the first gallery image and rename adult_price to price if needed
+    // Query to get total count for pagination
+    const totalCount = await prisma.tour.count({
+      where: {
+        destinations: {
+          some: {
+            destination: {
+              title: {
+                contains: formattedPlace,
+                mode: "insensitive",
+              },
+            },
+          },
+        },
+      },
+    });
 
     return NextResponse.json(
       {
         success: true,
         data,
+        pagination: {
+          total: totalCount,
+          page,
+          limit,
+          pages: Math.ceil(totalCount / limit),
+        },
       },
       { status: 200 }
     );

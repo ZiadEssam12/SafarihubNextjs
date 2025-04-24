@@ -12,7 +12,6 @@ const TravelCard = dynamic(
     loading: () => (
       <div className="animate-pulse bg-gray-200 h-64 w-full rounded-md"></div>
     ),
-    ssr: false,
   }
 );
 

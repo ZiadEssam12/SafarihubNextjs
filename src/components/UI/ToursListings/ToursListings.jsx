@@ -3,7 +3,12 @@ import React from "react";
 import TravelCard from "../HomeCarousel/TravelCard";
 import Pagination from "@/components/Pagination/Pagination";
 
-export default function ToursListings({ data, place, pagination = {} }) {
+export default function ToursListings({
+  data,
+  place,
+  pagination = {},
+  baseUrl = "",
+}) {
   return (
     <>
       <SectionHeader title={place} />
@@ -15,8 +20,8 @@ export default function ToursListings({ data, place, pagination = {} }) {
           </div>
         ))}
       </div>
-
-      <Pagination pagination={pagination} baseUrl="/hidden-gems" />
+        
+      <Pagination pagination={pagination} baseUrl={baseUrl} />
     </>
   );
 }

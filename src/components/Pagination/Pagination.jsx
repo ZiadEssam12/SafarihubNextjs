@@ -15,7 +15,6 @@ export default function Pagination({ pagination, baseUrl = "" }) {
   // Create the query parameters
   const prevPageHref = hasPrevPage ? `${baseUrl}?page=${currentPage - 1}` : "";
   const nextPageHref = hasNextPage ? `${baseUrl}?page=${currentPage + 1}` : "";
-  console.log("has prev ", prevPageHref);
   return (
     <div className="flex justify-center items-center gap-4 my-6">
       <div className="flex justify-center items-center gap-4">

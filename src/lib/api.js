@@ -97,10 +97,10 @@ export async function searchTours(q) {
   }
 }
 
-export async function FetchOneDayTrip(place) {
+export async function FetchOneDayTrip({ place, page }) {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/tours/one-day-tours/${place}`
+      `${process.env.NEXT_PUBLIC_API_URL}/tours/one-day-tours/${place}?page=${page}`
     );
 
     if (!response.ok) {
@@ -108,7 +108,16 @@ export async function FetchOneDayTrip(place) {
     }
 
     const responseData = await response.json();
-    return responseData.data || [];
+
+    return {
+      data: responseData.data || [],
+      pagination: {
+        total: responseData.pagination.total || 0,
+        page: responseData.pagination.page || 1,
+        limit: responseData.pagination.limit || 20,
+        pages: responseData.pagination.pages || 1,
+      },
+    };
   } catch (error) {
     console.error("Error fetching one day trip:", error);
     return [];

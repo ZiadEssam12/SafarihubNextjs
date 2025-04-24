@@ -35,7 +35,6 @@ const ImageCard = dynamic(() => import("./ImageCard"), {
   loading: () => (
     <div className="h-[400px] bg-gray-200 dark:bg-gray-800 relative animate-pulse rounded-xl"></div>
   ),
-  ssr: false,
 });
 
 export default function NileCruise() {
