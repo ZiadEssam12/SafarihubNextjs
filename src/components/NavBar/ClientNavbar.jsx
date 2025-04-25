@@ -1,7 +1,7 @@
 "use client";
 
 import { DarkThemeToggle, Tooltip, useThemeMode } from "flowbite-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   IconamoonSearchThin,
   MaterialSymbolsMenuRounded,
@@ -12,7 +12,7 @@ import HamburgerMenu from "./HamburgerMenu";
 import { SearchModal } from "../UI/SearchBar/SearchModal";
 
 export default function ClientNavbar() {
-  // // Use the complete hook functionality
+  // Use the complete hook functionality
   const { mode } = useThemeMode();
   const [showHamMenu, setShowHamMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);

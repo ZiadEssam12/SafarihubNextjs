@@ -5,8 +5,6 @@ import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 import { ThemeModeScript } from "flowbite-react";
 
-//
-
 export const metadata = {
   title: "SafariHub",
 };
