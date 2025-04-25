@@ -9,7 +9,7 @@ export default async function Home() {
 
   return (
     <>
-      <ThemeConfig dark={false} />
+      <ThemeConfig />
       <Hero />
       {/* <TravelCarousel /> */}
       <div className="py-12">
