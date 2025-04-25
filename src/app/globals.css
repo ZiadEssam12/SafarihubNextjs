@@ -19,6 +19,9 @@
   scroll-behavior: smooth;
 }
 
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
 /* styles.css */
 @font-face {
   font-family: "Poppins";
