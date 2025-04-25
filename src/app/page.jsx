@@ -2,12 +2,14 @@ import Hero from "@/components/UI/Hero/Hero";
 import HomeCarousel from "@/components/UI/HomeCarousel/HomeCarousel";
 import HowWorks from "@/components/UI/HowWorks/HowWorks";
 import { fetchFeaturedTours } from "@/lib/api";
+import { ThemeConfig } from "flowbite-react";
 
 export default async function Home() {
   const data = await fetchFeaturedTours();
 
   return (
     <>
+      <ThemeConfig dark={false} />
       <Hero />
       {/* <TravelCarousel /> */}
       <div className="py-12">

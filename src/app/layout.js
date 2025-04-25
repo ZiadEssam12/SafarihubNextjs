@@ -2,8 +2,9 @@
 //
 import Navbar from "@/components/NavBar/NavBar";
 import "./globals.css";
-// import { ThemeModeScript } from "flowbite-react";
 import Footer from "@/components/Footer/Footer";
+import { ThemeModeScript } from "flowbite-react";
+
 //
 
 export const metadata = {
@@ -42,7 +43,7 @@ export default function RootLayout({ children }) {
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        {/* <ThemeModeScript /> */}
+        <ThemeModeScript />
         <meta
           name="description"
           content="A dashboard website that helps companies to Follow up on their work"

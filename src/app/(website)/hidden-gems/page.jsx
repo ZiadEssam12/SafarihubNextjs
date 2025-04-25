@@ -15,7 +15,7 @@ export default async function Page({ searchParams }) {
       data={toursData}
       pagination={pagination}
       place="Hidden Gems"
-      baseUrl=""
+      baseUrl="/hidden-gems"
     />
   );
 }

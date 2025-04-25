@@ -1,6 +1,6 @@
 "use client";
 
-// import { DarkThemeToggle, Tooltip, useThemeMode } from "flowbite-react";
+import { DarkThemeToggle, Tooltip, useThemeMode } from "flowbite-react";
 import React, { useState } from "react";
 import {
   IconamoonSearchThin,
@@ -10,8 +10,10 @@ import {
 import Link from "next/link";
 import HamburgerMenu from "./HamburgerMenu";
 import { SearchModal } from "../UI/SearchBar/SearchModal";
+
 export default function ClientNavbar() {
-  // const { mode } = useThemeMode();
+  // // Use the complete hook functionality
+  const { mode } = useThemeMode();
   const [showHamMenu, setShowHamMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
@@ -21,13 +23,10 @@ export default function ClientNavbar() {
 
   return (
     <>
-      <div className="w-full bg-white">
-        <div className=" border-b-[0.5px] border-gray-300 dark:bg-gray-900">
-          <div className="container flex items-center  h-20 py-4 justify-between ">
+      <div className="w-full bg-white dark:bg-gray-900">
+        <div className="border-b-[0.5px] border-gray-300 dark:border-gray-700">
+          <div className="container flex items-center h-20 py-4 justify-between">
             <Link href="/" className="flex gap-x-3 items-center">
-              {/* <figure className="flex items-center">
-                <Logo width={40} height={40} />
-              </figure> */}
               <p className="text-lg lg:text-3xl font-bold text-orange user-select-none ">
                 Safari Hub
               </p>
@@ -61,14 +60,14 @@ export default function ClientNavbar() {
                 </Link>
               </div>
               <div className=" z-[100]">
-                {/* <Tooltip
+                <Tooltip
                   content={`change mode to  ${
                     mode == "dark" ? "light" : "dark"
                   }`}
                   placement="bottom"
                 >
                   <DarkThemeToggle />
-                </Tooltip> */}
+                </Tooltip>
               </div>
               <div className="md:hidden relative rounded-md">
                 <button
