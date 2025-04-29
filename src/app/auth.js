@@ -9,10 +9,6 @@ class CustomError extends CredentialsSignin {
     super(msg);
     this.code = msg;
     this.message = msg;
-    this.error = msg;
-    this.name = "CustomError";
-    this.stack = new Error().stack;
-    this.stack = undefined;
   }
 }
 
@@ -66,17 +62,17 @@ const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    async session({ session, token }) {
-      // Only populate session if token has valid user data
-      if (token && !token.error) {
-        session.user.id = token.id;
-        session.user.email = token.email;
-        session.user.name = token.name;
-        return session;
-      }
-      // Return empty session if there's an error
-      return { user: {} };
-    },
+    // async session({ session, token }) {
+    //   // Only populate session if token has valid user data
+    //   if (token && !token.error) {
+    //     session.user.id = token.id;
+    //     session.user.email = token.email;
+    //     session.user.name = token.name;
+    //     return session;
+    //   }
+    //   // Return empty session if there's an error
+    //   return { user: {} };
+    // },
 
     async jwt({ token, user, account, trigger }) {
       // For sign-in, store user data in token
@@ -99,6 +95,12 @@ const { handlers, auth, signIn, signOut } = NextAuth({
     },
     // Other callbacks...
   },
+  session: {
+    strategy: "jwt",
+    maxAge: 7 * 24 * 60 * 60, // 7 days
+    updateAge: 24 * 60 * 60, // 24 hours
+  },
+  trustHost: true,
   pages: {
     signIn: "/login",
   },

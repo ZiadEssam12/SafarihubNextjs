@@ -93,7 +93,6 @@ model TourToDestination {
   @@id([tourId, destinationId])
 }
 
-
 model User {
   id            String          @id @default(cuid())
   name          String?
