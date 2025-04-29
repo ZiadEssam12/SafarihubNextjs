@@ -6,19 +6,24 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function CheckSession() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     console.log("session data:", session);
   }, [session]);
 
+  const handleSignOut = async () => {
+    await signOut({ redirect: false });
+    // You can add additional client-side logic here if needed
+  };
+
   return (
     <div>
-      {session?.user ? (
+      {session?.user?.id ? (
         <div className="flex items-center gap-x-2">
           <button
             className="text-darkBlue font-medium rounded-md cursor-pointer py-2 px-3 bg-white flex justify-center items-center gap-x-1 dark:bg-darkBlue dark:text-white"
-            onClick={() => signOut()}
+            onClick={handleSignOut}
           >
             <span>
               <MaterialSymbolsLogout width={24} height={24} />
