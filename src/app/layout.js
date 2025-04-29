@@ -51,9 +51,7 @@ export default function RootLayout({ children, session }) {
 
       <body className={`dark:bg-gray-700 overflow-x-hidden bg-gray-100/35`}>
         <SessionProvider session={session}>
-          <Navbar />
-          <main className="container px-0 min-h-screen">{children}</main>
-          <Footer />
+          <main className="px-0 min-h-screen">{children}</main>
         </SessionProvider>
       </body>
     </html>

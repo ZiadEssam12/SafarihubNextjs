@@ -11,7 +11,6 @@ export default async function Home() {
     <>
       <ThemeConfig />
       <Hero />
-      {/* <TravelCarousel /> */}
       <div className="py-12">
         <div className="mb-12">
           <h2 className="font-bold text-3xl text-darkBlue capitalize text-center dark:text-white">

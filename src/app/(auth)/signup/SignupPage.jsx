@@ -117,10 +117,6 @@ export default function SignupPage() {
                 </label>
               </div>
 
-              {error && (
-                <div className="text-red-500 text-sm mt-1">{error}</div>
-              )}
-
               <div>
                 <LoadingButton
                   text="Sign Up"

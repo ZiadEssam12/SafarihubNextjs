@@ -1,14 +1,12 @@
-// import CustomizeNileTrip from "@/components/CustomizeNileTrip/CustomizeNileTrip";
-// import Footer from "@/components/Footer/Footer";
-// import Navbar from "@/components/NavBar/NavBar";
+import Footer from "@/components/Footer/Footer";
+import Navbar from "@/components/NavBar/NavBar";
 
 export default function layout({ children }) {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <main className="container min-h-screen">{children}</main>
-      {/* <CustomizeNileTrip />
-      <Footer /> */}
+      <Footer />
     </>
   );
 }
