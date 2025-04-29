@@ -10,13 +10,13 @@ import {
 import Link from "next/link";
 import HamburgerMenu from "./HamburgerMenu";
 import { SearchModal } from "../UI/SearchBar/SearchModal";
+import { useSession } from "next-auth/react";
 
 export default function ClientNavbar() {
   // Use the complete hook functionality
   const { mode } = useThemeMode();
   const [showHamMenu, setShowHamMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-
   const handleToggle = () => {
     setShowSearch((prev) => !prev);
   };

@@ -4,12 +4,13 @@ import Navbar from "@/components/NavBar/NavBar";
 import "./globals.css";
 import Footer from "@/components/Footer/Footer";
 import { ThemeModeScript } from "flowbite-react";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata = {
   title: "SafariHub",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, session }) {
   return (
     <html lang="en">
       <head>
@@ -49,9 +50,11 @@ export default function RootLayout({ children }) {
       </head>
 
       <body className={`dark:bg-gray-700 overflow-x-hidden bg-gray-100/35`}>
-        <Navbar />
-        <main className="container px-0 min-h-screen">{children}</main>
-        <Footer />
+        <SessionProvider session={session}>
+          <Navbar />
+          <main className="container px-0 min-h-screen">{children}</main>
+          <Footer />
+        </SessionProvider>
       </body>
     </html>
   );

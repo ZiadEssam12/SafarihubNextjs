@@ -1,6 +1,7 @@
 import { LucideUser } from "@/icons/Icons";
 import Link from "next/link";
 import ClientNavbar from "./ClientNavbar";
+import CheckSession from "./CheckSession";
 
 export const links = [
   {
@@ -82,17 +83,7 @@ export default function Navbar() {
               </div>
             ))}
           </div>
-          <div>
-            <Link
-              href="/login"
-              className="flex gap-x-1 items-center bg-white text-darkBlue px-4 py-2 rounded-md dark:bg-darkBlue dark:text-white"
-            >
-              <span className="fill-darkBlue stroke-darkBlue">
-                <LucideUser />
-              </span>
-              Login
-            </Link>
-          </div>
+          <CheckSession />
         </div>
       </div>
     </>

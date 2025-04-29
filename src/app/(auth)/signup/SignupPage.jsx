@@ -8,43 +8,34 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import LoadingButton from "@/components/button/Button";
 import Logo from "@/components/Logo/Logo";
-
-// Initial values and validation schema
-const initialValues = {
-  name: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  phoneNumber: "",
-};
-
-const validationSchema = object({
-  name: string().required("اسم الشركة مطلوب"),
-  email: string()
-    .email("البريد الالكتروني غير صحيح")
-    .required("البريد الالكتروني مطلوب"),
-  password: string()
-    .min(8, "يجب أن لا يقل طول كلمة المرور عن 8 احرف او ارقام")
-    .required("كلمة المرور مطلوبة"),
-  confirmPassword: string()
-    .oneOf([ref("password"), null], "كلمة المرور غير متطابقة")
-    .required("يجب تأكيد كلمة المرور"),
-  phoneNumber: string()
-    .matches(/^(05)[013456789][0-9]{7}$/, "رقم الهاتف غير صحيح")
-    .required("رقم الهاتف مطلوب"),
-});
+import { registerSchema, SigninInitialValues } from "@/schemas/auth";
 
 export default function SignupPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const formik = useFormik({
-    initialValues,
-    validationSchema,
+    initialValues: SigninInitialValues,
+    validationSchema: registerSchema,
     onSubmit: async (values) => {
       setLoading(true);
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        setLoading(false);
+        setError(data.message || "Something went wrong!");
+        return;
+      }
+
       setLoading(false);
       formik.resetForm();
       router.push("/login");
@@ -91,7 +82,6 @@ export default function SignupPage() {
 
           <div className="mt-8 ">
             <form className="space-y-3" onSubmit={formik.handleSubmit}>
-              {renderField("name", "Name")}
               {renderField("email", "Email Address", "email")}
               {renderField("phoneNumber", "Phone Number")}
 
@@ -99,6 +89,37 @@ export default function SignupPage() {
                 {renderField("password", "Password", "password")}
                 {renderField("confirmPassword", "Confirm Password", "password")}
               </div>
+
+              {error && (
+                <div className="text-red-500 text-sm mt-1">{error}</div>
+              )}
+
+              <div className="flex items-center gap-x-2 mb-4">
+                <input
+                  id="terms"
+                  name="terms"
+                  type="checkbox"
+                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                />
+                <label
+                  htmlFor="terms"
+                  className="block text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  I agree to the{" "}
+                  <Link
+                    href="/terms-and-conditions"
+                    className="font-semibold text-indigo-600 hover:text-indigo-500 ml-1"
+                  >
+                    Terms and Conditions
+                  </Link>
+                </label>
+              </div>
+
+              {error && (
+                <div className="text-red-500 text-sm mt-1">{error}</div>
+              )}
 
               <div>
                 <LoadingButton
