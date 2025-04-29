@@ -14,10 +14,10 @@ export default function CheckSession() {
 
   return (
     <div>
-      {session?.user?.id ? (
+      {session?.user ? (
         <div className="flex items-center gap-x-2">
           <button
-            className="text-darkBlue font-semibold rounded-md cursor-pointer py-2 px-3 bg-white flex justify-center items-center gap-x-1 dark:bg-darkBlue dark:text-white"
+            className="text-darkBlue font-medium rounded-md cursor-pointer py-2 px-3 bg-white flex justify-center items-center gap-x-1 dark:bg-darkBlue dark:text-white"
             onClick={() => signOut()}
           >
             <span>

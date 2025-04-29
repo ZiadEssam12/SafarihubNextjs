@@ -1,7 +1,7 @@
 import SignupPage from "./SignupPage";
 
 export const metadata = {
-  title: "تسجيل حساب جديد", // Default title for the auth section
+  title: "Register New Account At Safarihub"
 };
 
 export default function Signup() {

@@ -14,10 +14,6 @@ class CustomError extends CredentialsSignin {
 
 const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: PrismaAdapter(prisma),
-  session: {
-    strategy: "jwt",
-    maxAge: 7 * 24 * 60 * 60,
-  },
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -36,7 +32,7 @@ const { handlers, auth, signIn, signOut } = NextAuth({
             `${process.env.NEXT_PUBLIC_API_URL}/auth/authorize`,
             {
               method: "POST",
-              headers: { "Content-Type": "application/json" }, // Fixed typo
+              headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
                 email: credentials.email,
                 password: credentials.password,
@@ -51,8 +47,8 @@ const { handlers, auth, signIn, signOut } = NextAuth({
           }
 
           return {
-            id: data.id,
-            email: data.email,
+            id: data.user.id,
+            email: data.user.email,
           };
         } catch (error) {
           console.error("Authentication error:", error.message);
@@ -62,25 +58,23 @@ const { handlers, auth, signIn, signOut } = NextAuth({
     }),
   ],
   callbacks: {
-    // async session({ session, token }) {
-    //   // Only populate session if token has valid user data
-    //   if (token && !token.error) {
-    //     session.user.id = token.id;
-    //     session.user.email = token.email;
-    //     session.user.name = token.name;
-    //     return session;
-    //   }
-    //   // Return empty session if there's an error
-    //   return { user: {} };
-    // },
+    async session({ session, token }) {
+      // Only populate session if token has valid user data
+      if (token && !token.error) {
+        session.user.id = token.id;
+        session.user.email = token.email;
+        return session;
+      }
+      // Return empty session if there's an error
+      return { user: {} };
+    },
 
-    async jwt({ token, user, account, trigger }) {
+    async jwt({ token, user }) {
       // For sign-in, store user data in token
       if (user) {
         // If there was an error during sign-in
         if (user.error) {
           token.error = user.error;
-          // Remove any existing user data from token
           delete token.id;
           delete token.email;
           delete token.name;
@@ -93,7 +87,6 @@ const { handlers, auth, signIn, signOut } = NextAuth({
       }
       return token;
     },
-    // Other callbacks...
   },
   session: {
     strategy: "jwt",

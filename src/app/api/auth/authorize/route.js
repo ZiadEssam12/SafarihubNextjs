@@ -61,13 +61,12 @@ export async function POST(req) {
 
     // Return sanitized user data (no password)
     const { password: _, ...safeUser } = user;
+
     return NextResponse.json(
       {
         success: true,
         user: {
-          id: safeUser.id.toString(),
-          email: safeUser.email,
-          name: safeUser.name, // Include additional fields
+          ...safeUser,
         },
       },
       {
