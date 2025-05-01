@@ -3,10 +3,9 @@
 import { useFormik } from "formik";
 import { object, string, ref } from "yup";
 import { Alert } from "flowbite-react";
-import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState,  } from "react";
+import { useRouter,  } from "next/navigation";
 import LoadingButton from "@/components/button/Button";
-import Logo from "@/components/Logo/Logo";
 
 const initialValues = {
   newPassword: "",
@@ -41,22 +40,23 @@ export default function ResetPasswordForm({ token }) {
 
       setLoading(true);
       try {
-        // Here you would typically call an API endpoint to reset the password
-        // const response = await fetch('/api/auth/reset-password', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ token, password: values.newPassword }),
-        // });
-        // const data = await response.json();
+        const response = await fetch("/api/auth/reset-password", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token, password: values.newPassword }),
+        });
+        const data = await response.json();
 
-        // For demo purposes, we're using a timeout instead of an actual API call
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        if (!data.success) {
+          setError(
+            data.message || "Failed to reset password. Please try again."
+          );
+          return;
+        }
 
         setSuccess(true);
         formik.resetForm();
-        setTimeout(() => {
-          router.push("/login");
-        }, 2000);
+        router.push("/login");
       } catch (err) {
         setError("Failed to reset password. Please try again.");
         console.error("Password reset error:", err);

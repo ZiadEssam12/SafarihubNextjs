@@ -1,8 +1,7 @@
 import Link from "next/link";
 import React from "react";
-import ResetPasswordPage from "./resetPasswordPage";
-import ResetPasswordForm from "./resetPasswordPage";
 import Logo from "@/components/Logo/Logo";
+import ResetPasswordForm from "./ResetPasswordForm";
 
 export const metadata = {
   title: "Reset Password | Safari Hub",
@@ -12,11 +11,32 @@ export const metadata = {
 export default async function Page({ searchParams }) {
   // get the token
   const token = (await searchParams).token;
-  console.log("token :", token);
+  let validToken = false;
+
+  try {
+    // Call API to check the token
+    const result = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/auth/reset-password?token=${token}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    const data = await result.json();
+
+    if (data.success) {
+      validToken = true;
+    }
+  } catch (error) {
+    console.log("Error fetching token validation:", error);
+  }
 
   return (
     <>
-      {token ? (
+      {token && validToken ? (
         <>
           <div className="flex h-screen flex-1 flex-col justify-center items-stretch md:items-center px-6 py-12 lg:px-8 bg-gray-50 dark:bg-gray-900">
             <div className="bg-white dark:bg-gray-800 text-black dark:text-white p-12 mt-10 mx-auto w-full sm:max-w-sm md:max-w-[640px] rounded-md">

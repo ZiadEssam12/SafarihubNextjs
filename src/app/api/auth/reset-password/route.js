@@ -9,7 +9,53 @@ const resetPasswordSchema = Yup.object().shape({
   password: Yup.string()
     .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
+
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Passwords must match")
+    .required("Confirm password is required"),
 });
+
+// route -> get /api/auth/reset-password/
+export async function GET(request) {
+  try {
+    // Get token from URL
+    const { searchParams } = new URL(request.url);
+    const token = searchParams.get("token");
+
+    if (!token) {
+      return NextResponse.json(
+        { success: false, message: "Token is required" },
+        { status: 400 }
+      );
+    }
+
+    // Find the token in the database
+    const resetToken = await prisma.passwordResetToken.findUnique({
+      where: { token },
+    });
+
+    // Check if token exists and is not expired
+    if (!resetToken || resetToken.expires < new Date()) {
+      console.log("expired token");
+
+      return NextResponse.json(
+        { success: false, message: "Invalid or expired token" },
+        { status: 400 }
+      );
+    }
+
+    return NextResponse.json(
+      { success: true, message: "Token is valid" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Token validation error:", error);
+    return NextResponse.json(
+      { success: false, message: "Error validating token" },
+      { status: 500 }
+    );
+  }
+}
 
 export async function POST(request) {
   try {
@@ -24,33 +70,6 @@ export async function POST(request) {
 
     const { token, password } = body;
 
-    // Check if passwordResetToken model exists in prisma client
-    if (!prisma.passwordResetToken) {
-      console.error(
-        "PasswordResetToken model is not available in Prisma client"
-      );
-
-      // For development purposes (while the model is not available),
-      // we'll allow any token and just update the user's password if we can find them
-      // In production, this should be removed and proper token validation should be enforced
-
-      // For demonstration purposes only (REMOVE IN PRODUCTION)
-      console.log("Development mode: Bypassing token validation");
-
-      // Hash the new password
-      const hashedPassword = await bcrypt.hash(password, 10);
-
-      // Since we don't have a valid token, we can't find the user.
-      // In a real implementation, we would validate the token and find the associated user.
-      return NextResponse.json(
-        {
-          message:
-            "Token validation bypassed. In production, this would validate the token.",
-        },
-        { status: 200 }
-      );
-    }
-
     // If the model exists, use it to find the token
     try {
       // Find the token in the database
@@ -62,7 +81,7 @@ export async function POST(request) {
       // Check if token exists and is valid
       if (!resetToken) {
         return NextResponse.json(
-          { message: "Invalid or expired token" },
+          { success: false, message: "Invalid or expired token" },
           { status: 400 }
         );
       }
@@ -76,6 +95,7 @@ export async function POST(request) {
 
         return NextResponse.json(
           {
+            success: false,
             message:
               "Token has expired. Please request a new password reset link.",
           },
