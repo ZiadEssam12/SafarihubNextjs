@@ -187,6 +187,14 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.PasswordResetTokenScalarFieldEnum = {
+  id: 'id',
+  token: 'token',
+  expires: 'expires',
+  userId: 'userId',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.AccountScalarFieldEnum = {
   userId: 'userId',
   type: 'type',
@@ -241,6 +249,7 @@ exports.Prisma.ModelName = {
   TourToCategory: 'TourToCategory',
   TourToDestination: 'TourToDestination',
   User: 'User',
+  PasswordResetToken: 'PasswordResetToken',
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken'

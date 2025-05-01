@@ -3,18 +3,12 @@
 import { LucideUser, MaterialSymbolsLogout } from "@/icons/Icons";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useEffect } from "react";
 
 export default function CheckSession() {
   const { data: session, status } = useSession();
 
-  useEffect(() => {
-    console.log("session data:", session);
-  }, [session]);
-
   const handleSignOut = async () => {
     await signOut({ redirect: false });
-    // You can add additional client-side logic here if needed
   };
 
   return (

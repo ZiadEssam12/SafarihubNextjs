@@ -1,25 +1,16 @@
 "use client";
 
 import { DarkThemeToggle, Tooltip, useThemeMode } from "flowbite-react";
-import React, { useState, useEffect } from "react";
-import {
-  IconamoonSearchThin,
-  MaterialSymbolsMenuRounded,
-  MdiCartOutline,
-} from "@/icons/Icons";
+import React, { useState } from "react";
+import { MaterialSymbolsMenuRounded, MdiCartOutline } from "@/icons/Icons";
 import Link from "next/link";
 import HamburgerMenu from "./HamburgerMenu";
-import { SearchModal } from "../UI/SearchBar/SearchModal";
-import { useSession } from "next-auth/react";
+import SearchButton from "./SearchButton";
 
 export default function ClientNavbar() {
   // Use the complete hook functionality
   const { mode } = useThemeMode();
   const [showHamMenu, setShowHamMenu] = useState(false);
-  const [showSearch, setShowSearch] = useState(false);
-  const handleToggle = () => {
-    setShowSearch((prev) => !prev);
-  };
 
   return (
     <>
@@ -32,23 +23,9 @@ export default function ClientNavbar() {
               </p>
             </Link>
             <div className="flex gap-x-1 items-center justify-end">
-              <div className="relative hidden lg:block">
-                {/* search bar */}
-                <button
-                  name="search"
-                  id="search"
-                  placeholder="Search"
-                  className="py-2 pl-4 pr-8 text-start w-[150px] capitalize cursor-pointer border-[1px] border-darkBlue/30 rounded-full text-darkBlue text-sm font-normal"
-                  onClick={handleToggle}
-                  title="Click To Open Search Bar"
-                >
-                  search...
-                </button>
-                {/* end of search bar */}
-                <span className="absolute right-3 top-1/2 -translate-y-1/2 stroke-darkBlue fill-darkBlue">
-                  <IconamoonSearchThin width={20} height={20} />
-                </span>
-              </div>
+              {/* Search Bar */}
+              <SearchButton />
+              {/* End Search Bar */}
               <div>
                 <Link
                   href="/cart"
@@ -92,10 +69,6 @@ export default function ClientNavbar() {
         showHamMenu={showHamMenu}
         setShowHamMenu={setShowHamMenu}
       />
-
-      {/* search modal */}
-
-      <SearchModal show={showSearch} toggle={handleToggle} />
     </>
   );
 }
