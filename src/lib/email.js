@@ -16,6 +16,14 @@ export default async function sendEmail(
   htmlTemplate,
   plainTextTemplate
 ) {
+  if (process.env.EMAIL_USER) {
+    console.log("Found SMTP Email address");
+  }
+
+  if (process.env.EMAIL_PASS) {
+    console.log("Found SMTP Email password");
+  }
+
   try {
     // Define email options
     const mailOptions = {
