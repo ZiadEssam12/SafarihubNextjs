@@ -2,17 +2,15 @@
 
 import FormFieldWithValidation from "@/components/FormFieldWithValidation/FormFieldWithValidation";
 import { useFormik } from "formik";
-import { ContactUsInitialValues } from "./schema";
-
+import { ContactUsInitialValues, ContactUsValidationSchema } from "./schema";
 
 function submitForm(values) {
   console.log(values);
 }
 
-
 export default function ContactUsForm() {
   const formik = useFormik({
-    initialValues : ContactUsInitialValues,
+    initialValues: ContactUsInitialValues,
     validationSchema: ContactUsValidationSchema,
     onSubmit: submitForm,
   });
