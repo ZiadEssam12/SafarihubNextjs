@@ -80,6 +80,7 @@ export async function POST(request) {
 
       // Check if token exists and is valid
       if (!resetToken) {
+        console.log("Invalid token");
         return NextResponse.json(
           { success: false, message: "Invalid or expired token" },
           { status: 400 }
@@ -88,11 +89,13 @@ export async function POST(request) {
 
       // Check if token is expired
       if (resetToken.expires < new Date()) {
+        console.log("Token expired");
         // Delete expired token
         await prisma.passwordResetToken.delete({
           where: { id: resetToken.id },
         });
 
+        console.log("Deleted expired token");
         return NextResponse.json(
           {
             success: false,

@@ -3,8 +3,8 @@
 import { useFormik } from "formik";
 import { object, string, ref } from "yup";
 import { Alert } from "flowbite-react";
-import { useState,  } from "react";
-import { useRouter,  } from "next/navigation";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import LoadingButton from "@/components/button/Button";
 
 const initialValues = {
@@ -43,11 +43,15 @@ export default function ResetPasswordForm({ token }) {
         const response = await fetch("/api/auth/reset-password", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token, password: values.newPassword }),
+          body: JSON.stringify({
+            token,
+            password: values.newPassword,
+            confirmPassword: values.confirmNewPassword,
+          }),
         });
         const data = await response.json();
 
-        if (!data.success) {
+        if (!response.ok) {
           setError(
             data.message || "Failed to reset password. Please try again."
           );

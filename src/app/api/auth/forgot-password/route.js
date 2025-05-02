@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import * as Yup from "yup";
 import { randomBytes } from "crypto";
 import prisma from "@/lib/prisma";
-import { sendResetPasswordEmail } from "@/lib/email";
+import sendEmail from "@/lib/email";
+import ResetPassword from "@/lib/EmailTemplates/ResetPassword";
 
 // Schema for request validation
 const forgotPasswordSchema = Yup.object().shape({
@@ -68,13 +69,28 @@ export async function POST(request) {
       // Continue execution to return a success response to the user
     }
 
-    // For development: Output the reset link to console
-    console.log(
-      `Password reset link: ${process.env.NEXT_PUBLIC_APP_URL}/resetPassword?token=${token}`
-    );
+    const resetURL = `${process.env.NEXT_PUBLIC_APP_URL}/resetPassword?token=${token}`;
+    const RestTemplate = ResetPassword(resetURL);
 
-    // In production, you'd send an email here
-    // await sendResetPasswordEmail(user.email, token);
+    try {
+      await sendEmail(
+        user.email,
+        "Reset Your Password At SafariHub",
+        RestTemplate
+      );
+    } catch (error) {
+      console.log("Error in sending email :", error);
+
+      return NextResponse.json(
+        {
+          success: false,
+          message: error.message,
+        },
+        {
+          status: 400,
+        }
+      );
+    }
 
     return NextResponse.json(
       {
