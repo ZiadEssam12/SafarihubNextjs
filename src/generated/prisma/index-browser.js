@@ -225,6 +225,18 @@ exports.Prisma.VerificationTokenScalarFieldEnum = {
   expires: 'expires'
 };
 
+exports.Prisma.ContactUsScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  phoneNumber: 'phoneNumber',
+  status: 'status',
+  message: 'message',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -239,7 +251,11 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.ContactStatus = exports.$Enums.ContactStatus = {
+  PENDING: 'PENDING',
+  IN_PROGRESS: 'IN_PROGRESS',
+  DONE: 'DONE'
+};
 
 exports.Prisma.ModelName = {
   Tour: 'Tour',
@@ -252,7 +268,8 @@ exports.Prisma.ModelName = {
   PasswordResetToken: 'PasswordResetToken',
   Account: 'Account',
   Session: 'Session',
-  VerificationToken: 'VerificationToken'
+  VerificationToken: 'VerificationToken',
+  ContactUs: 'ContactUs'
 };
 
 /**

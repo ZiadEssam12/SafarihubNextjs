@@ -2,36 +2,18 @@
 
 import FormFieldWithValidation from "@/components/FormFieldWithValidation/FormFieldWithValidation";
 import { useFormik } from "formik";
-import * as Yup from "yup";
+import { ContactUsInitialValues } from "./schema";
 
-const initialValues = {
-  contact_fname: "",
-  contact_lname: "",
-  contact_email: "",
-  contact_phone: "",
-  contact_message: "",
-};
 
 function submitForm(values) {
   console.log(values);
 }
 
-const validationSchema = Yup.object({
-  contact_fname: Yup.string().required("First name is required"),
-  contact_lname: Yup.string().required("Last name is required"),
-  contact_email: Yup.string()
-    .email("Invalid email format")
-    .required("Email is required"),
-  contact_phone: Yup.string()
-    .matches(/^[0-9+]+$/, "Phone number can only contain numbers and +")
-    .required("Phone number is required"),
-  contact_message: Yup.string().required("Message is required"),
-});
 
 export default function ContactUsForm() {
   const formik = useFormik({
-    initialValues,
-    validationSchema,
+    initialValues : ContactUsInitialValues,
+    validationSchema: ContactUsValidationSchema,
     onSubmit: submitForm,
   });
 

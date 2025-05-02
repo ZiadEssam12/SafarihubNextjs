@@ -131,7 +131,7 @@ model Account {
   session_state     String?
  
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @default(now())
  
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
  
@@ -154,4 +154,22 @@ model VerificationToken {
   expires    DateTime
  
   @@id([identifier, token])
+}
+
+enum ContactStatus {
+  PENDING
+  IN_PROGRESS
+  DONE
+}
+
+model ContactUs {
+  id            Int           @id @default(autoincrement())
+  firstName    String
+  lastName     String
+  email         String
+  phoneNumber  String
+  status        ContactStatus @default(PENDING)
+  message       String
+  created_at    DateTime      @default(now())
+  updated_at    DateTime      @updatedAt
 }

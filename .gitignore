@@ -48,3 +48,8 @@ next-env.d.ts
 
 # temp folder 
 /toDo
+
+
+# prisma generated files
+
+/src/generated/*
