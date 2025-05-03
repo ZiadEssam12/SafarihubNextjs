@@ -27,7 +27,10 @@ export default function TourPage({ data }) {
             <h3 className="text-xl">Booking</h3>
           </div>
           <div className="flex-1 overflow-auto">
-            <TourForm price={data.start_from} />
+            <TourForm
+              price={data.start_from}
+              pricingGroups={data.pricing_groups}
+            />
           </div>
         </div>
         {/* end booking options */}
