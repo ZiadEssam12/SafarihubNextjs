@@ -1,10 +1,9 @@
 // import { Poppins } from "next/font/google";
 //
-import Navbar from "@/components/NavBar/NavBar";
 import "./globals.css";
-import Footer from "@/components/Footer/Footer";
 import { ThemeModeScript } from "flowbite-react";
 import { SessionProvider } from "next-auth/react";
+import LoadingAuth from "@/components/LoadingAuth/LoadingAuth";
 
 export const metadata = {
   title: "SafariHub",
@@ -51,7 +50,9 @@ export default function RootLayout({ children, session }) {
 
       <body className={`dark:bg-gray-700 overflow-x-hidden bg-gray-100/35`}>
         <SessionProvider session={session}>
-          <main className="px-0 min-h-screen">{children}</main>
+          <LoadingAuth>
+            <main className="px-0 min-h-screen">{children}</main>
+          </LoadingAuth>
         </SessionProvider>
       </body>
     </html>
