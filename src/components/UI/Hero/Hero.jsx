@@ -11,7 +11,7 @@ export default function Hero() {
               src="/image_fx_ (8) (1).jpg"
               alt="pyramids hero background"
               className="w-full object-cover max-h-[600px] h-[60vh] lg:h-auto hero-section"
-              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 400px"
+              // sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 400px"
               // loading="lazy"
               width={1200} // Specify the original width
               height={800} // Specify the original height
