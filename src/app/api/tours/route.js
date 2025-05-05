@@ -218,7 +218,6 @@ export async function POST(request) {
       { status: 201 }
     );
   } catch (error) {
-    console.log("Error creating tour:", error);
     return NextResponse.json(
       {
         success: false,

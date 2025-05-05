@@ -19,7 +19,8 @@ export async function GET(request) {
         title: true,
         start_from: true,
         overview_text: true,
-        gallery: true, // Just get the first image in your component
+        gallery: true, // Just get the first image in your component,
+        offer: true,
       },
     });
 

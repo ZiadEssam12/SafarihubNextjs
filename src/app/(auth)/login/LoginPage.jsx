@@ -16,12 +16,6 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Log error state changes
-  useEffect(() => {
-    if (error) {
-      console.log("Error state updated:", error);
-    }
-  }, [error]);
 
   const formik = useFormik({
     initialValues: SigninInitialValues,
@@ -39,10 +33,8 @@ export default function LoginPage() {
         if (result?.error) {
           setError(result.code);
         } else if (!result.ok) {
-          console.log("Request failed with status:", result.status);
           setError("Authentication failed. Please try again.");
         } else {
-          console.log("Login successful, redirecting to /");
           router.push("/"); // Redirect on success
         }
       } catch (error) {

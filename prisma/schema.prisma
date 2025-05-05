@@ -9,51 +9,48 @@ generator client {
   output   = "../src/generated/prisma"
 }
 
-
-  
-
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // p = BYFvidUOENYw3yIb
 
-
 model Tour {
-  id              Int             @id @default(autoincrement())
-  slug            String          @unique
-  reviews_number  Int             @default(0)
-  adult_price     Float
-  child_price     Float
-  infant_price    Float           @default(0)
-  pricing_groups  PricingGroup[]
-  enabled         Boolean         @default(true)
-  gallery         String[]
+  id               Int                 @id @default(autoincrement())
+  slug             String              @unique
+  reviews_number   Int                 @default(0)
+  adult_price      Float
+  child_price      Float
+  infant_price     Float               @default(0)
+  pricing_groups   PricingGroup[]
+  enabled          Boolean             @default(true)
+  gallery          String[]
   duration_in_days Int
-  offer           Float           @default(0)
-  offer_end_date  DateTime?
-  start_from      Float
-  rate            Float           @default(0)
-  overview_text   String
-  title           String
-  highlights      String[]
-  excluded        String[]          
-  included        String[]          
-  duration        String
-  categories      TourToCategory[]
-  destinations    TourToDestination[]
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
+  offer            Float               @default(0)
+  offer_end_date   DateTime?
+  start_from       Float
+  rate             Float               @default(0)
+  overview_text    String
+  title            String
+  highlights       String[]
+  excluded         String[]
+  included         String[]
+  duration         String
+  categories       TourToCategory[]
+  destinations     TourToDestination[]
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+  favorite         favorite[]
 }
 
 model PricingGroup {
-  id          Int     @id @default(autoincrement())
+  id          Int   @id @default(autoincrement())
   from        Int
   to          Int
   price       Float
   child_price Float
-  tour        Tour    @relation(fields: [tourId], references: [id], onDelete: Cascade)
+  tour        Tour  @relation(fields: [tourId], references: [id], onDelete: Cascade)
   tourId      Int
 }
 
@@ -94,18 +91,19 @@ model TourToDestination {
 }
 
 model User {
-  id            String          @id @default(cuid())
+  id            String              @id @default(cuid())
   name          String?
-  email         String          @unique
+  email         String              @unique
   password      String?
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
   resetToken    PasswordResetToken?
- 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  favorite  favorite[]
 }
 
 model PasswordResetToken {
@@ -116,7 +114,7 @@ model PasswordResetToken {
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt DateTime @default(now())
 }
- 
+
 model Account {
   userId            String
   type              String
@@ -129,30 +127,30 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
- 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
- 
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   @@id([provider, providerAccountId])
 }
- 
+
 model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
- 
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
- 
+
 model VerificationToken {
   identifier String
   token      String
   expires    DateTime
- 
+
   @@id([identifier, token])
 }
 
@@ -163,13 +161,26 @@ enum ContactStatus {
 }
 
 model ContactUs {
-  id            Int           @id @default(autoincrement())
-  firstName    String
-  lastName     String
-  email         String
-  phoneNumber  String
-  status        ContactStatus @default(PENDING)
-  message       String
-  created_at    DateTime      @default(now())
-  updated_at    DateTime      @updatedAt
+  id          Int           @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String
+  phoneNumber String
+  status      ContactStatus @default(PENDING)
+  message     String
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
+}
+
+model favorite {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  tourId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tour      Tour     @relation(fields: [tourId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([userId, tourId])
+  @@index([userId])
 }

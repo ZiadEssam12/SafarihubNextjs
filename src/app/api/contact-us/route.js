@@ -75,7 +75,6 @@ export async function POST(req) {
         { status: 200 }
       );
     } catch (error) {
-      console.log("error while creating:", error);
       return NextResponse.json(
         {
           success: false,

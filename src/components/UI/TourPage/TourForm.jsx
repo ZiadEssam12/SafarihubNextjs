@@ -34,7 +34,6 @@ const validationSchema = Yup.object({
 export default function TourForm({ price, pricingGroups }) {
   const [totalPrice, setTotalPrice] = useState(price);
 
-  console.log("pricing groups", pricingGroups);
 
   const formik = useFormik({
     initialValues,

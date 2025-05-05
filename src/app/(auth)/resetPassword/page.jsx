@@ -32,6 +32,9 @@ export default async function Page({ searchParams }) {
     }
   } catch (error) {
     console.log("Error fetching token validation:", error);
+    // Handle error (e.g., show a message to the user)
+    validToken = false;
+    
   }
 
   return (

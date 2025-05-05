@@ -31,7 +31,6 @@ export async function POST(req) {
 
     // Important change: Return 200 with success:false instead of 401
     if (!user) {
-      console.log("No user found with email:", email);
       return NextResponse.json(
         {
           success: false,
@@ -47,7 +46,6 @@ export async function POST(req) {
 
     // Important change: Return 200 with success:false instead of 401
     if (!isValid) {
-      console.log("Invalid password for user:", email);
       return NextResponse.json(
         {
           success: false,

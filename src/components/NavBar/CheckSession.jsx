@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
 export default function CheckSession() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   const handleSignOut = async () => {
     await signOut({ redirect: false });

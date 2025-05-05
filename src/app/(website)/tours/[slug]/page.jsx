@@ -10,13 +10,12 @@ export default async function Page({ params }) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours/${slug}`);
   const { data } = await res.json();
 
-
   // TODO: ADD Recommendation AI To fetch the recommended tours based on the current tour
-  const feturedData = fetchFeaturedTours();
+  // const feturedData = await fetchFeaturedTours();
 
   return (
     <>
-      <TourPage data={data} feturedData={feturedData} />
+      <TourPage data={data} />
     </>
   );
 }

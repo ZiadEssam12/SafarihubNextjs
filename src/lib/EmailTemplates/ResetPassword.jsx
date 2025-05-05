@@ -1,5 +1,5 @@
 export default function ResetPassword(resetUrl) {
-  console.log("resetURL 1:", resetUrl);
+ 
 
   return `
     <!DOCTYPE html>

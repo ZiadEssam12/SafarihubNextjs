@@ -61,6 +61,27 @@ export async function fetchToursByCategory(category) {
  * Fetches featured tours
  * @returns {Promise<Array>} - Array of featured tours
  */
+
+function reduceImagesQuality(data) {
+  return data.map((tour) => {
+    const reducedTour = { ...tour };
+
+    // Process gallery images - create full size versions with moderate quality
+    if (tour.gallery && Array.isArray(tour.gallery)) {
+      reducedTour.gallery = tour.gallery.map((image) => {
+        return image.replace("/upload/", "/upload/q_70/");
+      });
+
+      // Create new galleryThumbnails array with smaller, lower quality versions
+      reducedTour.galleryThumbnails = tour.gallery.map((image) => {
+        return image.replace("/upload/", "/upload/w_300,q_35/");
+      });
+    }
+
+    return reducedTour;
+  });
+}
+
 export async function fetchFeaturedTours() {
   try {
     const response = await fetch(
@@ -72,7 +93,9 @@ export async function fetchFeaturedTours() {
     }
 
     const responseData = await response.json();
-    return responseData.data || [];
+    // Apply image quality reduction and add thumbnails
+
+    return reduceImagesQuality(responseData.data || []);
   } catch (error) {
     console.error("Error fetching featured tours:", error);
     return [];

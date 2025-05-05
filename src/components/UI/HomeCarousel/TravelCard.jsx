@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 import { MdiHeartOutline } from "@/icons/Icons";
 import Image from "next/image";
 import Link from "next/link";
+import { useSession } from "next-auth/react";
 
 // Create a fallback loading component
 const LoadingCard = () => (
@@ -28,8 +29,12 @@ function TravelCardComponent({
   overview_text,
   start_from,
   gallery,
+  galleryThumbnails,
   slug,
+  offer,
 }) {
+  const { data: session } = useSession();
+  const isAuthenticated = !!session?.user?.id; // Check if the user is authenticated
   return (
     <Link
       href={`/tours/${slug}`}
@@ -38,7 +43,7 @@ function TravelCardComponent({
       <div className="relative h-48 overflow-hidden">
         <div className="w-full h-full relative">
           <Image
-            src={gallery[0]}
+            src={galleryThumbnails ? galleryThumbnails[0] : gallery[0]}
             alt={title}
             className="w-full h-full object-cover"
             width={0}
@@ -46,16 +51,25 @@ function TravelCardComponent({
             sizes="100vw"
           />
         </div>
-        <button
-          className="absolute top-2 right-2 rounded-full transition-colors"
-          role="button"
-          aria-label={`add ${title} to wishlist`}
-        >
-          <MdiHeartOutline className="size-8" />
-        </button>
-        <div className="absolute top-2 left-2 bg-orange text-white px-3 py-1 rounded-md text-sm font-medium">
-          Offer
-        </div>
+        {/* Show the favorite button if the user has signed in  */}
+        {isAuthenticated && (
+          <>
+            <button
+              className="absolute top-2 right-2 rounded-full transition-colors"
+              role="button"
+              aria-label={`add ${title} to wishlist`}
+            >
+              <MdiHeartOutline className="size-8" />
+            </button>
+          </>
+        )}
+        {/* end fav button */}
+
+        {offer && (
+          <div className="hidden rotate-90 top-3 absolute  bg-orange text-white px-3 py-1 rounded-md font-medium">
+            Offer
+          </div>
+        )}
       </div>
       <div className="p-4 flex flex-col flex-grow">
         <h3
