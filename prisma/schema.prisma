@@ -41,7 +41,7 @@ model Tour {
   destinations     TourToDestination[]
   createdAt        DateTime            @default(now())
   updatedAt        DateTime            @updatedAt
-  favorite         favorite[]
+  favorite         Favorite[]
 }
 
 model PricingGroup {
@@ -103,7 +103,7 @@ model User {
 
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
-  favorite  favorite[]
+  favorite  Favorite[]
 }
 
 model PasswordResetToken {
@@ -172,7 +172,7 @@ model ContactUs {
   updated_at  DateTime      @updatedAt
 }
 
-model favorite {
+model Favorite {
   id        Int      @id @default(autoincrement())
   userId    String
   tourId    Int

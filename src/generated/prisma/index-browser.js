@@ -237,6 +237,14 @@ exports.Prisma.ContactUsScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.FavoriteScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  tourId: 'tourId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -269,7 +277,8 @@ exports.Prisma.ModelName = {
   Account: 'Account',
   Session: 'Session',
   VerificationToken: 'VerificationToken',
-  ContactUs: 'ContactUs'
+  ContactUs: 'ContactUs',
+  Favorite: 'Favorite'
 };
 
 /**

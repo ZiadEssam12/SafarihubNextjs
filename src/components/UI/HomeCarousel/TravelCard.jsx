@@ -1,11 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import { MdiHeartOutline } from "@/icons/Icons";
 import Image from "next/image";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { addToFavorites } from "@/lib/api";
+import { Toast, ToastToggle } from "flowbite-react";
+import { HiCheck, HiX } from "react-icons/hi";
+import toast from "react-hot-toast";
 
 // Create a fallback loading component
 const LoadingCard = () => (
@@ -33,6 +37,18 @@ function TravelCardComponent({
   slug,
   offer,
 }) {
+  const handleAddToFavorites = async (e, tourId) => {
+    e.preventDefault(); // Prevent default link behavior
+
+    toast.success("Item has been added to your wishlist.");
+
+    let result = await addToFavorites(tourId);
+
+    if (result.error) {
+      toast.error(result.error);
+    }
+  };
+
   const { data: session } = useSession();
   const isAuthenticated = !!session?.user?.id; // Check if the user is authenticated
   return (
@@ -55,11 +71,13 @@ function TravelCardComponent({
         {isAuthenticated && (
           <>
             <button
-              className="absolute top-2 right-2 rounded-full transition-colors"
+              className="absolute cursor-pointer top-2 right-2 rounded-md transition-colors bg-darkBlue p-1"
               role="button"
               aria-label={`add ${title} to wishlist`}
+              title="Add to wishlist"
+              onClick={(e) => handleAddToFavorites(e, id)}
             >
-              <MdiHeartOutline className="size-8" />
+              <MdiHeartOutline fill="white" className="size-8" />
             </button>
           </>
         )}

@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeModeScript } from "flowbite-react";
 import { SessionProvider } from "next-auth/react";
 import LoadingAuth from "@/components/LoadingAuth/LoadingAuth";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "SafariHub",
@@ -54,6 +55,7 @@ export default function RootLayout({ children, session }) {
             <main className="px-0 min-h-screen">{children}</main>
           </LoadingAuth>
         </SessionProvider>
+        <Toaster position="top-right" reverseOrder={false} />
       </body>
     </html>
   );

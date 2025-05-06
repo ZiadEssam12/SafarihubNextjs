@@ -1,3 +1,6 @@
+// Section 1 :
+// Tours related APIS
+
 /**
  * Fetches all tours data
  */
@@ -146,3 +149,85 @@ export async function FetchOneDayTrip({ place, page }) {
     return [];
   }
 }
+
+// End secion 1
+
+// Section 2 :
+// Adding to favorites
+
+// 1- get user's favorites
+
+export async function fetchUserFavorites() {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/tours/favorite`,
+      {
+        next: { revalidate: 60 },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch data: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+
+    console.log("data :", responseData);
+
+    return responseData.data || [];
+  } catch (error) {
+    console.error("Error fetching user favorites:", error);
+    return [];
+  }
+}
+
+// 2- add to favorites
+export async function addToFavorites(tourId) {
+  try {
+    const response = await fetch("/api/tours/favorite", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ tourId }),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      return { error: data.message || "Failed to add to favorites" };
+    }
+
+    return data;
+  } catch (error) {
+    console.error("API error in addToFavorites:", error);
+    return { error: "Network error occurred while adding to favorites" };
+  }
+}
+// 3- delete from favorites
+export async function deleteFromFavorites(tourId) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/tours/favorite/${tourId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ tourId }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to delete from favorites: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    return responseData.data || [];
+  } catch (error) {
+    console.error("Error deleting from favorites:", error);
+    return null;
+  }
+}
+
+// end section 2

@@ -3,8 +3,8 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
-import { links } from "./NavBar";
 import { MaterialSymbolsLightClose, TablerChevronDown } from "@/icons/Icons";
+import { links } from "./links";
 
 export default function HamburgerMenu({ showHamMenu, setShowHamMenu }) {
   const pathname = usePathname();

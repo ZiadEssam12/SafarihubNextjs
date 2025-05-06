@@ -1,4 +1,5 @@
 import Footer from "@/components/Footer/Footer";
+import ClientNavbar from "@/components/NavBar/ClientNavbar";
 import Navbar from "@/components/NavBar/NavBar";
 
 export default function layout({ children }) {

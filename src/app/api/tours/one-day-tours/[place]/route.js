@@ -32,6 +32,7 @@ export async function GET(request, { params }) {
         },
       },
       select: {
+        id: true,
         title: true,
         slug: true,
         overview_text: true,

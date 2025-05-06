@@ -1,52 +1,13 @@
-import { LucideUser } from "@/icons/Icons";
 import Link from "next/link";
 import ClientNavbar from "./ClientNavbar";
-import CheckSession from "./CheckSession";
+import { auth } from "@/app/auth";
+import { links } from "./links";
+import UserProfileMenu from "./UserProfileMenu";
 
-export const links = [
-  {
-    name: "Home",
-    url: "/",
-    dropdown: false,
-  },
-  {
-    name: "About Us",
-    url: "/about-us",
-    dropdown: false,
-  },
-  {
-    name: "Egypt Tours",
-    url: "/",
-    dropdown: [
-      { name: "One Day Trip", url: "/one-day-tours" },
-      { name: "Multi Days Trips", url: "/multi-days-tours" },
-      { name: "Nile Cruise", url: "/nile-cruise" },
-      { name: "Shore Excursions", url: "/shore-excursions" },
-    ],
-  },
-  {
-    name: "Hidden Gems",
-    url: "/hidden-gems",
-    dropdown: false,
-  },
-  {
-    name: "Make Your Trip",
-    url: "/make-trip",
-    dropdown: false,
-  },
-  {
-    name: "Rent A Car",
-    url: "/rent-car",
-    dropdown: false,
-  },
-  {
-    name: "Contact Us",
-    url: "/contact-us#contact",
-    dropdown: false,
-  },
-];
+export default async function Navbar() {
+  const session = await auth();
+  console.log("current session :", session?.user?.email);
 
-export default function Navbar() {
   return (
     <>
       <ClientNavbar />
@@ -83,7 +44,7 @@ export default function Navbar() {
               </div>
             ))}
           </div>
-          <CheckSession />
+          <UserProfileMenu session={session} />
         </div>
       </div>
     </>
