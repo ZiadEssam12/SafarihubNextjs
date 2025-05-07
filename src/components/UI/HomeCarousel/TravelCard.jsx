@@ -80,69 +80,67 @@ function TravelCardComponent({
             height={0}
             sizes="100vw"
           />
-        </div>
+          {/* Show the favorite button if the user has signed in */}
+          {isAuthenticated && (
+            <button
+              className="absolute cursor-pointer top-2 right-2 rounded-full transition-all bg-white/80 hover:bg-white p-1.5 shadow-md"
+              role="button"
+              aria-label={`add ${title} to wishlist`}
+              title="Add to wishlist"
+              onClick={(e) => handleAddToFavorites(e, id)}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <svg
+                  className="animate-spin size-6 text-darkBlue"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+              ) : (
+                <MdiHeartOutline className="size-6 text-darkBlue hover:text-red-500 transition-colors" />
+              )}
+            </button>
+          )}
+          {/* Show offer badge if available */}
+          {offer && (
+            <div className="absolute top-0 left-0 bg-orange text-white px-3 py-1 rounded-br-md font-medium z-10 shadow-sm">
+              Offer
+            </div>
+          )}
 
-        {/* Show the favorite button if the user has signed in */}
-        {isAuthenticated && (
-          <button
-            className="absolute cursor-pointer top-2 right-2 rounded-full transition-all bg-white/80 hover:bg-white p-1.5 shadow-md"
-            role="button"
-            aria-label={`add ${title} to wishlist`}
-            title="Add to wishlist"
-            onClick={(e) => handleAddToFavorites(e, id)}
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <svg
-                className="animate-spin size-6 text-darkBlue"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-            ) : (
-              <MdiHeartOutline className="size-6 text-darkBlue hover:text-red-500 transition-colors" />
-            )}
-          </button>
-        )}
-
-        {/* Show offer badge if available */}
-        {offer && (
-          <div className="absolute top-0 left-0 bg-orange text-white px-3 py-1 rounded-br-md font-medium z-10 shadow-sm">
-            Offer
+          {/* Duration badge */}
+          <div className="absolute bottom-2 left-2 bg-white/90 text-darkBlue px-2 py-1 rounded-md text-xs font-medium z-10 shadow-sm flex items-center">
+            <svg
+              className="w-3 h-3 mr-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            {duration}
           </div>
-        )}
-
-        {/* Duration badge */}
-        <div className="absolute bottom-2 left-2 bg-white/90 text-darkBlue px-2 py-1 rounded-md text-xs font-medium z-10 shadow-sm flex items-center">
-          <svg
-            className="w-3 h-3 mr-1"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-            ></path>
-          </svg>
-          {duration}
         </div>
       </div>
 
@@ -171,7 +169,11 @@ function TravelCardComponent({
           </svg>
           {destinations[0].destination.title}
 
-          {destinations.length > 1 && <span className="font-bold text-darkBlue mx-1 ">+{destinations.length - 1}</span>}
+          {destinations.length > 1 && (
+            <span className="font-bold text-darkBlue mx-1 ">
+              +{destinations.length - 1}
+            </span>
+          )}
         </div>
 
         {/* Title */}
@@ -183,7 +185,7 @@ function TravelCardComponent({
         </h3>
 
         {/* Rating */}
-        <div className="flex items-center mb-2">
+        <div className="hidden flex items-center mb-2">
           {[...Array(5)].map((_, i) => (
             <svg
               key={i}

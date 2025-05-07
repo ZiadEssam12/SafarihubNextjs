@@ -23,6 +23,7 @@ export default function Carousel({
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [scrollSnaps, setScrollSnaps] = useState([]);
+  const [isPaused, setIsPaused] = useState(false);
 
   const scrollTo = useCallback(
     (index) => emblaApi && emblaApi.scrollTo(index),
@@ -56,20 +57,41 @@ export default function Carousel({
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
-  // Add Auto-Scrolling Logic
+  // Add Auto-Scrolling Logic with hover pause
   useEffect(() => {
     if (!emblaApi) return;
 
-    const autoScroll = setInterval(() => {
-      if (emblaApi) emblaApi.scrollNext();
-    }, scrollTime); // Scrolls every 3 seconds
+    let autoScrollInterval;
 
-    return () => clearInterval(autoScroll); // Cleanup on unmount
-  }, [emblaApi]);
+    // Only start auto-scrolling if not paused
+    if (!isPaused) {
+      autoScrollInterval = setInterval(() => {
+        if (emblaApi) emblaApi.scrollNext();
+      }, scrollTime);
+    }
+
+    return () => {
+      if (autoScrollInterval) clearInterval(autoScrollInterval);
+    };
+  }, [emblaApi, isPaused]);
+
+  // Handle mouse events for hover pause
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
 
   return (
     <div className="relative">
-      <div className="overflow-hidden py-4" ref={emblaRef}>
+      <div
+        className="overflow-hidden py-4"
+        ref={emblaRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <div className="flex gap-4 px-4">
           {data.map((item, index) => (
             <div
