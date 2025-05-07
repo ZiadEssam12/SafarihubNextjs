@@ -80,10 +80,11 @@ export default function HeroForm() {
   return (
     <>
       <form onSubmit={formik.handleSubmit}>
-        <div className="p-8 md:px-8  w-full text-black dark:text-white flex lg:flex-row items-center gap-5 bg-white/20 dark:bg-gray-800/20 backdrop-blur-[3px] rounded-lg border border-white/30 dark:border-gray-700/30 shadow-lg">
-          <div className="bg-white dark:bg-gray-800 px-10 py-5 rounded-md grid grid-cols-5 gap-5">
-            <div className="flex flex-col gap-y-2 w-full lg:w-fit px-8 lg:px-0">
-              <div className="relative flex items-center">
+        <div className="p-2 md:px-8 lg:p-8  w-full text-black dark:text-white flex flex-col lg:flex-row items-center gap-5 bg-white/20 dark:bg-gray-800/20 backdrop-blur-[3px] rounded-lg border border-white/30 dark:border-gray-700/30 shadow-lg">
+          <div className="bg-white dark:bg-gray-800 px-4 lg:px-10 py-5 rounded-md flex flex-col lg:flex-row columns-5 gap-5">
+            {/* Destination Field - Full width on mobile */}
+            <div className="flex flex-col gap-y-2 w-full lg:w-fit ">
+              <div className="w-full relative flex items-center">
                 <input
                   type="text"
                   id="destinations"
@@ -92,7 +93,7 @@ export default function HeroForm() {
                   value={formik.values.destination}
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  className="w-full p-2 border-0 placeholder:capitalize outline-transparent dark:bg-gray-700 focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
+                  className="w-full p-2 border-0 placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
                 />
                 <button
                   className="absolute right-1 bg-gray-100 rounded-full text-white"
@@ -112,9 +113,9 @@ export default function HeroForm() {
               )}
             </div>
 
-            {/* Check-in Date Field */}
+            {/* Check-in Field - Full width on mobile */}
             <div
-              className="flex flex-col gap-y-2 w-full md:w-fit px-8 md:px-0"
+              className="flex flex-col gap-y-2 w-full lg:w-fit "
               ref={checkInRef}
             >
               <div className="relative w-full">
@@ -179,99 +180,110 @@ export default function HeroForm() {
               )}
             </div>
 
-            {/* Check-out Date Field */}
-
-            <div className="relative w-full">
-              <button
-                type="button"
-                className="flex items-center justify-between w-full p-2 border-0 bg-white dark:bg-gray-700 rounded shadow-sm"
-                onClick={() => {
-                  setShowCheckOutPicker(!showCheckOutPicker);
-                  setShowCheckInPicker(false);
-                }}
-              >
-                <span
-                  className={
-                    formik.values.checkOut
-                      ? "text-black dark:text-white"
-                      : "text-gray-500"
-                  }
+            {/* Check-out Field - Full width on mobile */}
+            <div
+              className="flex flex-col gap-y-2 w-full lg:w-fit "
+              ref={checkOutRef}
+            >
+              <div className="relative w-full">
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full p-2 border-0 bg-white dark:bg-gray-700 rounded shadow-sm"
+                  onClick={() => {
+                    setShowCheckOutPicker(!showCheckOutPicker);
+                    setShowCheckInPicker(false);
+                  }}
                 >
-                  {formik.values.checkOut
-                    ? formatDate(formik.values.checkOut)
-                    : "Check-out"}
-                </span>
-                <SolarCalendarLinear
-                  className="text-gray-400"
-                  width={20}
-                  height={20}
-                />
-              </button>
-
-              {showCheckOutPicker && (
-                <div className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-700 shadow-lg rounded-md z-10">
-                  <input
-                    type="date"
-                    name="checkOut"
-                    value={formik.values.checkOut}
-                    onChange={(e) => {
-                      formik.handleChange(e);
-                      setShowCheckOutPicker(false);
-                    }}
-                    className="p-2 border-0 outline-transparent focus:outline-transparent focus:ring-0"
+                  <span
+                    className={
+                      formik.values.checkOut
+                        ? "text-black dark:text-white"
+                        : "text-gray-500"
+                    }
+                  >
+                    {formik.values.checkOut
+                      ? formatDate(formik.values.checkOut)
+                      : "Check-out"}
+                  </span>
+                  <SolarCalendarLinear
+                    className="text-gray-400"
+                    width={20}
+                    height={20}
                   />
+                </button>
+
+                {showCheckOutPicker && (
+                  <div className="absolute top-full left-0 mt-1 bg-white dark:bg-gray-700 shadow-lg rounded-md z-10">
+                    <input
+                      type="date"
+                      name="checkOut"
+                      value={formik.values.checkOut}
+                      onChange={(e) => {
+                        formik.handleChange(e);
+                        setShowCheckOutPicker(false);
+                      }}
+                      className="p-2 border-0 outline-transparent focus:outline-transparent focus:ring-0"
+                    />
+                  </div>
+                )}
+
+                {formik.values.checkOut && (
+                  <button
+                    className="absolute right-8 top-1/2 transform -translate-y-1/2 bg-gray-100 rounded-full text-white"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      formik.setFieldValue("checkOut", "");
+                    }}
+                    aria-label="clear check-out date"
+                  >
+                    <MaterialSymbolsLightClose width={18} height={18} />
+                  </button>
+                )}
+              </div>
+              {formik.touched.checkOut && formik.errors.checkOut && (
+                <div className="text-red-500 text-xs">
+                  {formik.errors.checkOut}
                 </div>
               )}
+            </div>
 
-              {formik.values.checkOut && (
-                <button
-                  className="absolute right-8 top-1/2 transform -translate-y-1/2 bg-gray-100 rounded-full text-white"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    formik.setFieldValue("checkOut", "");
-                  }}
-                  aria-label="clear check-out date"
-                >
-                  <MaterialSymbolsLightClose width={18} height={18} />
-                </button>
+            {/* Min Budget - Already full width on mobile */}
+            <div className="flex flex-col gap-y-2 w-full md:w-[150px] ">
+              <input
+                type="number"
+                min={1}
+                id="minBudget"
+                name="minBudget"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="Min price"
+                className="w-full p-2 border-0 placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
+              />
+              {formik.touched.minBudget && formik.errors.minBudget && (
+                <div className="text-red-500 text-xs">
+                  {formik.errors.minBudget}
+                </div>
               )}
             </div>
-            {formik.touched.checkOut && formik.errors.checkOut && (
-              <div className="text-red-500 text-xs">
-                {formik.errors.checkOut}
-              </div>
-            )}
 
-            <input
-              type="number"
-              min={1}
-              id="minBudget"
-              name="minBudget"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder="Min price"
-              className="w-full p-2 border-0 placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
-            />
-            {formik.touched.minBudget && formik.errors.minBudget && (
-              <div className="text-red-500 text-xs">
-                {formik.errors.minBudget}
-              </div>
-            )}
-            <input
-              type="number"
-              min={1}
-              id="maxBudget"
-              name="maxBudget"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              placeholder="Max price"
-              className="w-full p-2 border-0 placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
-            />
-            {formik.touched.maxBudget && formik.errors.maxBudget && (
-              <div className="text-red-500 text-xs">
-                {formik.errors.maxBudget}
-              </div>
-            )}
+            {/* Max Budget - Already full width on mobile */}
+            <div className="flex flex-col gap-y-2 w-full md:w-[150px] ">
+              <input
+                type="number"
+                min={1}
+                id="maxBudget"
+                name="maxBudget"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="Max price"
+                className="w-full p-2 border-0 placeholder:capitalize dark:bg-gray-700 outline-transparent focus:outline-transparent focus:ring-0 shadow-sm focus:border-transparent"
+              />
+              {formik.touched.maxBudget && formik.errors.maxBudget && (
+                <div className="text-red-500 text-xs">
+                  {formik.errors.maxBudget}
+                </div>
+              )}
+            </div>
           </div>
           <div className="gap-y-2 w-full md:w-fit h-20 flex items-center px-8 md:px-0 bg-[#f57c00] hover:bg-orange rounded-md">
             <button
