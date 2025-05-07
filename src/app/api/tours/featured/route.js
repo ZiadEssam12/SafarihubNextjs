@@ -13,14 +13,16 @@ export async function GET(request) {
       orderBy: {
         rate: "desc", // Order by rating to get the best tours
       },
-      select: {
-        id: true,
-        slug: true,
-        title: true,
-        start_from: true,
-        overview_text: true,
-        gallery: true, // Just get the first image in your component,
-        offer: true,
+      include: {
+        destinations: {
+          include: {
+            destination: {
+              select: {
+                title: true,
+              },
+            },
+          },
+        },
       },
     });
 

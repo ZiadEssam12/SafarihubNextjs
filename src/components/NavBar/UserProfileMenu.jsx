@@ -59,7 +59,7 @@ export default function UserProfileMenu({ session }) {
 
             {showDropDown && (
               <>
-                <div className="absolute bg-white dark:bg-darkBlue text-darkBlue dark:text-white rounded-md shadow-lg text-lg top-12  -translate-x-1/2  z-50">
+                <div className="absolute bg-white dark:bg-darkBlue text-darkBlue dark:text-white rounded-md shadow-lg text-lg top-12  -translate-x-3/4  z-50">
                   <ul className="flex flex-col gap-y-1 py-4">
                     <li className="flex items-center gap-x-[2px] px-4 py-0.5">
                       <LucideUser width={25} height={25} />

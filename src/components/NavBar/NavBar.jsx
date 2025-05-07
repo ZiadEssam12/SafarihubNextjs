@@ -44,7 +44,9 @@ export default async function Navbar() {
               </div>
             ))}
           </div>
-          <UserProfileMenu session={session} />
+          <div className="">
+            <UserProfileMenu session={session} />
+          </div>
         </div>
       </div>
     </>
