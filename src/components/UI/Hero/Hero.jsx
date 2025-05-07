@@ -12,8 +12,8 @@ export default function Hero() {
                 src="/image_fx_ (8) (1).jpg"
                 alt="pyramids hero background"
                 className="w-full h-full object-cover"
-                width={1200}
-                height={800}
+                width={0}
+                height={0}
                 unoptimized
                 priority
                 loading="eager"
