@@ -1,11 +1,13 @@
 import Footer from "@/components/Footer/Footer";
-import ClientNavbar from "@/components/NavBar/ClientNavbar";
 import Navbar from "@/components/NavBar/NavBar";
+import { auth } from "../auth";
 
-export default function layout({ children }) {
+export default async function layout({ children }) {
+  const session = await auth();
+
   return (
     <>
-      <Navbar />
+      <Navbar session={session} />
       <main className="container min-h-screen">{children}</main>
       <Footer />
     </>

@@ -6,7 +6,6 @@ import UserProfileMenu from "./UserProfileMenu";
 
 export default async function Navbar() {
   const session = await auth();
-  console.log("current session :", session?.user?.email);
 
   return (
     <>
@@ -44,7 +43,7 @@ export default async function Navbar() {
               </div>
             ))}
           </div>
-          <div className="">
+          <div>
             <UserProfileMenu session={session} />
           </div>
         </div>
