@@ -167,7 +167,7 @@ export async function fetchUserFavorites({ sessionTokenCookie }) {
       {
         // Pass the cookies in the headers
         headers: headers,
-        next: { revalidate: 60 },
+        cache: "no-store", // Add this to ensure fresh data for user-specific content
       }
     );
 
