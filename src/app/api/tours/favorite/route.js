@@ -2,9 +2,9 @@ import { auth } from "@/app/auth";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function GET(request) {
+export const GET = auth(async function GET(req) {
   // Get the user session
-  const session = await auth();
+  const session = req.auth;
 
   // Check if the user is authenticated
   if (!session || !session.user) {
@@ -21,7 +21,19 @@ export async function GET(request) {
         userId: session.user.id,
       },
       include: {
-        tour: true, // Include the related tour data
+        tour: {
+          include: {
+            destinations: {
+              include: {
+                destination: {
+                  select: {
+                    title: true,
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     });
 
@@ -33,11 +45,11 @@ export async function GET(request) {
       { status: 500 }
     );
   }
-}
+});
 
-export async function POST(request) {
+export const POST = auth(async function POST(request) {
   // Get the user session
-  const session = await auth();
+  const session = request.auth;
 
   // Check if the user is authenticated
   if (!session || !session.user) {
@@ -88,47 +100,4 @@ export async function POST(request) {
     console.error("Error adding favorite:", error);
     return NextResponse.json({ error: error }, { status: 500 });
   }
-}
-
-export async function DELETE(request) {
-  // Get the user session
-  const session = await auth();
-
-  // Check if the user is authenticated
-  if (!session || !session.user) {
-    return NextResponse.json(
-      { error: "Authentication required" },
-      { status: 401 }
-    );
-  }
-
-  // Get tourId from the URL
-  const { tourId } = await request.json();
-
-  if (!tourId) {
-    return NextResponse.json({ error: "Tour ID is required" }, { status: 400 });
-  }
-
-  try {
-    // Delete the favorite
-    await prisma.favorite.delete({
-      where: {
-        userId_tourId: {
-          userId: session.user.id,
-          tourId: parseInt(tourId),
-        },
-      },
-    });
-
-    return NextResponse.json(
-      { message: "Favorite removed successfully" },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.error("Error removing favorite:", error);
-    return NextResponse.json(
-      { error: "Failed to remove favorite" },
-      { status: 500 }
-    );
-  }
-}
+});

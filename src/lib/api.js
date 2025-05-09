@@ -1,6 +1,8 @@
 // Section 1 :
 // Tours related APIS
 
+import { setCookiesHeader } from "./setAuthCookies";
+
 /**
  * Fetches all tours data
  */
@@ -156,25 +158,33 @@ export async function FetchOneDayTrip({ place, page }) {
 // Adding to favorites
 
 // 1- get user's favorites
-
-export async function fetchUserFavorites() {
+export async function fetchUserFavorites({ sessionTokenCookie }) {
   try {
+    const headers = await setCookiesHeader({ sessionTokenCookie });
+
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/tours/favorite`,
       {
+        // Pass the cookies in the headers
+        headers: headers,
         next: { revalidate: 60 },
       }
     );
 
     if (!response.ok) {
+      // If auth failed, response.status would be 401
+      if (response.status === 401) {
+        console.error(
+          "Failed to fetch user favorites: Authentication required by API"
+        );
+        return []; // Or handle as appropriate
+      }
       throw new Error(`Failed to fetch data: ${response.status}`);
     }
 
     const responseData = await response.json();
-
-    console.log("data :", responseData);
-
-    return responseData.data || [];
+    // Ensure you access the correct property, e.g., responseData.favorites
+    return responseData.favorites || [];
   } catch (error) {
     console.error("Error fetching user favorites:", error);
     return [];
@@ -214,7 +224,6 @@ export async function deleteFromFavorites(tourId) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ tourId }),
       }
     );
 
@@ -223,10 +232,15 @@ export async function deleteFromFavorites(tourId) {
     }
 
     const responseData = await response.json();
-    return responseData.data || [];
+
+    console.log("Delete response:", responseData);
+
+    return responseData;
   } catch (error) {
-    console.error("Error deleting from favorites:", error);
-    return null;
+    return {
+      success: false,
+      message: error.message || "Failed to delete from favorites",
+    };
   }
 }
 
