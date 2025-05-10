@@ -18,6 +18,8 @@ export default function WishlistClient({ initialFavorites }) {
   const [favorites, setFavorites] = useState(initialFavorites || []);
   const [isLoading, setIsLoading] = useState(false);
 
+  console.log("favs :=", favorites);
+
   const handleRemoveFromWishlist = async (tourId) => {
     setIsLoading(true);
     try {
