@@ -165,9 +165,9 @@ export async function fetchUserFavorites({ sessionTokenCookie }) {
     const response = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/tours/favorite`,
       {
-        // Pass the cookies in the headers
         headers: headers,
         cache: "no-store", // Add this to ensure fresh data for user-specific content
+        credentials: "include", // Add this line
       }
     );
 
@@ -200,6 +200,7 @@ export async function addToFavorites(tourId) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ tourId }),
+      credentials: "include", // Add this line
     });
 
     const data = await response.json();
@@ -224,6 +225,7 @@ export async function deleteFromFavorites(tourId) {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include", // Add this line
       }
     );
 
