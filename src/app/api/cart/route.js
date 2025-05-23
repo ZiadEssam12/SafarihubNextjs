@@ -77,14 +77,12 @@ export const GET = auth(async function GET(request) {
       });
     }
 
-    console.log("User cart:", userCart);
+    // console.log("User cart:", userCart);
 
     return NextResponse.json({
       success: true,
       cart: {
-        items: {
-          ...userCart,
-        },
+        ...userCart,
         itemCount: userCart.items.length,
       },
     });
@@ -177,7 +175,7 @@ export const POST = auth(async function POST(request) {
       return NextResponse.json(
         {
           success: false,
-          message: "Tour with this date already exists in cart",
+          message: "Tour already exists in you cart",
         },
         { status: 400 }
       );

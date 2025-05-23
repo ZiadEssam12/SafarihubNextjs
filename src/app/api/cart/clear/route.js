@@ -5,7 +5,10 @@ import { NextResponse } from "next/server";
 // DELETE - Clear entire cart
 export const DELETE = auth(async function DELETE(request) {
   try {
-    const user = request.auth;
+    const { user } = request.auth;
+
+    console.log("user id: ", user);
+
     if (!user) {
       return NextResponse.json(
         { success: false, message: "User not authenticated" },

@@ -5,6 +5,7 @@ import { setCookiesHeader } from "@/lib/setAuthCookies";
 import { cookies } from "next/headers";
 import { getSessionCookieName } from "@/lib/utils";
 import { fetchUserCart } from "@/lib/api";
+import ClearCartButton from "./ClearCartButton";
 
 export const metadata = {
   title: "Cart - SafariHub",
@@ -46,7 +47,8 @@ export default async function page() {
   const headers = await setCookiesHeader({ sessionTokenCookie });
   const { cart } = await fetchUserCart({ headers });
 
-  console.log(cart);
+  console.log("Cart data:", JSON.stringify(cart, null, 2));
+  console.log("Cart items:", cart?.items);
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 min-h-screen">
@@ -77,33 +79,29 @@ export default async function page() {
             key={item.id}
             className="flex flex-col md:flex-row bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
           >
-            {/* Image Container */}
-            <div className="w-full md:w-[250px] h-[180px] md:h-full relative">
+            <div className="w-full md:w-[250px] h-[180px] md:h-[220px] relative">
               <Image
-                src={item.image}
-                alt={item.name}
+                src={item.tour.gallery[0]}
+                alt={item.tour.title}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 250px"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent md:hidden"></div>
             </div>
-
             {/* Content Container */}
             <div className="flex flex-col justify-between p-5 w-full">
               <div className="mb-4">
                 <div className="flex items-start justify-between mb-2">
                   <Link
-                    href={item.link}
+                    href={`/tours/${item.tour.slug}`}
                     className="text-xl font-semibold text-darkBlue hover:text-orange dark:text-white dark:hover:text-orange transition-colors"
                   >
-                    {item.name}
+                    {item.tour.title}
                   </Link>
 
                   <div className="flex items-center gap-3">
                     <button
                       title="Edit trip details"
-                      className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
+                      className="p-2 bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-700 rounded-full transition-colors"
                     >
                       <EditIcon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                     </button>
@@ -147,7 +145,7 @@ export default async function page() {
               <div className="flex justify-end mt-4">
                 <div className="bg-orange/10 rounded-lg px-4 py-2">
                   <span className="text-orange font-bold text-2xl">
-                    ${item.price}.00
+                    ${item.totalPrice}.00
                   </span>
                   <span className="text-gray-500 dark:text-gray-400 text-sm ml-1">
                     / tour
@@ -196,9 +194,7 @@ export default async function page() {
       {/* Action Buttons */}
       {cart?.itemCount > 0 && (
         <div className="mt-10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <button className="cursor-pointer w-full sm:w-auto order-2 sm:order-1 border-2 border-[#d9362b] text-[#d9362b] hover:bg-[#d9362b]/5 px-6 py-3 rounded-lg font-medium transition-colors">
-            Clear Cart
-          </button>
+          <ClearCartButton />
           <Link
             href="/checkout"
             className="w-full sm:w-auto order-1 sm:order-2 bg-orange hover:bg-orange/90 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-md flex items-center justify-center"

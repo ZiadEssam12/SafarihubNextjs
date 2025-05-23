@@ -3,6 +3,7 @@
 import { LineMdLoadingLoop } from "@/icons/Icons";
 import { AddToCart } from "@/lib/api";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function BookTravel({ tourId }) {
   const [loading, setLoading] = useState(false);
@@ -17,9 +18,12 @@ export default function BookTravel({ tourId }) {
       if (result.success) {
         // Optionally, you can show a success message or update the UI
         console.log("Added to cart successfully:", result);
+
+        toast.success("Tour has been added to your cart.");
       } else {
         // Handle the error case
         console.error("Failed to add to cart:", result.message);
+        toast.error(result.message || "Failed to add to cart.");
       }
     } catch (error) {
       console.error("Error adding to cart:", error);

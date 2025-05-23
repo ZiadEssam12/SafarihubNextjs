@@ -300,15 +300,15 @@ export async function AddToCart({ tourId }) {
       credentials: "include", // Add this line
     });
 
+    const responseData = await response.json();
     if (!response.ok) {
-      console.error("Error adding to cart:", response.message);
+      console.error("Error adding to cart:", responseData);
       return {
         success: false,
-        message: response.message,
+        message: responseData.message || "Failed to add to cart",
       };
     }
 
-    const responseData = await response.json();
     console.log("Add to cart response:", responseData);
     return responseData;
   } catch (error) {
@@ -316,6 +316,39 @@ export async function AddToCart({ tourId }) {
     return {
       success: false,
       message: error.message || "Failed to add to cart",
+    };
+  }
+}
+
+export async function ClearCart() {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/cart/clear`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // Add this line
+      }
+    );
+
+    const responseData = await response.json();
+    if (!response.ok) {
+      console.error("Error clearing cart:", responseData);
+      return {
+        success: false,
+        message: responseData.message || "Failed to clear cart",
+      };
+    }
+
+    console.log("Clear cart response:", responseData);
+    return responseData;
+  } catch (error) {
+    console.error("Error clearing cart:", error);
+    return {
+      success: false,
+      message: error.message || "Failed to clear cart",
     };
   }
 }
