@@ -1,7 +1,7 @@
 // PATCH - Update cart item
 export const PATCH = auth(async function PATCH(request) {
   try {
-    const user = request.auth?.user;
+    const { user } = request.auth;
     if (!user) {
       return NextResponse.json(
         { success: false, message: "User not authenticated" },
@@ -130,6 +130,7 @@ export const PATCH = auth(async function PATCH(request) {
   }
 });
 
+import { auth } from "@/app/auth";
 // ...existing DELETE function...import { auth } from "@/app/auth";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
