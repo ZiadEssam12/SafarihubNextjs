@@ -40,13 +40,12 @@ export const metadata = {
 //   ],
 // };
 
-export default async function page() {d
+export default async function page() {
   const cookieStore = await cookies();
   const sessionCookieName = getSessionCookieName(); // Use the utility function
   const sessionTokenCookie = cookieStore.get(sessionCookieName);
   const headers = await setCookiesHeader({ sessionTokenCookie });
   const { cart } = await fetchUserCart({ headers });
-
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 min-h-screen">
