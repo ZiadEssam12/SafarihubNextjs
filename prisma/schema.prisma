@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   // Add multiple binary targets for different environments
   binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
@@ -14,8 +14,6 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
-
 
 model Tour {
   id               Int                 @id @default(autoincrement())
@@ -43,6 +41,7 @@ model Tour {
   createdAt        DateTime            @default(now())
   updatedAt        DateTime            @updatedAt
   favorite         Favorite[]
+  cartItems        CartItem[]
 }
 
 model PricingGroup {
@@ -100,11 +99,12 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  cart          Cart?
+  favorite      Favorite[]
   resetToken    PasswordResetToken?
 
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  favorite  Favorite[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model PasswordResetToken {
@@ -184,4 +184,35 @@ model Favorite {
 
   @@unique([userId, tourId])
   @@index([userId])
+}
+
+model Cart {
+  id        String     @id @default(cuid())
+  userId    String?    @unique // Optional for guests, unique for one-to-one relation
+  user      User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  items     CartItem[]
+  total     Float
+  expiresAt DateTime? // For guest carts
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model CartItem {
+  id          String   @id @default(cuid())
+  cartId      String
+  cart        Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  tourId      Int
+  tour        Tour     @relation(fields: [tourId], references: [id])
+  date        DateTime // Selected tour date
+  adults      Int      @default(1)
+  children    Int      @default(0)
+  infants     Int      @default(0)
+  adultPrice  Float // Store price at time of adding to cart
+  childPrice  Float // Store price at time of adding to cart
+  infantPrice Float // Store price at time of adding to cart
+  totalPrice  Float // Calculated price based on quantities
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([cartId, tourId, date]) // Prevent duplicates with same date
 }

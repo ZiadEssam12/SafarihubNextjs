@@ -52,18 +52,33 @@ export async function GET(request) {
       orderBy: {
         createdAt: "desc",
       },
-      include: {
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        gallery: true,
+        start_from: true,
+        overview_text: true,
+        duration: true,
         categories: {
           include: {
-            category: true,
+            category: {
+              select: {
+                title: true,
+                slug: true,
+              },
+            },
           },
         },
         destinations: {
           include: {
-            destination: true,
+            destination: {
+              select: {
+                title: true,
+              },
+            },
           },
         },
-        pricing_groups: true,
       },
     });
 
@@ -77,6 +92,9 @@ export async function GET(request) {
       };
       return formattedTour;
     });
+
+    console.log("Tours:", formattedTours[0].destinations);
+
     return NextResponse.json(
       {
         success: true,
@@ -96,7 +114,6 @@ export async function GET(request) {
       {
         success: false,
         error: "Failed to fetch tours",
-        
       },
       { status: 500 }
     );

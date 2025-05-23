@@ -94,7 +94,11 @@ export async function fetchFeaturedTours() {
     );
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch data: ${response.status}`);
+      return {
+        success: false,
+        message: "Failed to fetch featured tours",
+        error: response.message,
+      };
     }
 
     const responseData = await response.json();
@@ -103,6 +107,11 @@ export async function fetchFeaturedTours() {
     return reduceImagesQuality(responseData.data || []);
   } catch (error) {
     console.error("Error fetching featured tours:", error);
+    return {
+      success: false,
+      message: "Failed to fetch featured tours",
+      error: error.message,
+    };
     return [];
   }
 }
@@ -172,14 +181,10 @@ export async function fetchUserFavorites({ sessionTokenCookie }) {
     );
 
     if (!response.ok) {
-      // If auth failed, response.status would be 401
-      if (response.status === 401) {
-        console.error(
-          "Failed to fetch user favorites: Authentication required by API"
-        );
-        return []; // Or handle as appropriate
-      }
-      throw new Error(`Failed to fetch data: ${response.status}`);
+      return {
+        success: false,
+        message: response.message,
+      };
     }
 
     const responseData = await response.json();
@@ -247,3 +252,70 @@ export async function deleteFromFavorites(tourId) {
 }
 
 // end section 2
+// Get user Cart
+export async function fetchUserCart({ headers }) {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
+      headers: headers,
+      cache: "no-store", // Add this to ensure fresh data for user-specific content
+      credentials: "include", // Add this line
+    });
+
+    if (!response.ok) {
+      return {
+        success: false,
+        message: "Failed to fetch user cart",
+        cart: {
+          items: [],
+        },
+      };
+    }
+
+    const responseData = await response.json();
+
+    console.log("response :", responseData);
+
+    // Ensure you access the correct property, e.g., responseData.cart
+    return responseData || [];
+  } catch (error) {
+    console.error("Error fetching user cart:", error);
+    return {
+      success: false,
+      message: "Failed to fetch user cart",
+      cart: {
+        items: [],
+      },
+    };
+  }
+}
+
+export async function AddToCart({ tourId }) {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ tourId }),
+      credentials: "include", // Add this line
+    });
+
+    if (!response.ok) {
+      console.error("Error adding to cart:", response.message);
+      return {
+        success: false,
+        message: response.message,
+      };
+    }
+
+    const responseData = await response.json();
+    console.log("Add to cart response:", responseData);
+    return responseData;
+  } catch (error) {
+    console.error("Error adding to cart:", error);
+    return {
+      success: false,
+      message: error.message || "Failed to add to cart",
+    };
+  }
+}

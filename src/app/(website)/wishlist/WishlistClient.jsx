@@ -22,13 +22,43 @@ export default function WishlistClient({ initialFavorites }) {
 
   const handleRemoveFromWishlist = async (tourId) => {
     setIsLoading(true);
+    const originalFavorites = [...favorites]; // Store the original list
+    let removedItem = null;
+    let removedItemIndex = -1;
+
+    // Find the item and its index before optimistically removing
+    const updatedFavorites = originalFavorites.filter((fav, index) => {
+      if (fav.tour.id === tourId) {
+        removedItem = fav;
+        removedItemIndex = index;
+        return false; // Exclude this item
+      }
+      return true;
+    });
+
+    setFavorites(updatedFavorites); // Optimistically update the UI
+
     try {
-      setFavorites(favorites.filter((fav) => fav.tour.id !== tourId)); // Assuming favorites is an array of { tour: { id: ... } }
       toast.success("Tour removed from wishlist");
-      await deleteFromFavorites(tourId);
+
+      const response = await deleteFromFavorites(tourId);
+
+      if (!response.success) {
+        // Or check for !response.success if that's what your API returns
+        throw new Error(response.message || "Failed to remove from server");
+      }
     } catch (error) {
-      toast.error("Failed to remove tour from wishlist");
+      toast.error("Failed to remove tour from wishlist. Reverting.");
       console.error("Error removing from wishlist:", error);
+      // Revert the change if the API call failed
+      if (removedItem && removedItemIndex !== -1) {
+        const revertedFavorites = [...updatedFavorites];
+        revertedFavorites.splice(removedItemIndex, 0, removedItem);
+        setFavorites(revertedFavorites);
+      } else {
+        // Fallback if something went wrong with tracking the removed item
+        setFavorites(originalFavorites);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -59,7 +89,7 @@ export default function WishlistClient({ initialFavorites }) {
       {favorites.map(({ tour }) => (
         <div
           key={tour.id}
-          className="relative bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full"
+          className={`relative bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full`}
         >
           {/* Remove from wishlist button */}
           <button

@@ -8,6 +8,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { addToFavorites } from "@/lib/api";
 import toast from "react-hot-toast";
+import BookTravel from "./BookTravel";
 
 // Create a fallback loading component
 const LoadingCard = () => (
@@ -167,7 +168,7 @@ function TravelCardComponent({
               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
             ></path>
           </svg>
-          {destinations[0].destination.title}
+          {destinations[0].title}
 
           {destinations.length > 1 && (
             <span className="font-bold text-darkBlue mx-1 ">
@@ -220,29 +221,7 @@ function TravelCardComponent({
             </div>
           </div>
 
-          <button
-            className="bg-darkBlue cursor-pointer text-white px-3 py-2 rounded-md hover:bg-darkBlue/90 transition-colors flex items-center gap-x-1 disabled:opacity-70"
-            aria-label="book this tour"
-            role="button"
-            onClick={(e) => e.preventDefault()}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="9" cy="21" r="1"></circle>
-              <circle cx="20" cy="21" r="1"></circle>
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-            </svg>
-            <span>Book</span>
-          </button>
+          <BookTravel tourId={id} />
         </div>
       </div>
     </Link>
