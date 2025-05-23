@@ -71,7 +71,7 @@ export default function ClearCartButton() {
                 {loading ? (
                   <LineMdLoadingLoop width={24} height={24} />
                 ) : (
-                  "Yes, I&apos;m sure"
+                  "Yes, I'm sure"
                 )}
               </Button>
 

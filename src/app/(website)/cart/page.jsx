@@ -40,7 +40,7 @@ export const metadata = {
 //   ],
 // };
 
-export default async function page() {
+export default async function page() {d
   const cookieStore = await cookies();
   const sessionCookieName = getSessionCookieName(); // Use the utility function
   const sessionTokenCookie = cookieStore.get(sessionCookieName);
@@ -178,7 +178,7 @@ export default async function page() {
             Your cart is empty
           </h2>
           <p className="text-gray-600 dark:text-gray-300 mb-8">
-            Looks like you haven't added any tours to your cart yet.
+            Looks like you haven&apos;t added any tours to your cart yet.
           </p>
           <Link
             href="/hidden-gems"
