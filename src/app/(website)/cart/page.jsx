@@ -47,8 +47,6 @@ export default async function page() {
   const headers = await setCookiesHeader({ sessionTokenCookie });
   const { cart } = await fetchUserCart({ headers });
 
-  console.log("Cart data:", JSON.stringify(cart, null, 2));
-  console.log("Cart items:", cart?.items);
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 min-h-screen">
