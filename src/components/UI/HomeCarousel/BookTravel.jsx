@@ -39,6 +39,8 @@ export default function BookTravel({ tourId }) {
       aria-label="book this tour"
       role="button"
       onClick={handleAddToCart}
+      disabled={loading}
+      type="button"
     >
       {loading ? (
         <LineMdLoadingLoop width={24} height={24} />
