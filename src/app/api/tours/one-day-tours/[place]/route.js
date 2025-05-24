@@ -35,9 +35,24 @@ export async function GET(request, { params }) {
         id: true,
         title: true,
         slug: true,
-        overview_text: true,
-        start_from: true,
         gallery: true,
+        duration: true,
+        start_from: true,
+        overview_text: true,
+        destinations: {
+          include: {
+            destination: {
+              select: {
+                title: true,
+              },
+            },
+          },
+        },
+        categories: {
+          include: {
+            category: true,
+          },
+        },
       },
     });
 

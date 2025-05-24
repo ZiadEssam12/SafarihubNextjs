@@ -44,7 +44,29 @@ export async function GET(request, { params }) {
           },
         },
       },
-      include: includeRelations,
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        gallery: true,
+        duration: true,
+        start_from: true,
+        overview_text: true,
+        destinations: {
+          include: {
+            destination: {
+              select: {
+                title: true,
+              },
+            },
+          },
+        },
+        categories: {
+          include: {
+            category: true,
+          },
+        },
+      },
     });
 
     // Return 404 if tour not found

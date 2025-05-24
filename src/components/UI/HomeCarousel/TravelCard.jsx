@@ -101,9 +101,11 @@ export default function TravelCard({
               d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
             ></path>
           </svg>
-          {destinations[0].title}
+          {destinations?.[0]?.title ||
+            destinations?.[0]?.destination?.title ||
+            "Unknown Location"}
 
-          {destinations.length > 1 && (
+          {destinations?.length > 1 && (
             <span className="font-bold text-darkBlue mx-1 ">
               +{destinations.length - 1}
             </span>
