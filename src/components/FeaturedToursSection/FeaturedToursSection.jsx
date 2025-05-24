@@ -5,15 +5,6 @@ import dynamic from "next/dynamic";
 import { fetchFeaturedTours } from "@/lib/api";
 import CarouselButtons from "../UI/Carousel/CarouselButtons";
 
-// Dynamically import TravelCard with loading state
-const TravelCard = dynamic(
-  () => import("@/components/UI/HomeCarousel/TravelCard"),
-  {
-    loading: () => (
-      <div className="animate-pulse bg-gray-200 h-64 w-full rounded-md"></div>
-    ),
-  }
-);
 
 // Dynamically import Carousel
 const Carousel = dynamic(() => import("@/components/UI/Carousel/Carousel"), {

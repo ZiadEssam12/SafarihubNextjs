@@ -1,7 +1,7 @@
 import SectionHeader from "@/components/SectionHeader/SectionHeader";
 import React from "react";
-import TravelCard from "../HomeCarousel/TravelCard";
 import Pagination from "@/components/Pagination/Pagination";
+import TravelCard from "@/components/TravelCard/TravelCard";
 
 export default function ToursListings({
   data,
@@ -20,7 +20,7 @@ export default function ToursListings({
           </div>
         ))}
       </div>
-        
+
       <Pagination pagination={pagination} baseUrl={baseUrl} />
     </>
   );

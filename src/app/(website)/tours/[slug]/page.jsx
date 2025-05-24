@@ -1,6 +1,4 @@
 import TourPage from "@/components/UI/TourPage/TourPage";
-import { fetchFeaturedTours } from "@/lib/api";
-import React from "react";
 
 export default async function Page({ params }) {
   // The parameter name should match the folder name [tourid]
@@ -9,9 +7,6 @@ export default async function Page({ params }) {
   // Use an absolute URL for production or a relative URL
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/tours/${slug}`);
   const { data } = await res.json();
-
-  // TODO: ADD Recommendation AI To fetch the recommended tours based on the current tour
-  // const feturedData = await fetchFeaturedTours();
 
   return (
     <>

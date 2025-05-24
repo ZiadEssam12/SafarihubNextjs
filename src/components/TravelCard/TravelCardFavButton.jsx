@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { MdiHeartOutline } from "@/icons/Icons";
 import { addToFavorites } from "@/lib/api";

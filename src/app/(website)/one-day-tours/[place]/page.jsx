@@ -1,4 +1,3 @@
-import { travelPackages } from "@/components/UI/HomeCarousel/travelPackages";
 import ToursListings from "@/components/UI/ToursListings/ToursListings";
 import { FetchOneDayTrip } from "@/lib/api";
 import React from "react";
@@ -9,7 +8,6 @@ export default async function Listings({ params, searchParams }) {
   const place = origplace.replace(/-/g, " ");
   const { data, pagination } = await FetchOneDayTrip({ place, page });
 
-  console.log("data:", data);
   return (
     <ToursListings
       data={data}

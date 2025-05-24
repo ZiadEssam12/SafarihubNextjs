@@ -1,11 +1,8 @@
 "use client";
 
+import TravelCard from "@/components/TravelCard/TravelCard";
 import dynamic from "next/dynamic";
-// import { travelPackages } from "./travelPackages";
 
-const TravelCard = dynamic(() => import("./TravelCard"), {
-  loading: () => <p className="w-full h-[400px] bg-gray-200 animate-pulse"></p>,
-});
 
 const Carousel = dynamic(() => import("@/components/UI/Carousel/Carousel"), {
   loading: () => <p className="w-full h-[500px] bg-gray-200 animate-pulse"></p>,

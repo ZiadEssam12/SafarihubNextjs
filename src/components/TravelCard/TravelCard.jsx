@@ -3,22 +3,6 @@ import Link from "next/link";
 import BookTravel from "./BookTravel";
 import TravelCardFavButton from "./TravelCardFavButton";
 
-// // Create a fallback loading component
-// const LoadingCard = () => (
-//   <div className="relative flex flex-col ms-1 bg-white border-2 border-transparent dark:border-gray-500 rounded-lg shadow-md overflow-hidden h-full animate-pulse">
-//     <div className="h-48 bg-gray-200"></div>
-//     <div className="p-4 flex flex-col flex-grow">
-//       <div className="h-6 bg-gray-200 rounded mb-2"></div>
-//       <div className="h-24 bg-gray-200 rounded mb-4"></div>
-//       <div className="mt-4 flex items-center justify-between">
-//         <div className="h-6 w-16 bg-gray-200 rounded"></div>
-//         <div className="h-8 w-24 bg-gray-200 rounded"></div>
-//       </div>
-//     </div>
-//   </div>
-// );
-
-// Regular component implementation
 export default function TravelCard({
   id,
   title,
