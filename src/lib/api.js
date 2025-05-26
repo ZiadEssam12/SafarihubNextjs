@@ -256,9 +256,13 @@ export async function deleteFromFavorites(tourId) {
 export async function fetchUserCart({ headers }) {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart`, {
-      headers: headers,
-      cache: "no-store", // Add this to ensure fresh data for user-specific content
-      credentials: "include", // Add this line
+      headers: {
+        ...headers,
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        Pragma: "no-cache",
+      },
+      cache: "no-store", // Ensure no caching for user-specific content
+      credentials: "include",
     });
 
     if (!response.ok) {
@@ -267,16 +271,25 @@ export async function fetchUserCart({ headers }) {
         message: "Failed to fetch user cart",
         cart: {
           items: [],
+          itemCount: 0,
+          total: 0,
         },
       };
     }
 
     const responseData = await response.json();
 
-    // console.log("response :", responseData);
-
-    // Ensure you access the correct property, e.g., responseData.cart
-    return responseData || [];
+    // Ensure consistent response structure
+    return (
+      responseData || {
+        success: true,
+        cart: {
+          items: [],
+          itemCount: 0,
+          total: 0,
+        },
+      }
+    );
   } catch (error) {
     console.error("Error fetching user cart:", error);
     return {
@@ -284,6 +297,8 @@ export async function fetchUserCart({ headers }) {
       message: "Failed to fetch user cart",
       cart: {
         items: [],
+        itemCount: 0,
+        total: 0,
       },
     };
   }

@@ -14,17 +14,35 @@ export const metadata = {
   description: "View and manage your safari tours in your cart",
 };
 
+// Disable static generation for this page to always fetch fresh data
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function page() {
   const cookieStore = await cookies();
-  const sessionCookieName = getSessionCookieName(); // Use the utility function
+  const sessionCookieName = getSessionCookieName();
   const sessionTokenCookie = cookieStore.get(sessionCookieName);
   const headers = await setCookiesHeader({ sessionTokenCookie });
-  const { cart } = await fetchUserCart({ headers });
+
+  // Add cache-busting timestamp
+  const timestamp = Date.now();
+  const headersWithCacheBust = {
+    ...headers,
+    "x-timestamp": timestamp.toString(),
+  };
+  const { cart } = await fetchUserCart({ headers: headersWithCacheBust });
+
+  // Ensure cart has proper structure with fallbacks
+  const safeCart = {
+    items: cart?.items || [],
+    itemCount: cart?.itemCount || cart?.items?.length || 0,
+    total: cart?.total || 0,
+  };
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 min-h-screen">
       {/* Cart Header */}
-      {cart.itemCount > 0 && (
+      {safeCart.itemCount > 0 && (
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full mb-10 pb-4 border-b border-gray-300 dark:border-gray-700">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 dark:text-white">
             Your Cart
@@ -33,20 +51,19 @@ export default async function page() {
             <p className="text-lg text-darkBlue">
               Total:{" "}
               <span className="text-2xl font-bold text-orange ml-2">
-                ${cart?.total}.00
+                ${safeCart.total}.00
               </span>
             </p>
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              {cart?.itemCount} {cart?.itemCount === 1 ? "item" : "items"} in
-              your cart
+              {safeCart.itemCount} {safeCart.itemCount === 1 ? "item" : "items"}{" "}
+              in your cart
             </p>
           </div>
         </div>
       )}
-
       {/* Cart Items */}
       <div className="flex flex-col gap-6">
-        {cart?.items?.map((item) => (
+        {safeCart.items?.map((item) => (
           <div
             key={item.id}
             className="flex flex-col md:flex-row bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
@@ -72,7 +89,10 @@ export default async function page() {
 
                   <div className="flex items-center gap-3">
                     <EditCartItem itemId={item.id} title={item.tour.title} />
-                    <DeleteItemFromCart itemId={item.id} title={item.tour.title} />
+                    <DeleteItemFromCart
+                      itemId={item.id}
+                      title={item.tour.title}
+                    />
                   </div>
                 </div>
               </div>
@@ -122,10 +142,9 @@ export default async function page() {
             </div>
           </div>
         ))}
-      </div>
-
+      </div>{" "}
       {/* Empty Cart State */}
-      {cart?.itemCount === 0 && (
+      {safeCart.itemCount === 0 && (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <div className="w-24 h-24 bg-gray-100 dark:bg-gray-700 rounded-full mb-6 flex items-center justify-center">
             <svg
@@ -156,10 +175,9 @@ export default async function page() {
             Explore Tours
           </Link>
         </div>
-      )}
-
+      )}{" "}
       {/* Action Buttons */}
-      {cart?.itemCount > 0 && (
+      {safeCart.itemCount > 0 && (
         <div className="mt-10 flex flex-col sm:flex-row justify-between items-center gap-4">
           <ClearCartButton />
           <Link
