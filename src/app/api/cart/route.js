@@ -210,7 +210,14 @@ export const POST = auth(async function POST(request) {
       data: {
         cartId: userCart.id,
         tourId: cart.tourId,
-        date: cart.date ? new Date(cart.date) : new Date(),
+        fromDate: cart.date ? new Date(cart.date) : new Date(),
+        toDate: cart.toDate
+          ? new Date(cart.toDate)
+          : (() => {
+              const endDate = new Date();
+              endDate.setDate(endDate.getDate() + tour.duration_in_days);
+              return endDate;
+            })(),
         adults: cart.adults || 1,
         children: cart.children || 0,
         infants: cart.infants || 0,

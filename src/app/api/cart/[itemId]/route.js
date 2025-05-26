@@ -1,5 +1,9 @@
+import { auth } from "@/app/auth";
+import prisma from "@/lib/prisma";
+import { NextResponse } from "next/server";
+
 // PATCH - Update cart item
-export const PATCH = auth(async function PATCH(request) {
+export const PATCH = auth(async function PATCH(request, { params }) {
   try {
     const { user } = request.auth;
     if (!user) {
@@ -9,9 +13,9 @@ export const PATCH = auth(async function PATCH(request) {
       );
     }
 
-    const { searchParams } = new URL(request.url);
-    const cartItemId = searchParams.get("itemId");
-    const { adults, children, infants, date } = await request.json();
+    const { itemId: cartItemId } = await params;
+    const { adults, children, infants, fromDate, toDate } =
+      await request.json();
 
     if (!cartItemId) {
       return NextResponse.json(
@@ -85,7 +89,8 @@ export const PATCH = auth(async function PATCH(request) {
         ...(adults !== undefined && { adults }),
         ...(children !== undefined && { children }),
         ...(infants !== undefined && { infants }),
-        ...(date && { date: new Date(date) }),
+        ...(fromDate && { fromDate: new Date(fromDate) }),
+        ...(toDate && { toDate: new Date(toDate) }),
         adultPrice,
         childPrice,
         infantPrice,
@@ -130,13 +135,8 @@ export const PATCH = auth(async function PATCH(request) {
   }
 });
 
-import { auth } from "@/app/auth";
-// ...existing DELETE function...import { auth } from "@/app/auth";
-import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
-
 // DELETE - Remove item from cart
-export const DELETE = auth(async function DELETE(request) {
+export const DELETE = auth(async function DELETE(request, { params }) {
   try {
     const user = request.auth?.user;
     if (!user) {
@@ -146,8 +146,8 @@ export const DELETE = auth(async function DELETE(request) {
       );
     }
 
-    const { searchParams } = new URL(request.url);
-    const cartItemId = searchParams.get("itemId");
+    const cartItemId = (await params).itemId;
+    console.log("itemId:", cartItemId);
 
     if (!cartItemId) {
       return NextResponse.json(
@@ -213,7 +213,7 @@ export const DELETE = auth(async function DELETE(request) {
   } catch (error) {
     console.error("Error removing item from cart:", error);
     return NextResponse.json(
-      { success: false, message: "Failed to remove item from cart" },
+      { success: false, message: error.message },
       { status: 500 }
     );
   }

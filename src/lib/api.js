@@ -273,7 +273,7 @@ export async function fetchUserCart({ headers }) {
 
     const responseData = await response.json();
 
-    console.log("response :", responseData);
+    // console.log("response :", responseData);
 
     // Ensure you access the correct property, e.g., responseData.cart
     return responseData || [];
@@ -349,6 +349,41 @@ export async function ClearCart() {
     return {
       success: false,
       message: error.message || "Failed to clear cart",
+    };
+  }
+}
+
+export async function UpdateCartItem({ itemId, quantity }) {}
+
+export async function DeleteCartItem({ itemId }) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/cart/${itemId}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // Add this line
+      }
+    );
+
+    const responseData = await response.json();
+    if (!response.ok) {
+      console.error("Error deleting cart item:", responseData);
+      return {
+        success: false,
+        message: responseData.message || "Failed to delete cart item",
+      };
+    }
+
+    console.log("Delete cart item response:", responseData);
+    return responseData;
+  } catch (error) {
+    console.error("Error deleting cart item:", error);
+    return {
+      success: false,
+      message: error.message || "Failed to delete cart item",
     };
   }
 }

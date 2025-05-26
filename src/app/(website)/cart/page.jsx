@@ -6,39 +6,13 @@ import { cookies } from "next/headers";
 import { getSessionCookieName } from "@/lib/utils";
 import { fetchUserCart } from "@/lib/api";
 import ClearCartButton from "./ClearCartButton";
+import DeleteItemFromCart from "./DeleteCartItem";
+import EditCartItem from "./EditCartItem";
 
 export const metadata = {
   title: "Cart - SafariHub",
   description: "View and manage your safari tours in your cart",
 };
-
-// let cart = {
-//   total: 200,
-//   items: [
-//     {
-//       id: 1,
-//       name: "Quad Bike Safari At Luxor From The West Bank",
-//       price: 100,
-//       image: "/tripImage.webp",
-//       date: "2024-01-01",
-//       adults: 2,
-//       children: 1,
-//       infants: 0,
-//       link: "/",
-//     },
-//     {
-//       id: 2,
-//       name: "Quad Bike Safari At Luxor From The West Bank",
-//       price: 100,
-//       image: "/tripImage.webp",
-//       date: "2024-01-01",
-//       adults: 2,
-//       children: 1,
-//       infants: 0,
-//       link: "/tours/2",
-//     },
-//   ],
-// };
 
 export default async function page() {
   const cookieStore = await cookies();
@@ -63,7 +37,8 @@ export default async function page() {
               </span>
             </p>
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              {cart?.itemCount === 1 ? "item" : "items"} in your cart
+              {cart?.itemCount} {cart?.itemCount === 1 ? "item" : "items"} in
+              your cart
             </p>
           </div>
         </div>
@@ -96,13 +71,8 @@ export default async function page() {
                   </Link>
 
                   <div className="flex items-center gap-3">
-                    <button
-                      title="Edit trip details"
-                      className="p-2 bg-gray-300 hover:bg-gray-400 dark:hover:bg-gray-700 rounded-full transition-colors"
-                    >
-                      <EditIcon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-                    </button>
-                    {/* <DeleteButton productId={item.id} /> */}
+                    <EditCartItem itemId={item.id} title={item.tour.title} />
+                    <DeleteItemFromCart itemId={item.id} title={item.tour.title} />
                   </div>
                 </div>
               </div>

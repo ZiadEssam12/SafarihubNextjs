@@ -197,22 +197,24 @@ model Cart {
   updatedAt DateTime   @updatedAt
 }
 
+//  @@unique([cartId, tourId]) // Prevent duplicates with same date
 model CartItem {
-  id          String   @id @default(cuid())
-  cartId      String
-  cart        Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
-  tourId      Int
-  tour        Tour     @relation(fields: [tourId], references: [id])
-  date        DateTime // Selected tour date
-  adults      Int      @default(1)
-  children    Int      @default(0)
-  infants     Int      @default(0)
-  adultPrice  Float // Store price at time of adding to cart
-  childPrice  Float // Store price at time of adding to cart
-  infantPrice Float // Store price at time of adding to cart
-  totalPrice  Float // Calculated price based on quantities
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id              String   @id @default(cuid())
+  cartId          String
+  cart            Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  tourId          Int
+  tour            Tour     @relation(fields: [tourId], references: [id])
+  fromDate        DateTime // Selected tour date
+  toDate          DateTime // Selected tour end date
+  adults          Int      @default(1)
+  children        Int      @default(0)
+  infants         Int      @default(0)
+  adultPrice      Float // Store price at time of adding to cart
+  childPrice      Float // Store price at time of adding to cart
+  infantPrice     Float // Store price at time of adding to cart
+  totalPrice      Float // Calculated price based on quantities
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
-  @@unique([cartId, tourId, date]) // Prevent duplicates with same date
 }
+

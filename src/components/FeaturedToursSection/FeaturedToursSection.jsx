@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { fetchFeaturedTours } from "@/lib/api";
 import CarouselButtons from "../UI/Carousel/CarouselButtons";
-
+import TravelCard from "../TravelCard/TravelCard";
 
 // Dynamically import Carousel
 const Carousel = dynamic(() => import("@/components/UI/Carousel/Carousel"), {
