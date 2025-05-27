@@ -201,7 +201,7 @@ export default async function page() {
           <ClearCartButton />
           <Link
             href="/checkout"
-            className="w-full sm:w-auto order-1 sm:order-2 bg-orange hover:bg-orange/90 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-md flex items-center justify-center"
+            className="w-full sm:w-auto order-1 sm:order-2 bg-orange hover:bg-orange/90 text-sm md:text-md lg:text-lg text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-md flex items-center justify-center"
           >
             <span>Proceed to Checkout</span>
             <svg

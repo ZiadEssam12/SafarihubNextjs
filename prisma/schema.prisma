@@ -42,6 +42,7 @@ model Tour {
   updatedAt        DateTime            @updatedAt
   favorite         Favorite[]
   cartItems        CartItem[]
+  orderItems       OrderItem[]
 }
 
 model PricingGroup {
@@ -101,6 +102,7 @@ model User {
   sessions      Session[]
   cart          Cart?
   favorite      Favorite[]
+  orders        Order[]
   resetToken    PasswordResetToken?
 
   createdAt DateTime @default(now())
@@ -191,6 +193,7 @@ model Cart {
   userId    String?    @unique // Optional for guests, unique for one-to-one relation
   user      User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
   items     CartItem[]
+  checkout  Checkout?
   total     Float
   expiresAt DateTime? // For guest carts
   createdAt DateTime   @default(now())
@@ -215,6 +218,123 @@ model CartItem {
   totalPrice      Float // Calculated price based on quantities
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
+}
 
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  PROCESSING
+  COMPLETED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+  PARTIALLY_REFUNDED
+}
+
+model Order {
+  id              String        @id @default(cuid())
+  orderNumber     String        @unique
+  userId          String?
+  user            User?         @relation(fields: [userId], references: [id])
+  
+  // Billing Information from checkout form
+  firstName       String
+  lastName        String
+  companyName     String?
+  country         String
+  town            String
+  state           String
+  phone           String
+  email           String
+  pickupLocation  String
+  additionalNote  String?
+  
+  // Order details
+  items           OrderItem[]
+  subtotal        Float
+  tax             Float         @default(0)
+  total           Float
+  currency        String        @default("USD")
+  
+  // Status tracking
+  status          OrderStatus   @default(PENDING)
+  paymentStatus   PaymentStatus @default(PENDING)
+  
+  // Payment information
+  paymentMethod   String?
+  paymentId       String?       // External payment processor ID
+  transactionId   String?
+  
+  // Timestamps
+  orderDate       DateTime      @default(now())
+  confirmedAt     DateTime?
+  completedAt     DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  
+  @@index([userId])
+  @@index([orderNumber])
+  @@index([status])
+  @@index([paymentStatus])
+}
+
+model OrderItem {
+  id              String   @id @default(cuid())
+  orderId         String
+  order           Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  tourId          Int
+  tour            Tour     @relation(fields: [tourId], references: [id])
+  
+  // Tour booking details
+  fromDate        DateTime
+  toDate          DateTime
+  adults          Int
+  children        Int
+  infants         Int
+  
+  // Pricing at time of order
+  adultPrice      Float
+  childPrice      Float
+  infantPrice     Float
+  itemTotal       Float
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  @@index([orderId])
+  @@index([tourId])
+}
+
+model Checkout {
+  id              String    @id @default(cuid())
+  cartId          String    @unique
+  cart            Cart      @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  
+  // Billing Information from form
+  firstName       String
+  lastName        String
+  companyName     String?
+  country         String
+  town            String
+  state           String
+  phone           String
+  email           String
+  pickupLocation  String
+  additionalNote  String?
+  
+  // Checkout session info
+  sessionId       String?   // For payment processor
+  isCompleted     Boolean   @default(false)
+  orderId         String?   // Link to created order
+  
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  expiresAt       DateTime  // Checkout session expiry
 }
 
