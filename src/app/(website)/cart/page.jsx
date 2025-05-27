@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { setCookiesHeader } from "@/lib/setAuthCookies";
 import { cookies } from "next/headers";
-import { getSessionCookieName } from "@/lib/utils";
+import { getSessionCookieName, formatCartDate } from "@/lib/utils";
 import { fetchUserCart } from "@/lib/api";
 import ClearCartButton from "./ClearCartButton";
 import DeleteItemFromCart from "./DeleteCartItem";
@@ -68,12 +68,14 @@ export default async function page() {
             key={item.id}
             className="flex flex-col md:flex-row bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
           >
-            <div className="w-full md:w-[250px] h-[180px] md:h-[220px] relative">
+            <div className="w-full md:w-[250px] h-[180px] md:h-[350px] relative">
               <Image
                 src={item.tour.gallery[0]}
                 alt={item.tour.title}
-                fill
-                className="object-cover"
+                width={250}
+                height={350}
+                className="w-full h-full object-cover"
+                priority
               />
             </div>
             {/* Content Container */}
@@ -88,46 +90,63 @@ export default async function page() {
                   </Link>
 
                   <div className="flex items-center gap-3">
-                    <EditCartItem itemId={item.id} title={item.tour.title} />
+                    <EditCartItem itemData={item} title={item.tour.title} />
                     <DeleteItemFromCart
                       itemId={item.id}
                       title={item.tour.title}
                     />
                   </div>
                 </div>
-              </div>
-
+              </div>{" "}
               {/* Trip Details */}
-              <div className="grid grid-cols-2 gap-x-6 gap-y-2">
-                <div className="flex items-center text-gray-700 dark:text-gray-300">
-                  <span className="text-sm font-medium min-w-[70px]">
-                    Date:
+              <div className="grid grid-cols-1 gap-x-6 gap-y-3">
+                <div className="flex flex-col space-y-1">
+                  <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                    From Date:
                   </span>
-                  <span className="text-sm ml-2">{item.date}</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">
+                    {formatCartDate(item.fromDate)}
+                  </span>
                 </div>
 
-                <div className="flex items-center text-gray-700 dark:text-gray-300">
-                  <span className="text-sm font-medium min-w-[70px]">
-                    Adults:
+                <div className="flex flex-col space-y-1">
+                  <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide">
+                    To Date:
                   </span>
-                  <span className="text-sm ml-2">{item.adults}</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300 font-medium">
+                    {formatCartDate(item.toDate)}
+                  </span>
                 </div>
 
-                <div className="flex items-center text-gray-700 dark:text-gray-300">
-                  <span className="text-sm font-medium min-w-[70px]">
-                    Children:
-                  </span>
-                  <span className="text-sm ml-2">{item.children}</span>
-                </div>
+                <div className="grid grid-cols-3 gap-4 mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                  <div className="text-center">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide block">
+                      Adults
+                    </span>
+                    <span className="text-lg font-bold text-darkBlue dark:text-white">
+                      {item.adults}
+                    </span>
+                  </div>
 
-                <div className="flex items-center text-gray-700 dark:text-gray-300">
-                  <span className="text-sm font-medium min-w-[70px]">
-                    Infants:
-                  </span>
-                  <span className="text-sm ml-2">{item.infants}</span>
+                  <div className="text-center">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide block">
+                      Children
+                    </span>
+                    <span className="text-lg font-bold text-darkBlue dark:text-white">
+                      {item.children}
+                    </span>
+                  </div>
+
+                  <div className="text-center">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wide block">
+                      Infants
+                    </span>
+                    <span className="text-lg font-bold text-darkBlue dark:text-white">
+                      {item.infants}
+                    </span>
+                  </div>
                 </div>
               </div>
-
               {/* Price */}
               <div className="flex justify-end mt-4">
                 <div className="bg-orange/10 rounded-lg px-4 py-2">

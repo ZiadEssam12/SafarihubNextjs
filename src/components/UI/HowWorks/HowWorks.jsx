@@ -28,7 +28,6 @@ export default function HowWorks() {
 
         <div className="flex flex-col  lg:flex-row gap-x-5 gap-y-10 pt-10">
           {/* left div */}
-
           <div className="flex-1 space-y-12 ">
             {list.map((item, index) => (
               <div className="flex gap-x-5" key={item.title}>
@@ -52,11 +51,10 @@ export default function HowWorks() {
                 BOOK NOW
               </Link>
             </div>
-          </div>
+          </div>{" "}
           {/* end left side */}
-
-          <div className="flex-1 bg-orange  size-80 rounded-[45px]">
-            <div className="rounded-[45px] overflow-hidden h-full  translate-x-5 translate-y-5">
+          <div className="flex-1 bg-orange rounded-[45px] relative min-h-[320px] max-w-full overflow-hidden">
+            <div className="rounded-[45px] overflow-hidden h-full w-full absolute inset-2">
               <Image
                 src="/Video.jpg"
                 width={0}

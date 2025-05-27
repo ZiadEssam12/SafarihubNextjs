@@ -368,7 +368,39 @@ export async function ClearCart() {
   }
 }
 
-export async function UpdateCartItem({ itemId, quantity }) {}
+export async function UpdateCartItem({ item }) {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/cart/${item.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(item),
+        credentials: "include", // Add this line
+      }
+    );
+
+    const responseData = await response.json();
+    if (!response.ok) {
+      console.error("Error updating cart item:", responseData);
+      return {
+        success: false,
+        message: responseData.message || "Failed to update cart item",
+      };
+    }
+
+    console.log("Update cart item response:", responseData);
+    return responseData;
+  } catch (error) {
+    console.error("Error updating cart item:", error);
+    return {
+      success: false,
+      message: error.message || "Failed to update cart item",
+    };
+  }
+}
 
 export async function DeleteCartItem({ itemId }) {
   try {

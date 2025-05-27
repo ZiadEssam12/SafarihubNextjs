@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 // PATCH - Update cart item
-export const PATCH = auth(async function PATCH(request, { params }) {
+export const PUT = auth(async function PUT(request, { params }) {
   try {
     const { user } = request.auth;
     if (!user) {
@@ -12,9 +12,8 @@ export const PATCH = auth(async function PATCH(request, { params }) {
         { status: 401 }
       );
     }
-
     const { itemId: cartItemId } = await params;
-    const { adults, children, infants, fromDate, toDate } =
+    const { adults, children, infants, fromDate, fromTime } =
       await request.json();
 
     if (!cartItemId) {
@@ -35,7 +34,13 @@ export const PATCH = auth(async function PATCH(request, { params }) {
       include: {
         cart: true,
         tour: {
-          include: {
+          select: {
+            id: true,
+            title: true,
+            duration_in_days: true,
+            adult_price: true,
+            child_price: true,
+            infant_price: true,
             pricing_groups: true,
           },
         },
@@ -80,7 +85,49 @@ export const PATCH = auth(async function PATCH(request, { params }) {
     const newTotalPrice =
       adultPrice * newAdults +
       childPrice * newChildren +
-      infantPrice * newInfants;
+      infantPrice * newInfants; // Combine fromDate and fromTime if both are provided
+
+    // Validate fromDate is not in the past
+    if (fromDate) {
+      const inputDate = new Date(fromDate);
+      const today = new Date();
+
+      // Set time to start of day for accurate comparison
+      today.setHours(0, 0, 0, 0);
+      inputDate.setHours(0, 0, 0, 0);
+
+      if (inputDate < today) {
+        return NextResponse.json(
+          { success: false, message: "From date cannot be in the past" },
+          { status: 400 }
+        );
+      }
+    }
+
+    let combinedFromDate;
+    if (fromDate && fromTime) {
+      // Combine date (YYYY-MM-DD) and time (HH:MM) into ISO datetime
+      // Create local datetime first, then convert to UTC for consistent storage
+      combinedFromDate = new Date(`${fromDate}T${fromTime}:00`);
+    } else if (fromDate) {
+      // If only date is provided, use the existing time from the current item
+      const existingTime = new Date(cartItem.fromDate);
+      const hours = existingTime.getHours().toString().padStart(2, "0");
+      const minutes = existingTime.getMinutes().toString().padStart(2, "0");
+      combinedFromDate = new Date(`${fromDate}T${hours}:${minutes}:00`);
+    }
+
+    // Calculate toDate based on tour duration - always calculate if we have a fromDate
+    let newToDate;
+    if (combinedFromDate && cartItem.tour.duration_in_days) {
+      newToDate = new Date(combinedFromDate);
+      newToDate.setDate(newToDate.getDate() + cartItem.tour.duration_in_days);
+    } else if (combinedFromDate) {
+      // Fallback: if no duration_in_days, use the existing toDate logic
+      const durationDays = cartItem.tour.duration || 1; // Default to 1 day if no duration
+      newToDate = new Date(combinedFromDate);
+      newToDate.setDate(newToDate.getDate() + durationDays);
+    }
 
     // Update the cart item
     const updatedCartItem = await prisma.cartItem.update({
@@ -89,8 +136,8 @@ export const PATCH = auth(async function PATCH(request, { params }) {
         ...(adults !== undefined && { adults }),
         ...(children !== undefined && { children }),
         ...(infants !== undefined && { infants }),
-        ...(fromDate && { fromDate: new Date(fromDate) }),
-        ...(toDate && { toDate: new Date(toDate) }),
+        ...(combinedFromDate && { fromDate: combinedFromDate }),
+        ...(newToDate && { toDate: newToDate }),
         adultPrice,
         childPrice,
         infantPrice,
