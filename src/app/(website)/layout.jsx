@@ -8,7 +8,7 @@ export default async function layout({ children }) {
   return (
     <>
       <Navbar session={session} />
-      <main className="container min-h-screen">{children}</main>
+      <main className="container min-h-screen text-darkBlue">{children}</main>
       <Footer />
     </>
   );

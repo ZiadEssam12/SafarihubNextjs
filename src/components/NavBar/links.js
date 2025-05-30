@@ -22,7 +22,7 @@ export const links = [
     icon: TablerUsers,
   },
   {
-    name: "Egypt Tours",
+    name: "Categories",
     url: "/",
     dropdown: [
       { name: "One Day Trip", url: "/one-day-tours" },
@@ -33,7 +33,7 @@ export const links = [
     icon: SolarStarLinear,
   },
   {
-    name: "Hidden Gems",
+    name: "Tours",
     url: "/hidden-gems",
     dropdown: false,
     icon: LucideLeaf,

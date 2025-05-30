@@ -3,7 +3,6 @@
 import TravelCard from "@/components/TravelCard/TravelCard";
 import dynamic from "next/dynamic";
 
-
 const Carousel = dynamic(() => import("@/components/UI/Carousel/Carousel"), {
   loading: () => <p className="w-full h-[500px] bg-gray-200 animate-pulse"></p>,
 });
@@ -22,13 +21,13 @@ const CarouselDots = dynamic(
   }
 );
 
-export default function HomeCarousel({ carouselData }) {
+export default function HomeCarousel({ dots, carouselData }) {
   return (
     <Carousel
       CustomCard={TravelCard}
       data={carouselData}
       CarouselButtons={CarouselButtons}
-      CarouselDots={CarouselDots}
+      // CarouselDots={CarouselDots}
     />
   );
 }

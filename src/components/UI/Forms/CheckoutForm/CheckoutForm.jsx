@@ -64,20 +64,21 @@ export default function CheckoutForm() {
       console.log(values);
     },
   });
-
-  const nextStep = () => {
+  const nextStep = (e) => {
+    e.preventDefault();
     if (currentStep < steps.length) {
       setCurrentStep(currentStep + 1);
     }
   };
 
-  const prevStep = () => {
+  const prevStep = (e) => {
+    e.preventDefault();
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
     }
   };
-
-  const goToStep = (stepNumber) => {
+  const goToStep = (stepNumber, e) => {
+    e.preventDefault();
     setCurrentStep(stepNumber);
   };
 
@@ -643,9 +644,10 @@ export default function CheckoutForm() {
           <div className="flex items-center justify-between mb-6">
             {steps.map((step, index) => (
               <div key={step.id} className="flex items-center">
+                {" "}
                 <button
                   type="button"
-                  onClick={() => goToStep(step.id)}
+                  onClick={(e) => goToStep(step.id, e)}
                   className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-all duration-200 ${
                     currentStep === step.id
                       ? "bg-orange text-white"
@@ -728,7 +730,8 @@ export default function CheckoutForm() {
               <button
                 type="submit"
                 onClick={formik.handleSubmit}
-                className="px-8 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-all duration-200 flex items-center"
+                disabled={!formik.isValid || formik.isSubmitting}
+                className="px-8 py-3 cursor-pointer bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-all duration-200 flex items-center"
               >
                 <svg
                   className="w-5 h-5 mr-2"
